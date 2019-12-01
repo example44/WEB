@@ -6,8 +6,8 @@
 /**
  * Vlastni trida spravujici databazi.
  */
-require_once "nastaven.inc.php";
-class MyDatabaze {
+require_once "settings.inc.php";
+class Database {
 
     private $pdo;
 

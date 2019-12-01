@@ -13,7 +13,9 @@
     </header>
 
     <nav>
-        <?php include "navigace.php" ?>
+        <?php
+        require_once "settings.inc.php";
+        require_once DIRECTORY_VIEWS."/navigace.php" ?>
     </nav>
 
     <?php

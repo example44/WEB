@@ -1,5 +1,5 @@
 <?php
-require_once "MyDataBaze.class.php";
+require_once "Database.class.php";
 
 $email = $heslo = "";
 $emailErr = $hesloErr = "";
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $heslo = md5($heslo . "type");
     echo $heslo;
-    $myDB = new MyDatabaze();
+    $myDB = new Database();
     $user = $myDB->selectFromTable(TABLE_UZIVATEL, "email = '$email' AND heslo = '$heslo'");
     if (count($user) == 0) {
         echo ">prejit na hlavni stranku</a>";

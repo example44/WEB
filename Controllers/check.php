@@ -1,8 +1,8 @@
 <?php
     require_once "kontrolaRegistrace.php";
-    require_once "MyDataBaze.class.php";
+    require_once "Database.class.php";
 
-    $myDB = new MyDatabaze();
+    $myDB = new Database();
     $heslo = md5($heslo."type");
     $myDB->addNewUser($email, $heslo, $name);
 
