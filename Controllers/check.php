@@ -1,6 +1,7 @@
 <?php
+
     require_once "kontrolaRegistrace.php";
-    require_once "Database.class.php";
+    require_once "Models/Database.class.php";
 
     $myDB = new Database();
     $heslo = md5($heslo."type");

@@ -1,5 +1,4 @@
 <?php
-require_once "Database.class.php";
 
 $email = $heslo = "";
 $emailErr = $hesloErr = "";

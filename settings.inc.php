@@ -37,10 +37,12 @@ const WEB_PAGES = array(
     "uvod" => array("file_name" => "IntroductionController.class.php",
         "class_name" => "IntroductionController",
         "title" => "Úvodní stránka"),
-    // TODO - doplnit spravu uzivatelu
+
     "sprava" => array("file_name" => "UserManagementController.class.php",
         "class_name" => "UserManagementController",
         "title" => "Sprava uzivatelu"),
+    "registrace" => array(),
+
 );
 
 /** Klic defaultni webove stranky. */

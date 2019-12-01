@@ -1,4 +1,5 @@
 <?php
+
 require_once "autorizace.php";
 ?>
 <!doctype html>

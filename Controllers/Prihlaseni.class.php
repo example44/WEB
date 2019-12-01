@@ -8,7 +8,7 @@ class Prihlaseni{
         require_once DIRECTORY_MODELS."/Database.class.php";
         $database = new Database();
     }
-    public function registration(){
+    public function registruj(){
 
     }
 
@@ -18,5 +18,12 @@ class Prihlaseni{
 
     private function addUser(){
 
+    }
+
+    private function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 }
