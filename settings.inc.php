@@ -36,20 +36,20 @@ const DIRECTORY_VIEWS = "Views";
 const WEB_PAGES = array(
 
     "uvodni" => array("file_name" => "uvodni_stranka.php",
-//                  "class_name" => "",
-        "title" => "Úvodní stránka"),
+                      "class_name" => "UvodniStranka.class.php",
+                      "title" => "Úvodní stránka"),
     "recepty" => array("file_name" => "recepty.php",
-//                     "class_name" => "",
-        "title" => "Recepty"),
+                       "class_name" => "Recepty.class.php",
+                         "title" => "Recepty"),
     "o_portalu" => array("file_name" => "o_portalu.php",
-//                       "class_name" => "",
-        "title" => "O portalu"),
+                       "class_name" => "OPortalu.class.php",
+                         "title" => "O portalu"),
     "registrace" => array("file_name" => "registrace.php",
-//                        "class_name" => "",
-        "title" => "Registrace"),
+                          "class_name" => "Registrace.class.php",
+                            "title" => "Registrace"),
     "autorizace" => array("file_name" => "autorizace.php",
-//                        "class_name" => "",
-        "title" => "Autorizace")
+                          "class_name" => "Autorizace.class.php",
+                             "title" => "Autorizace")
 );
 
 /** Klic defaultni webove stranky. */

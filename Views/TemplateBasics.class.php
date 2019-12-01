@@ -25,7 +25,7 @@ class TemplateBasics {
                 </style>
             </head>
             <body>
-                <h1>Template: <?php echo $pageTitle; ?></h1>
+                <h1> <?php echo $pageTitle; ?></h1>
 
                 <nav>
                     <?php
@@ -46,7 +46,7 @@ class TemplateBasics {
         ?>
                 <br>
                 <footer>Cvičení z KIV/WEB</footer>
-            <body>
+            </body>
         </html>
 
         <?php

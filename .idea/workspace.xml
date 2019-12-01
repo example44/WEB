@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/o_portalu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/uvodni_stranka.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/IController.interface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/Recepty.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/Registrace.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/UvodniStranka.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/autorizace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/check.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/navigace.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Prihlaseni.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Autorizace.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/TemplateBasics.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/autorizace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/autorizace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/o_portalu.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/o_portalu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/recepty.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/uvodni_stranka.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/uvodni_stranka.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.inc.php" afterDir="false" />
     </list>
@@ -39,12 +44,13 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Controllers" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\Conference\Controllers" />
       <recent name="C:\wamp64\www\Conference\Views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -82,7 +88,7 @@
       <workItem from="1572787799436" duration="24665000" />
       <workItem from="1573129149477" duration="128000" />
       <workItem from="1574933998382" duration="6339000" />
-      <workItem from="1575123342551" duration="15952000" />
+      <workItem from="1575123342551" duration="21362000" />
     </task>
     <servers />
   </component>

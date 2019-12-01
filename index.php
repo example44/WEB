@@ -20,7 +20,7 @@ class ApplicationStart {
         // nactu nastaveni
         require_once("settings.inc.php");
         // nactu rozhrani kontroleru
-//        require_once(DIRECTORY_CONTROLLERS."/IController.interface.php");
+        require_once(DIRECTORY_CONTROLLERS."/IController.interface.php");
     }
 
     /**
@@ -35,11 +35,11 @@ class ApplicationStart {
 
         $pageInfo = WEB_PAGES[$pageKey];
 
-        require_once(DIRECTORY_VIEWS."/".$pageInfo['file_name']);
+        require_once(DIRECTORY_CONTROLLERS."/".$pageInfo['file_name']);
         /** @var IController $controller */
-       // $controller = new $pageInfo['class_name'];
+        $controller = new $pageInfo['class_name'];
 
-       // echo $controller->show($pageInfo['title']);
+        echo $controller->show($pageInfo['title']);
 
     }
 }

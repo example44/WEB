@@ -1,5 +1,6 @@
 <?php
-require_once "TemplateBasics.class.php";
+    require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
-    $temp->getHTMLHeader("o_portalu");
+    $temp->getHTMLHeader(WEB_PAGES['o_portalu']['title']);
+    $temp->getHTMLFooter();
 ?>
