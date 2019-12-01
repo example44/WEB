@@ -1,29 +1,47 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CookHub</title>
-</head>
-<body>
-    <header>
+<?php
 
-    </header>
+// vynuceni chybovych vypisu na serveru students.kiv.zcu.cz
+// ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
-    <nav>
-        <?php
-        require_once "settings.inc.php";
-        require_once DIRECTORY_VIEWS."/navigace.php" ?>
-    </nav>
+// spustim aplikaci
+$app = new ApplicationStart();
+$app->appStart();
 
-    <?php
-        if(isset($_COOKIE['user'])):
-    ?>
-         Privet <?=$_COOKIE['user']?>. Abyste vysel zmacknete <a href="databaze/Controllers/exit.php">zde</a>.
-    <?php else :?>
-            Ty nevosel
-    <?php endif; ?>
-</body>
-</html>
+/**
+ * Vstupni bod webove aplikace.
+ */
+class ApplicationStart {
+
+    /**
+     * Inicializace webove aplikace.
+     */
+    public function __construct()
+    {
+        // nactu nastaveni
+        require_once("settings.inc.php");
+        // nactu rozhrani kontroleru
+//        require_once(DIRECTORY_CONTROLLERS."/IController.interface.php");
+    }
+
+    /**
+     * Spusteni webove aplikace.
+     */
+    public function appStart(){
+        if(isset($_GET['page']) && array_key_exists($_GET['page'], WEB_PAGES)){
+            $pageKey = $_GET['page'];
+        }else{
+            $pageKey = DEFAULT_WEB_PAGE_KEY;
+        }
+
+        $pageInfo = WEB_PAGES[$pageKey];
+
+        require_once(DIRECTORY_VIEWS."/".$pageInfo['file_name']);
+        /** @var IController $controller */
+       // $controller = new $pageInfo['class_name'];
+
+       // echo $controller->show($pageInfo['title']);
+
+    }
+}
+
+?>

@@ -34,18 +34,25 @@ const DIRECTORY_VIEWS = "Views";
 
 /** Dostupne webove stranky. */
 const WEB_PAGES = array(
-    "uvod" => array("file_name" => "IntroductionController.class.php",
-        "class_name" => "IntroductionController",
+
+    "uvodni" => array("file_name" => "uvodni_stranka.php",
+//                  "class_name" => "",
         "title" => "Úvodní stránka"),
-
-    "sprava" => array("file_name" => "UserManagementController.class.php",
-        "class_name" => "UserManagementController",
-        "title" => "Sprava uzivatelu"),
-    "registrace" => array(),
-
+    "recepty" => array("file_name" => "recepty.php",
+//                     "class_name" => "",
+        "title" => "Recepty"),
+    "o_portalu" => array("file_name" => "o_portalu.php",
+//                       "class_name" => "",
+        "title" => "O portalu"),
+    "registrace" => array("file_name" => "registrace.php",
+//                        "class_name" => "",
+        "title" => "Registrace"),
+    "autorizace" => array("file_name" => "autorizace.php",
+//                        "class_name" => "",
+        "title" => "Autorizace")
 );
 
 /** Klic defaultni webove stranky. */
-const DEFAULT_WEB_PAGE_KEY = "uvod";
+const DEFAULT_WEB_PAGE_KEY = "uvodni";
 
 ?>
