@@ -1,7 +1,3 @@
-<?php
-
-require_once "autorizace.php";
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,12 +12,10 @@ require_once "autorizace.php";
 <body>
     <div class="container mt-4">
         <h1>Autorizace</h1>
-        <form class="prihlaseni" method="post" action="autorizace.php">                           <?php //echo htmlspecialchars($_SERVER["PHP_SELF"])?>
+        <form class="prihlaseni" method="post" action="">                           <?php //echo htmlspecialchars($_SERVER["PHP_SELF"])?>
             Email: <input type="email" class="form-control" name="email" id="emal" value="<?php echo $email?>" placeholder="Napište email">
-            <span class="error">* <?php echo $emailErr;?></span>
             <br><br>
             Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="<?php echo $heslo?>" placeholder="Napište heslo">
-            <span class="error">* <?php echo $hesloErr;?></span>
             <br><br>
             <button class="btn btn-success" type="submit" >Vstup</button><br>
         </form>
