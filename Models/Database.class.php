@@ -50,6 +50,30 @@ class Database {
             return true;
         }
     }
+
+    public function updateInTable(string $tableName, string $updateStatementWithValues, string $whereStatement):bool {
+        // slozim dotaz
+        $q = "UPDATE $tableName SET $updateStatementWithValues WHERE $whereStatement";
+        // provedu ho a vratim vysledek
+        $obj = $this->executeQuery($q);
+        if($obj == null){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function deleteFromTable(string $tableName, string $whereStatement){
+        // slozim dotaz
+        $q = "DELETE FROM $tableName WHERE $whereStatement";
+        // provedu ho a vratim vysledek
+        $obj = $this->executeQuery($q);
+        if($obj == null){
+            return false;
+        } else {
+            return true;
+        }
+    }
 /////////////////// KONEC: Obecne funkce ///////////////////
 
 /////////////////// Specificke funkce /////////////////
@@ -64,6 +88,12 @@ class Database {
         // hodnoty
         $values = "'$email', '$heslo', '$name', '1'";
         return $this->insertIntoTable(TABLE_UZIVATEL, $columns, $values);
+    }
+
+    public function getAllRights(){
+        // ziskam vsechny uzivatele z DB razene dle ID a vratim je
+        $users = $this->selectFromTable(TABLE_PRAVO, "", "vaha ASC, nazev ASC");
+        return $users;
     }
 ///////////////////  KONEC: Specificke funkce /////////////////
 }

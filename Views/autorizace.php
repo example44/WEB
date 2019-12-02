@@ -24,7 +24,7 @@
                 <br><br>
                 <button class="btn btn-success" type="submit" >Vstup</button><br>
             </form>
-    </div>
+</div>
 <?php
     $temp->getHTMLFooter();
 ?>

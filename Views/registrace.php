@@ -15,7 +15,7 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['registrace']['title']);
 ?>
-<div class="container mt-4" >
+<div class="container mt-4">
         <h1>Registrace</h1>
             <form class="prihlaseni" method="post" action="">                           <?php //echo htmlspecialchars($_SERVER["PHP_SELF"])?>
                 Username: <input type="text" class="form-control" name="name"  id="name" value="" placeholder="Napište username">
