@@ -30,19 +30,14 @@ class UvodniStranka implements IController {
     /**
      * Zajisti vypsani prislusne stranky.
      *
-     * @param string $pageTitle Nazev stanky.
-     * @return string               HTML prislusne stranky.
      */
-    public function show(string $pageTitle): string{
-        // zapnu output buffer pro odchyceni vypisu sablony
-        ob_start();
-        // pripojim sablonu, cimz ji i vykonam
-        require(DIRECTORY_VIEWS ."/uvodni_stranka.php");
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
-        $obsah = ob_get_clean();
+    public function show(){
+        $tplData = [];
+        $tplData['title'] = "uvodni stranka";
+
 
         // vratim sablonu naplnenou daty
-        return $obsah;
+        return $tplData;
     }
 }
 

@@ -30,7 +30,7 @@
                 <input type="radio" class="form-control" name="role" id="role" value="autor">Autor
                 <input type="radio" class="form-control" name="role"  id="role"  value="recenzent">Recenzent
                 <br><br>
-                <button class="btn btn-success" type="submit" >Zaregistrovat</button><br>
+                <button class="btn btn-success" name="action" value="registrace" type="submit" >Zaregistrovat</button><br>
             </form>
 </div>
 <?php

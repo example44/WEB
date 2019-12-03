@@ -22,7 +22,7 @@
                 <br><br>
                 Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="" placeholder="Napište heslo">
                 <br><br>
-                <button class="btn btn-success" type="submit" >Vstup</button><br>
+                <button class="btn btn-success" name="" type="submit" >Vstup</button><br>
             </form>
 </div>
 <?php

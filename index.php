@@ -39,7 +39,13 @@ class ApplicationStart {
         /** @var IController $controller */
         $controller = new $pageInfo['class_name'];
 
-        echo $controller->show($pageInfo['title']);
+        isLoginUzivatel();
+
+        global $tplData;
+        $tplData = $controller->show();
+
+        // pripojim sablonu, cimz ji i vykonam
+        require(DIRECTORY_VIEWS ."/".$pageInfo['template_name']);
 
     }
 }

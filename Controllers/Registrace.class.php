@@ -34,6 +34,9 @@ class Registrace implements IController {
      * @return string               HTML prislusne stranky.
      */
     public function show(string $pageTitle): string{
+        if($_POST['action']=="regisrace") {
+            addUser();
+        }
         // zapnu output buffer pro odchyceni vypisu sablony
         ob_start();
         // pripojim sablonu, cimz ji i vykonam

@@ -29,8 +29,8 @@ class Database {
         }
     }
 
-    public function selectFromTable(string $tableName, string $where = "", string $orderBy= ""){
-        $q = "SELECT * FROM ".$tableName.(($where == "") ? "" : " WHERE ".$where).
+    public function selectFromTable(string $sloupce, string $tableName, string $where = "", string $orderBy= ""){
+        $q = "SELECT $sloupce FROM ".$tableName.(($where == "") ? "" : " WHERE ".$where).
             (($orderBy == "") ? "" : " ORDER BY ".$orderBy);
         $result = $this->executeQuery($q);
         if($result == null){
@@ -79,21 +79,59 @@ class Database {
 /////////////////// Specificke funkce /////////////////
 
     public function getAllUsers(){
-        return $this->selectFromTable(TABLE_UZIVATEL);
+        return $this->selectFromTable("*", TABLE_UZIVATEL);
     }
 
-    public function addNewUser(string $email, string $heslo, string  $name ){
+    public function addNewUser(string $email, string $heslo, string  $name, int $role ){
         // sloupce
         $columns = "email, heslo, username, role_id_role";
         // hodnoty
-        $values = "'$email', '$heslo', '$name', '1'";
+        $values = "'$email', '$heslo', '$name', '$role'";
         return $this->insertIntoTable(TABLE_UZIVATEL, $columns, $values);
     }
 
-    public function getAllRights(){
-        // ziskam vsechny uzivatele z DB razene dle ID a vratim je
-        $users = $this->selectFromTable(TABLE_PRAVO, "", "vaha ASC, nazev ASC");
+    public function getAllRightsForRegist(){
+        $users = $this->selectFromTable("*",TABLE_PRAVO, "vah < 100");
         return $users;
+    }
+
+    public function getAllRecepts(){
+        $list_receptu = $this->selectFromTable("*",TABLE_PRISPEVEK);
+        return $list_receptu;
+    }
+
+    public function getAutorRecepts(int $id_autora){
+        $recepty_autora = $this->selectFromTable("*",TABLE_PRISPEVEK, "$id_autora");
+        return $recepty_autora;
+    }
+
+    public function deletePrispevek(int $id_prispevku){
+        $this->deleteFromTable(TABLE_PRISPEVEK, "$id_prispevku");
+    }
+
+    public function addPrispevek(string $obsah, string $nazev, string  $rozhodnuti, int $id_uzivatele){
+        // sloupce
+        $columns = "obsah, nazev, rozhodnuti, uzivatel_id_uzivatel";
+        // hodnoty
+        $values = "'$obsah', '$nazev', '$rozhodnuti', '$id_uzivatele'";
+        return $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
+    }
+
+    //ohodnoceni jak vytvorit
+//    public function getSeznamKPosouzeni($id_uzivatele){
+//        $k_posouzeni = $this->selectFromTable("nazev, OHODNOCENI", , "$id_uzivatele");
+//        return $k_posouzeni;
+//    }
+
+    public function addRecenze(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_uzivatelu, string $id_prispevku){
+        $columns = "originalita, tema, technicka_kvalita, jazykova_kvalita, doporuceni, poznamky, id_UZIVATEL, PRISPEVEK_id_PRISPEVEK";
+        $values = "'$originalita', '$tema', '$tech_kval', '$jazyk_kval', '$doporuc', '$poznamky', '$id_uzivatelu', '$id_prispevku'";
+        $this->insertIntoTable(TABLE_RECENZE, $columns, $values);
+    }
+
+    public function editPosudku(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
+        $stmt = "originalita = '$originalita', tema = '$tema', technicka_kvalita = '$tech_kval', jazykova_kvalita = '$jazyk_kval', doporuceni = '$doporuc', poznamky = '$poznamky'";
+        $this->updateInTable(TABLE_RECENZE, $stmt, "$id_prispevku");
     }
 ///////////////////  KONEC: Specificke funkce /////////////////
 }
