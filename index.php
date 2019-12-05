@@ -35,9 +35,8 @@ class ApplicationStart {
         /** @var IController $controller */
         $controller = new $pageInfo['class_name'];
 
-        //kontrola prihlaseni uzivatele
-//        $prihlaseni = new ProPrihlaseny();
-//        $prihlaseni->isLoginUzivatel();
+
+
 
         global $tplData;
         $tplData = $controller->show();
