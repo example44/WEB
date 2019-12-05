@@ -1,8 +1,7 @@
 <?php
 
 
-class OPortalu implements IController {
-
+class ReceptAutor implements IController {
     public function __construct(){
         require_once "settings.inc.php";
         require_once DIRECTORY_MODELS."/Database.class.php";
@@ -11,10 +10,10 @@ class OPortalu implements IController {
 
     public function show(){
         $tplData = [];
-        $tplData['title'] = "O portalu";
+        $tplData['title'] = "Seznam receptů";
+
+
 
         return $tplData;
     }
 }
-
-?>
