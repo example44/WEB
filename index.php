@@ -39,7 +39,7 @@ class ApplicationStart {
         /** @var IController $controller */
         $controller = new $pageInfo['class_name'];
 
-        isLoginUzivatel();
+       // isLoginUzivatel();
 
         global $tplData;
         $tplData = $controller->show();

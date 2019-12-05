@@ -22,7 +22,7 @@ class TemplateBasics {
                 <link rel="stylesheet" href="../../css/styl.css">
                 <title><?php echo $pageTitle; ?></title>
                 <style>
-                    nav { background-color:orange; padding:10px; }
+                    nav { background-color: #ff8a82; padding:10px; }
                     nav a { margin: 0px 10px; }
                     footer { padding: 10px; background-color: lightgrey; text-align: center; }
                     .alert { padding: 10px; background-color: lightblue; font-weight: bold; margin-bottom: 20px; border-radius: 10px; }
