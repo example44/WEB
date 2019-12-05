@@ -29,8 +29,8 @@ class Database {
         }
     }
 
-    public function selectFromTable(string $sloupce, string $tableName, string $where = "", string $orderBy= ""){
-        $q = "SELECT $sloupce FROM ".$tableName.(($where == "") ? "" : " WHERE ".$where).
+    public function selectFromTable(string $tableName, string $where = "", string $orderBy= ""){
+        $q = "SELECT * FROM ".$tableName.(($where == "") ? "" : " WHERE ".$where).
             (($orderBy == "") ? "" : " ORDER BY ".$orderBy);
         $result = $this->executeQuery($q);
         if($result == null){
@@ -79,7 +79,7 @@ class Database {
 /////////////////// Specificke funkce /////////////////
 
     public function getAllUsers(){
-        return $this->selectFromTable("*", TABLE_UZIVATEL);
+        return $this->selectFromTable( TABLE_UZIVATEL);
     }
 
     public function addNewUser(string $email, string $heslo, string  $name, int $role ){
@@ -91,17 +91,17 @@ class Database {
     }
 
     public function getAllRightsForRegist(){
-        $users = $this->selectFromTable("*",TABLE_PRAVO, "vah < 100");
+        $users = $this->selectFromTable(TABLE_PRAVO, "vah < 100");
         return $users;
     }
 
     public function getAllRecepts(){
-        $list_receptu = $this->selectFromTable("*",TABLE_PRISPEVEK);
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
         return $list_receptu;
     }
 
     public function getAutorRecepts(int $id_autora){
-        $recepty_autora = $this->selectFromTable("*",TABLE_PRISPEVEK, "$id_autora");
+        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "$id_autora");
         return $recepty_autora;
     }
 
@@ -119,7 +119,7 @@ class Database {
 
     //ohodnoceni jak vytvorit
 //    public function getSeznamKPosouzeni($id_uzivatele){
-//        $k_posouzeni = $this->selectFromTable("nazev, OHODNOCENI", , "$id_uzivatele");
+//        $k_posouzeni = $this->selectFromTable(  "$id_uzivatele");
 //        return $k_posouzeni;
 //    }
 

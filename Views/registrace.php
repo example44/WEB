@@ -27,8 +27,8 @@
                 Heslo znovu: <input type="password" class="form-control" name="heslo_znovu" id="heslo_znovu" value="" placeholder="Zopakujte heslo">
                 <br><br>
                 <!--<input type="radio" name="role" value="admin">Admin -->
-                <input type="radio" class="form-control" name="role" id="role" value="autor">Autor
-                <input type="radio" class="form-control" name="role"  id="role"  value="recenzent">Recenzent
+                <input type="radio" class="form-control" name="role" id="role" value="3">Autor
+                <input type="radio" class="form-control" name="role"  id="role"  value="2">Recenzent
                 <br><br>
                 <button class="btn btn-success" name="action" value="registrace" type="submit" >Zaregistrovat</button><br>
             </form>

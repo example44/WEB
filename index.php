@@ -1,8 +1,5 @@
 <?php
 
-// vynuceni chybovych vypisu na serveru students.kiv.zcu.cz
-// ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-
 // spustim aplikaci
 $app = new ApplicationStart();
 $app->appStart();
@@ -15,8 +12,7 @@ class ApplicationStart {
     /**
      * Inicializace webove aplikace.
      */
-    public function __construct()
-    {
+    public function __construct(){
         // nactu nastaveni
         require_once("settings.inc.php");
         // nactu rozhrani kontroleru
@@ -39,7 +35,9 @@ class ApplicationStart {
         /** @var IController $controller */
         $controller = new $pageInfo['class_name'];
 
-        isLoginUzivatel();
+        //kontrola prihlaseni uzivatele
+//        $prihlaseni = new ProPrihlaseny();
+//        $prihlaseni->isLoginUzivatel();
 
         global $tplData;
         $tplData = $controller->show();
