@@ -2,28 +2,26 @@
 
 
 class Registrace implements IController {
-    private $database;
+    private $userMan;
 
     public function __construct(){
         require_once "settings.inc.php";
-        require_once DIRECTORY_MODELS."/Database.class.php";
-        $this->database = new Database();
+        require_once DIRECTORY_CONTROLLERS . "/ProPrihlaseny.class.php";
+        $this->userMan = new ProPrihlaseny();
     }
 
     public function show(){
-        if(isset($_POST['action']) && $_POST['action']=="registrace") {
-            $res = $this->database->addNewUser($_POST['email'], $_POST['heslo'], $_POST['name'], $_POST['role'] );
+        if(isset($_POST['action']) && $_POST['action'] == "registrace") {
+            $res = $this->userMan->addNewUser($_POST['email'], $_POST['heslo'], $_POST['name'], $_POST['role'] );
             if($res){
                 echo "OK: Uživatel byl přidán do databáze.";
             } else {
                 echo "ERROR: Uložení uživatele se nezdařilo.";
             }
         }
-        $tplData = [];
-        $tplData['title'] = "Registrace";
 
 
-
+        $tplData = [0];
         return $tplData;
     }
 

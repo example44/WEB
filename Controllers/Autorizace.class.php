@@ -3,36 +3,36 @@
 
 class Autorizace implements IController
 {
-    private $database;
-    private $userSessionKey = "current_user_id";
+    private $userMan;
+
 
     public function __construct()
     {
         require_once "settings.inc.php";
-        require_once DIRECTORY_MODELS . "/Database.class.php";
-        $this->database = new Database();
+        require_once DIRECTORY_CONTROLLERS . "/ProPrihlaseny.class.php";
+        $this->userMan = new ProPrihlaseny();
     }
 
     public function show(){
-        if (isset($_POST['action']) && $_POST['action'] == "vstup") {
-            if (isset($_POST['email']) && $_POST['heslo']) {
-                $email = $_POST['email'];
-                $heslo = $_POST['heslo'];
-                $where = "email='$email' AND heslo='$heslo'";
-                $user = $this->database->selectFromTable(TABLE_UZIVATEL, $where);
-
-                if (count($user)) {
-                    $_SESSION[$this->userSessionKey] = $user[0]['id_UZIVATEL'];
-                    echo "Jste prihlasen ".$user[0]['username'];
+        if (isset($_POST['action'])) {
+            // prihlaseni
+            if ($_POST['action'] == 'vstup' && isset($_POST['email']) && isset($_POST['heslo'])) {
+                // pokusim se prihlasit uzivatele
+                $res = $this->userMan->userLogin($_POST['email'], $_POST['heslo']);
+                if ($res) {
+                    echo "OK: Uživatel byl přihlášen.";
+                } else {
+                    echo "ERROR: Přihlášení uživatele se nezdařilo.";
                 }
+            } // odhlaseni
+            elseif ($_POST['action'] == 'odhlaseni') {
+                // odhlasim uzivatele
+                $this->userMan->userLogout();
+                echo "OK: Uživatel byl odhlášen.";
             }
-            $tplData = [];
-            $tplData['title'] = "Autorizace";
-
-
-            return $tplData;
         }
-
+        $tplData = [0];
+        return $tplData;
     }
 }
 ?>

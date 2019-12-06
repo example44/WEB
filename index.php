@@ -39,10 +39,15 @@ class ApplicationStart {
 
 
         global $tplData;
-        $tplData = $controller->show();
 
-        // pripojim sablonu, cimz ji i vykonam
-        require(DIRECTORY_VIEWS ."/".$pageInfo['template_name']);
+        $tplData = $controller->show();
+        if($tplData == null){
+            require_once(DIRECTORY_VIEWS ."/nemate_pravo.php");
+        }
+        else{
+            require(DIRECTORY_VIEWS ."/".$pageInfo['template_name']);
+        }
+
 
     }
 }

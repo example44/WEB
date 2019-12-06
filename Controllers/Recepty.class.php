@@ -2,17 +2,19 @@
 
 
 class Recepty implements IController {
+    private $userMan;
 
     public function __construct(){
         require_once "settings.inc.php";
-        require_once DIRECTORY_MODELS."/Database.class.php";
-        $database = new Database();
+        require_once DIRECTORY_CONTROLLERS."/ProPrihlaseny.class.php";
+        $this->userMan = new ProPrihlaseny();
     }
 
     public function show(){
-        $tplData = [];
-        $tplData['title'] = "Recepty";
 
+
+
+        $tplData = [0];
         return $tplData;
     }
 }
