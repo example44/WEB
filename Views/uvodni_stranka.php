@@ -4,4 +4,4 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['uvodni']['title']);
     $temp->getHTMLFooter();
-?>
+
