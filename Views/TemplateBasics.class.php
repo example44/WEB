@@ -21,35 +21,39 @@ class TemplateBasics {
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <link rel="stylesheet" href="../../css/styl.css">
                 <title><?php echo $pageTitle; ?></title>
-                <style>
-                    nav { background-color: #ff8a82; padding:10px; }
-                    nav a { margin: 0px 10px; }
-                    footer { padding: 10px; background-color: lightgrey; text-align: center; }
-                    .alert { padding: 10px; background-color: lightblue; font-weight: bold; margin-bottom: 20px; border-radius: 10px; }
-                </style>
+
             </head>
             <body>
-                <h1> <?php echo $pageTitle; ?></h1>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+                    <div class = "collapse navbar-collapse" id="navigace">
+                        <a href="#" class="navbar-brand">
+                            <img src="logo.svg" width="100" height="200" alt="logo">
+                        </a>
+                        <ul class = "navbar-nav mr-auto">
+                            <li class = "nav-item active">
+                                <?php
+                                    foreach (WEB_PAGES as $key => $p){
+                                        echo "<a href='index.php?page=$key'>$p[title]</a>";
+                                    }
+                                    ?>
+                            </li>
+                        </ul>
 
-                <nav>
-                    <?php
-                        foreach (WEB_PAGES as $key => $p){
-                            echo "<a href='index.php?page=$key'>$p[title]</a>";
-                        }
-
-                    ?>
+                    </div>
                 </nav>
-                <br>
+        <h1> <?php echo $pageTitle; ?></h1>
+
         <?php
-    }
-    
-    /**
-     *  Vrati paticku stranky.
-     */
-    public function getHTMLFooter(){
-        ?>
-                <br>
-                <footer>Cvičení z KIV/WEB</footer>
+        }
+
+        /**
+         *  Vrati paticku stranky.
+         */
+        public function getHTMLFooter(){
+            ?>
+                    <br>
+                    <footer>Cvičení z KIV/WEB</footer>
+
             </body>
         </html>
 
