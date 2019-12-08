@@ -14,25 +14,67 @@ class Autorizace implements IController
     }
 
     public function show(){
-        if (isset($_POST['action'])) {
-            // prihlaseni
-            if ($_POST['action'] == 'vstup' && isset($_POST['email']) && isset($_POST['heslo'])) {
-                // pokusim se prihlasit uzivatele
-                $res = $this->userMan->userLogin($_POST['email'], $_POST['heslo']);
-                if ($res) {
-                    echo "OK: Uživatel byl přihlášen.";
-                } else {
-                    echo "ERROR: Přihlášení uživatele se nezdařilo.";
+        if(!$this->userMan->isUserLogged()) {
+            $tplData = $this->kontolRegistrace();
+            if (isset($_POST['action'])) {
+                // prihlaseni
+                if ($_POST['action'] == 'vstup' && isset($_POST['email']) && isset($_POST['heslo'])) {
+                    // pokusim se prihlasit uzivatele
+                    $res = $this->userMan->userLogin($_POST['email'], $_POST['heslo']);
+                    if ($res) {
+                        echo "OK: Uživatel byl přihlášen.";
+                    } else {
+                        echo "ERROR: Přihlášení uživatele se nezdařilo.";
+                    }
+                } // odhlaseni
+                elseif ($_POST['action'] == 'odhlaseni') {
+                    // odhlasim uzivatele
+                    $this->userMan->userLogout();
+                    echo "OK: Uživatel byl odhlášen.";
                 }
-            } // odhlaseni
-            elseif ($_POST['action'] == 'odhlaseni') {
-                // odhlasim uzivatele
-                $this->userMan->userLogout();
-                echo "OK: Uživatel byl odhlášen.";
             }
+
+            return $tplData;
+        } else{
+            return null;
         }
-        $tplData = [0];
-        return $tplData;
     }
+
+    private function kontolRegistrace(){
+        $result = array(
+            "email" => array( "value" => '', "error" => ''),
+            "heslo" => array( "value" => '', "error" => ''),
+            "povolit_reg" => true
+        );
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["email"])) {
+                $result['email']['error'] = "Vypňte pole Email";
+                $result['povolit_reg'] = false;
+            } else {
+                $result['email']['value'] = $this->test_input($_POST["email"]);
+                if (!filter_var($result['email']['value'], FILTER_VALIDATE_EMAIL)) {
+                    $result['email']['error'] = "Špatný format emailu";
+                    $result['povolit_reg'] = false;
+                }
+            }
+
+            if (empty($_POST["heslo"])) {
+                $result['heslo']['error'] = "Musíte zadat heslo";
+                $result['povolit_reg'] = false;
+            } else {
+                $result['heslo']['value'] = $this->test_input($_POST["heslo"]);
+            }
+
+        }
+        return $result;
+    }
+
+    private function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
 }
 ?>

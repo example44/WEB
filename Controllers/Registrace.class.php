@@ -11,25 +11,30 @@ class Registrace implements IController {
     }
 
     public function show(){
-        $tplData = $this->kontolRegistrace();
-        if(isset($_POST['action']) && $_POST['action'] == "registrace") {
-            $dataUziv = $this->kontolRegistrace();
-            $tplData = $dataUziv;
-            $res = 0;
-            if($dataUziv['povolit_reg']){
-                $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
-                $tplData=$dataUziv;
-            }else {
-                echo "Chyba přihlašení";
-            }
-            if($res){
-                echo "OK: Uživatel byl přidán do databáze.";
-            } else {
-                echo "ERROR: Uložení uživatele se nezdařilo.";
-            }
+        if(!$this->userMan->isUserLogged()) {
+            $tplData = $this->kontolRegistrace();
+            if (isset($_POST['action']) && $_POST['action'] == "registrace") {
+                $dataUziv = $this->kontolRegistrace();
+                $tplData = $dataUziv;
+                $res = 0;
+                if ($dataUziv['povolit_reg']) {
+                    $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
+                    $tplData = $dataUziv;
+                } else {
+                    echo "Chyba přihlašení";
+                }
+                if ($res) {
+                    echo "OK: Uživatel byl přidán do databáze.";
+                } else {
+                    echo "ERROR: Uložení uživatele se nezdařilo.";
+                }
 
             }
-        return $tplData;
+            return $tplData;
+        }else{
+            return null;
+        }
+
     }
 
     private function kontolRegistrace(){
@@ -70,7 +75,7 @@ class Registrace implements IController {
                 $result['povolit_reg'] = false;
             } else {
                 $result['heslo']['value'] = $this->test_input($_POST["heslo"]);
-                if(strlen($result['heslo']['value'] < 8)){
+                if(strlen($result['heslo']['value']) < 8){
                     $result['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
                     $result['povolit_reg'] = false;
                 }
@@ -82,14 +87,14 @@ class Registrace implements IController {
                 $result['role']['value'] = $this->test_input($_POST["role"]);
             }
 
+            $result['heslo_znovu']['value'] = $_POST['heslo_znovu'];
+
             if (empty($_POST["heslo_znovu"])) {
                 $result['heslo_znovu']['error'] = "Musíte zopakovat heslo";
                 $result['povolit_reg'] = false;
             } elseif($result['heslo']['value'] != $result['heslo_znovu']['value']){
                     $result['heslo_znovu']['error'] = "Heslo není stejně";
                     $result['povolit_reg'] = false;
-            } else {
-                $result['heslo_znovu']['error'] = $_POST['heslo_znovu'];
             }
 
         }
