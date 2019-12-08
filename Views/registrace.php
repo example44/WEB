@@ -35,4 +35,3 @@
 
     $temp->getHTMLFooter();
 ?>
-
