@@ -17,9 +17,9 @@ class Autorizace implements IController
         if(!$this->userMan->isUserLogged()) {
             $tplData = $this->kontolRegistrace();
             if (isset($_POST['action'])) {
-                // prihlaseni
                 if ($_POST['action'] == 'vstup' && isset($_POST['email']) && isset($_POST['heslo'])) {
-                    // pokusim se prihlasit uzivatele
+                    $dataUziv = $this->kontolRegistrace();
+                    $tplData = $dataUziv;
                     $res = $this->userMan->userLogin($_POST['email'], $_POST['heslo']);
                     if ($res) {
                         echo "OK: Uživatel byl přihlášen.";
@@ -33,7 +33,6 @@ class Autorizace implements IController
                     echo "OK: Uživatel byl odhlášen.";
                 }
             }
-
             return $tplData;
         } else{
             return null;
@@ -44,7 +43,6 @@ class Autorizace implements IController
         $result = array(
             "email" => array( "value" => '', "error" => ''),
             "heslo" => array( "value" => '', "error" => ''),
-            "povolit_reg" => true
         );
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["email"])) {
