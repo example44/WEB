@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/recepty.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Registrace.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registrace.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Database.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Database.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/uvodni_stranka.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/uvodni_stranka.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.inc.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../07-PHP-a-MVC-reseni" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
@@ -80,6 +81,7 @@
       <workItem from="1575123342551" duration="23988000" />
       <workItem from="1575320346944" duration="14226000" />
       <workItem from="1575488320035" duration="21280000" />
+      <workItem from="1575724421028" duration="17057000" />
     </task>
     <servers />
   </component>

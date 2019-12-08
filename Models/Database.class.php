@@ -96,7 +96,7 @@ class Database {
     }
 
     public function getAllRecepts(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti=1");
         return $list_receptu;
     }
 
@@ -114,18 +114,24 @@ class Database {
         $columns = "obsah, nazev, rozhodnuti, uzivatel_id_uzivatel";
         // hodnoty
         $values = "'$obsah', '$nazev', '$rozhodnuti', '$id_uzivatele'";
-        return $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
+        $podarilo = $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
+        if($podarilo){
+            $prispevek = $this->selectFromTable(TABLE_PRISPEVEK, "$nazev");
+            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
+            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
+            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
+        }
     }
 
-    //ohodnoceni jak vytvorit
-//    public function getSeznamKPosouzeni($id_uzivatele){
-//        $k_posouzeni = $this->selectFromTable(  "$id_uzivatele");
-//        return $k_posouzeni;
-//    }
 
-    public function addRecenze(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_uzivatelu, string $id_prispevku){
+    public function getSeznamKPosouzeni($id_uzivatele){
+        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
+        return $k_posouzeni;
+    }
+
+    public function addRecenze(string $id_uzivatelu, string $id_prispevku){
         $columns = "originalita, tema, technicka_kvalita, jazykova_kvalita, doporuceni, poznamky, id_UZIVATEL, PRISPEVEK_id_PRISPEVEK";
-        $values = "'$originalita', '$tema', '$tech_kval', '$jazyk_kval', '$doporuc', '$poznamky', '$id_uzivatelu', '$id_prispevku'";
+        $values = "'0', '0', '0', '0', '0', '', '$id_uzivatelu', '$id_prispevku'";
         $this->insertIntoTable(TABLE_RECENZE, $columns, $values);
     }
 
@@ -133,6 +139,19 @@ class Database {
         $stmt = "originalita = '$originalita', tema = '$tema', technicka_kvalita = '$tech_kval', jazykova_kvalita = '$jazyk_kval', doporuceni = '$doporuc', poznamky = '$poznamky'";
         $this->updateInTable(TABLE_RECENZE, $stmt, "$id_prispevku");
     }
+
+    public function getRecenzenty(){
+        return $this->selectFromTable(TABLE_UZIVATEL, "ROLE_id_ROLE=2");
+    }
+
+    public function getReceptyRecenze(){
+        return $this->selectFromTable(TABLE_PRISPEVEK.", ".TABLE_RECENZE, "prispevek.id_PRISPEVEK=recenze.PRISPEVEK_id_PRISPEVEK");
+    }
+
+    public function priradRecenzenta($id_uzivatele, $id_recenze){
+        $this->updateInTable(TABLE_RECENZE, "recenze.id_UZIVATEL=".$id_uzivatele, "recenze.id_RECENZE=".$id_recenze);
+    }
+    
 ///////////////////  KONEC: Specificke funkce /////////////////
 }
 ?>

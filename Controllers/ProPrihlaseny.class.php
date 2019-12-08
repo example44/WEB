@@ -88,5 +88,49 @@ class ProPrihlaseny{
         }
     }
 
+    public function addUser(string $email, string $heslo, string  $name, int $role){
+        return $this->db->addNewUser($email, $heslo, $name, $role);
+    }
+
+    public function getRoleProRegist(){
+        return $this->db->getAllRightsForRegist();
+    }
+
+    public function getVseRecepty(){
+        return $this->db->getAllRecepts();
+    }
+
+    public function getAutorRecept(){
+        return $this->db->getAutorRecepts($_SESSION[$this->userSessionKey]);
+    }
+
+    public function smazatPrispevek($id_prispevek){
+        $this->db->deletePrispevek($id_prispevek);
+    }
+
+    public function addRecept(){
+        $this->db->addPrispevek();
+    }
+
+    public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
+        $this->db->editPosudku($originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky,  $id_prispevku);
+    }
+
+    public function getRecenzenty(){
+        return $this->db->getRecenzenty();
+    }
+
+
+    public function getReceptyRecenze(){
+        return $this->db->getReceptyRecenze();
+    }
+
+    public function getSeznamRecenzenta(){
+        $this->db->getSeznamKPosouzeni($_SESSION[$this->userSessionKey]);
+    }
+
+    public function pridatRecenzenta($id_uzivatel, $id_recenze){
+        $this->db->priradRecenzenta($id_uzivatel, $id_recenze);
+    }
 }
 ?>

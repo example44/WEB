@@ -12,7 +12,7 @@ class Registrace implements IController {
 
     public function show(){
         if(isset($_POST['action']) && $_POST['action'] == "registrace") {
-            $res = $this->userMan->addNewUser($_POST['email'], $_POST['heslo'], $_POST['name'], $_POST['role'] );
+            $res = $this->userMan->addUser($_POST['email'], $_POST['heslo'], $_POST['name'], $_POST['role'] );
             if($res){
                 echo "OK: Uživatel byl přidán do databáze.";
             } else {
@@ -26,51 +26,59 @@ class Registrace implements IController {
     }
 
     private function kontolRegistrace(){
-        $name = $email = $role = $heslo = $heslo_znovu = "";
-        $nameErr = $emailErr = $roleErr = $hesloErr = $heslo_znovuErr = "";
+        $result = array(
+            "username" => array( "value" => $_POST['name'],
+                                             "error" => ''),
+            "email" => array( "value" => $_POST['email'],
+                              "error" => ''),
+            "role" => array( "value" => $_POST['role'],
+                             "error" => ''),
+            "heslo" => array( "value" => $_POST['heslo'],
+                              "error" => ''),
+            "heslo_znovu" => array( "value" => $_POST['heslo_znovu'],
+                                    "error" => ''),
+
+        );
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
-                $nameErr = "Vypňte pole username";
+                $result['username']['error'] = "Vypňte pole username";
             } else {
-                $name = test_input($_POST["name"]);
-                // check if name only contains letters and whitespace
-                if (!preg_match("/^[a-z A-Z ]*$/",$name)) {
-                    $nameErr = "Only letters and white space allowed";
+                $result['username']['value'] = $this->test_input($_POST["name"]);
+                if (!preg_match("/^[a-z A-Z ]*$/", $result['username']['value'])) {
+                    $result['username']['error'] = "Jsou povolené jen písmena a mezery";
                 }
             }
 
             if (empty($_POST["email"])) {
-                $emailErr = "Vypňte pole Email";
+                $result['email']['error'] = "Vypňte pole Email";
             } else {
-                $email = test_input($_POST["email"]);
-                // check if e-mail address is well-formed
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $emailErr = "Špatný format emailu";
+                $result['email']['value'] = $this->test_input($_POST["email"]);
+                if (!filter_var($result['email']['value'], FILTER_VALIDATE_EMAIL)) {
+                    $result['email']['error'] = "Špatný format emailu";
                 }
             }
 
             if (empty($_POST["heslo"])) {
-                $hesloErr = "Musíte zadat heslo";
+                $result['heslo']['error'] = "Musíte zadat heslo";
             } else {
-                $heslo = test_input($_POST["heslo"]);
-                if(strlen($heslo < 8)){
-                    $hesloErr = "Heslo musí být délší než 8 symbolů";
+                $result['heslo']['value'] = $this->test_input($_POST["heslo"]);
+                if(strlen($result['heslo']['value'] < 8)){
+                    $result['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
                 }
             }
 
             if (empty($_POST["role"])) {
-                $roleErr = "Musíte zvolit role";
+                $result['role']['error'] = "Musíte zvolit role";
             }else{
-                $role = test_input($_POST["role"]);
+                $result['role']['value'] = $this->test_input($_POST["role"]);
             }
 
             if (empty($_POST["heslo_znovu"])) {
-                $heslo_znovuErr = "Musíte zopakovat heslo";
+                $result['heslo_znovu']['error'] = "Musíte zopakovat heslo";
             } else {
-                $heslo_znovu = $_POST["heslo_znovu"];
-                if($heslo != $heslo_znovu){
-                    $heslo_znovuErr = "Heslo není stejně.";
+                if($result['heslo']['value'] != $result['heslo_znovu']['value']){
+                    $result['heslo_znovu']['error'] = "Heslo není stejně";
                 }
             }
 
