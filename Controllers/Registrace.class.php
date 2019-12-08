@@ -16,6 +16,7 @@ class Registrace implements IController {
             $dataUziv = $this->kontolRegistrace();
             if($dataUziv['povolit_reg']){
                 $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
+                $tplData.=$dataUziv;
             }else{
                 echo "Chyba přihlašení";
             }
@@ -25,9 +26,6 @@ class Registrace implements IController {
                 echo "ERROR: Uložení uživatele se nezdařilo.";
             }
         }
-
-
-
         return $tplData;
     }
 
