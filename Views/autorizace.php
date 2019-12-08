@@ -1,15 +1,5 @@
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport"-->
-<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="../../css/styl.css">-->
-<!--    <title>Autorizace</title>-->
-<!--</head>-->
-<!--<body>-->
+
+
 <?php
     global $tplData;
     require_once "TemplateBasics.class.php";
@@ -18,7 +8,7 @@
 ?>
 <div class="container mt-4">
         <h1>Autorizace</h1>
-            <form class="prihlaseni" method="post" action="">                           <?php //echo htmlspecialchars($_SERVER["PHP_SELF"])?>
+            <form class="prihlaseni" method="post" action="">
                 Email: <input type="email" class="form-control" name="email" id="emal" value="" placeholder="Napište email">
                 <br><br>
                 Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="" placeholder="Napište heslo">
@@ -36,7 +26,6 @@ Odhlášení uživatele:
 <?php
     $temp->getHTMLFooter();
 ?>
-<!--</body>-->
-<!--</html>-->
+
 
 

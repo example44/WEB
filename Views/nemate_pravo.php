@@ -8,4 +8,4 @@
     $temp->getHTMLHeader(WEB_PAGES['nematePravo']['title']);
     $temp->getHTMLFooter();
 ?>
->>>>>>> e49b7837f0f65e1e95808d757de55f99bda5d389
+
