@@ -11,13 +11,15 @@ class Registrace implements IController {
     }
 
     public function show(){
-        $tplData = [];
+        $tplData = $this->kontolRegistrace();
         if(isset($_POST['action']) && $_POST['action'] == "registrace") {
             $dataUziv = $this->kontolRegistrace();
+            $tplData = $dataUziv;
+            $res = 0;
             if($dataUziv['povolit_reg']){
                 $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
-                $tplData.=$dataUziv;
-            }else{
+                $tplData=$dataUziv;
+            }else {
                 echo "Chyba přihlašení";
             }
             if($res){
@@ -25,24 +27,19 @@ class Registrace implements IController {
             } else {
                 echo "ERROR: Uložení uživatele se nezdařilo.";
             }
-        }
+
+            }
         return $tplData;
     }
 
     private function kontolRegistrace(){
         $result = array(
-            "username" => array( "value" => $_POST['name'],
-                                             "error" => ''),
-            "email" => array( "value" => $_POST['email'],
-                              "error" => ''),
-            "role" => array( "value" => $_POST['role'],
-                             "error" => ''),
-            "heslo" => array( "value" => $_POST['heslo'],
-                              "error" => ''),
-            "heslo_znovu" => array( "value" => $_POST['heslo_znovu'],
-                                    "error" => ''),
+            "username" => array( "value" => '', "error" => ''),
+            "email" => array( "value" => '', "error" => ''),
+            "role" => array( "value" => '', "error" => ''),
+            "heslo" => array( "value" => '', "error" => ''),
+            "heslo_znovu" => array( "value" => '', "error" => ''),
             "povolit_reg" => true
-
         );
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -88,11 +85,11 @@ class Registrace implements IController {
             if (empty($_POST["heslo_znovu"])) {
                 $result['heslo_znovu']['error'] = "Musíte zopakovat heslo";
                 $result['povolit_reg'] = false;
-            } else {
-                if($result['heslo']['value'] != $result['heslo_znovu']['value']){
+            } elseif($result['heslo']['value'] != $result['heslo_znovu']['value']){
                     $result['heslo_znovu']['error'] = "Heslo není stejně";
                     $result['povolit_reg'] = false;
-                }
+            } else {
+                $result['heslo_znovu']['error'] = $_POST['heslo_znovu'];
             }
 
         }

@@ -41,6 +41,7 @@ class ApplicationStart {
         global $tplData;
 
         $tplData = $controller->show();
+       
         if($tplData == null){
             require_once(DIRECTORY_VIEWS ."/nemate_pravo.php");
         }
