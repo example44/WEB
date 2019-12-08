@@ -8,7 +8,7 @@
 ?>
 <div class="container mt-4">
         <h1>Autorizace</h1>
-            <form class="prihlaseni" method="post" action="">
+            <form class="autorizace" method="post" action="">
                 Email: <input type="email" class="form-control" name="email" id="emal" value="" placeholder="Napište email">
                 <br><br>
                 Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="" placeholder="Napište heslo">

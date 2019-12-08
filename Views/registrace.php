@@ -1,43 +1,38 @@
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport"-->
-<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title>Registrace</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="../../css/styl.css">-->
-<!--</head>-->
-<!--<body>-->
+
 <?php
     global $tplData;
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['registrace']['title']);
 ?>
-<div class="container mt-4">
+<div class="container mt-4" id="hlavni">
         <h1>Registrace</h1>
-            <form class="prihlaseni" method="post" action="">                           <?php //echo htmlspecialchars($_SERVER["PHP_SELF"])?>
+            <form class="prihlaseni" method="post" action="">
                 Username: <input type="text" class="form-control" name="name"  id="name" value="" placeholder="Napište username">
                 <br><br>
+                <?php echo $tplData['username']['error'];?>
                 Email: <input type="email" class="form-control" name="email" id="emal" value="" placeholder="Napište email">
+                <?php echo $tplData['email']['error'];?>
                 <br><br>
                 Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="" placeholder="Napište heslo">
+                <?php echo $tplData['heslo']['error'];?>
                 <br><br>
                 Heslo znovu: <input type="password" class="form-control" name="heslo_znovu" id="heslo_znovu" value="" placeholder="Zopakujte heslo">
+                <?php echo $tplData['heslo_znovu']['error'];?>
                 <br><br>
-                <!--<input type="radio" name="role" value="admin">Admin -->
-                <input type="radio" class="form-control" name="role" id="role" value="3">Autor
-                <input type="radio" class="form-control" name="role"  id="role"  value="2">Recenzent
-                <br><br>
+                Typ uživatele:<br>
+                    <select name="role" class="form-control" >
+                        <option value="">     </option>
+                        <option value="3">Autor</option>
+                        <option value="2">Recenzent</option>
+                    </select>
+                    <br><br>
+                <?php echo $tplData['role']['error'];?>
                 <button class="btn btn-success" name="action" value="registrace" type="submit" >Zaregistrovat</button><br>
             </form>
 </div>
 <?php
+
     $temp->getHTMLFooter();
 ?>
-<!--    </div>-->
-<!--</body>-->
-<!--</html>-->
 
