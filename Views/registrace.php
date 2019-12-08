@@ -27,11 +27,13 @@
                 <br><br>
                 Heslo znovu: <input type="password" class="form-control" name="heslo_znovu" id="heslo_znovu" value="" placeholder="Zopakujte heslo">
                 <br><br>
-                <!--<input type="radio" name="role" value="admin">Admin -->
-                <input type="radio" class="form-control" name="role" id="role" value="3">Autor
-                <input type="radio" class="form-control" name="role"  id="role"  value="2">Recenzent
+                <select class="form-control" name="role">
+                    <option value="3">Autor</option>
+                    <option value="2">Recenzent</option>
+                </select>
                 <br><br>
-                <button class="btn btn-success" name="action" value="registrace" type="submit" >Zaregistrovat</button><br>
+                <button class="btn btn-success" name="action" value="registrace" type="submit" >Zaregistrovat</button>
+                <br>
             </form>
 </div>
 <?php

@@ -11,8 +11,14 @@ class Registrace implements IController {
     }
 
     public function show(){
+        $tplData = [];
         if(isset($_POST['action']) && $_POST['action'] == "registrace") {
-            $res = $this->userMan->addUser($_POST['email'], $_POST['heslo'], $_POST['name'], $_POST['role'] );
+            $dataUziv = $this->kontolRegistrace();
+            if($dataUziv['povolit_reg']){
+                $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
+            }else{
+                echo "Chyba přihlašení";
+            }
             if($res){
                 echo "OK: Uživatel byl přidán do databáze.";
             } else {
@@ -21,7 +27,7 @@ class Registrace implements IController {
         }
 
 
-        $tplData = [0];
+
         return $tplData;
     }
 
@@ -37,34 +43,41 @@ class Registrace implements IController {
                               "error" => ''),
             "heslo_znovu" => array( "value" => $_POST['heslo_znovu'],
                                     "error" => ''),
+            "povolit_reg" => true
 
         );
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $result['username']['error'] = "Vypňte pole username";
+                $result['povolit_reg'] = false;
             } else {
                 $result['username']['value'] = $this->test_input($_POST["name"]);
                 if (!preg_match("/^[a-z A-Z ]*$/", $result['username']['value'])) {
                     $result['username']['error'] = "Jsou povolené jen písmena a mezery";
+                    $result['povolit_reg'] = false;
                 }
             }
 
             if (empty($_POST["email"])) {
                 $result['email']['error'] = "Vypňte pole Email";
+                $result['povolit_reg'] = false;
             } else {
                 $result['email']['value'] = $this->test_input($_POST["email"]);
                 if (!filter_var($result['email']['value'], FILTER_VALIDATE_EMAIL)) {
                     $result['email']['error'] = "Špatný format emailu";
+                    $result['povolit_reg'] = false;
                 }
             }
 
             if (empty($_POST["heslo"])) {
                 $result['heslo']['error'] = "Musíte zadat heslo";
+                $result['povolit_reg'] = false;
             } else {
                 $result['heslo']['value'] = $this->test_input($_POST["heslo"]);
                 if(strlen($result['heslo']['value'] < 8)){
                     $result['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
+                    $result['povolit_reg'] = false;
                 }
             }
 
@@ -76,13 +89,16 @@ class Registrace implements IController {
 
             if (empty($_POST["heslo_znovu"])) {
                 $result['heslo_znovu']['error'] = "Musíte zopakovat heslo";
+                $result['povolit_reg'] = false;
             } else {
                 if($result['heslo']['value'] != $result['heslo_znovu']['value']){
                     $result['heslo_znovu']['error'] = "Heslo není stejně";
+                    $result['povolit_reg'] = false;
                 }
             }
 
         }
+        return $result;
     }
 
     private function test_input($data) {
