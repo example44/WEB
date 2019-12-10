@@ -108,8 +108,8 @@ class ProPrihlaseny{
         $this->db->deletePrispevek($id_prispevek);
     }
 
-    public function addRecept(){
-        $this->db->addPrispevek();
+    public function addRecept(string $obsah, string $nazev, string  $rozhodnuti){
+        $this->db->addPrispevek($obsah, $nazev, $rozhodnuti, $_SESSION[$this->userSessionKey]);
     }
 
     public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
@@ -126,7 +126,7 @@ class ProPrihlaseny{
     }
 
     public function getSeznamRecenzenta(){
-        $this->db->getSeznamKPosouzeni($_SESSION[$this->userSessionKey]);
+        return $this->db->getSeznamKPosouzeni($_SESSION[$this->userSessionKey]);
     }
 
     public function pridatRecenzenta($id_uzivatel, $id_recenze){

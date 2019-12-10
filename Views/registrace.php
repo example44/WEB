@@ -3,14 +3,8 @@
     global $tplData;
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
-    $temp->getHTMLHeader(WEB_PAGES['registrace']['title']);
+    $temp->getHTMLHeader(WEB_PAGES['registrace']['title'], $tplData['menu']);
 ?>
-<html>
-<head>
-
-</head>
-<div id="">
-    <body>
         <div class="container mt-4" id="hlavni" style="">
                 <h1>Registrace</h1>
                     <div style="color: ">
@@ -19,7 +13,7 @@
                             <?php $txt = $tplData['username']['error'];
                             echo "<span style='color: red'>* $txt</span>" ?>
                             <br><br>
-                            Email: <input type="email" class="form-control" name="email" id="emal" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email">
+                            Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email">
                             <span class="error">* <?php echo $tplData['email']['error'];?></span>
                             <br><br>
                             Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="<?php echo $tplData['heslo']['value'];?>" placeholder="Napište heslo">
@@ -43,8 +37,5 @@
         </div>
 
     <?php
-
         $temp->getHTMLFooter();
     ?>
-    </body>
-</div>

@@ -9,7 +9,7 @@ class TemplateBasics {
      *  Vrati vrsek stranky az po oblast, ve ktere se vypisuje obsah stranky.
      *  @param string $pageTitle    Nazev stranky.
      */
-    public function getHTMLHeader(string $pageTitle) {
+    public function getHTMLHeader(string $pageTitle, $menu) {
         ?>
 
         <!doctype html>
@@ -40,7 +40,7 @@ class TemplateBasics {
                         <div class="collapse navbar-collapse" id="navbar-main">
                             <ul class="navbar-nav ">
                                 <?php
-                                    foreach (WEB_PAGES as $key => $p){
+                                    foreach ($menu as $key => $p){
                                         echo "<li class=\"active\"><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue'>$p[title]</a></li>";
                                     }
                                     ?>
@@ -73,6 +73,5 @@ class TemplateBasics {
             </html>
             <?php
     }
-        
-}
 
+}
