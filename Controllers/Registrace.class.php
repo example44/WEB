@@ -3,42 +3,13 @@
 
 class Registrace implements IController {
     private $userMan;
+    private $tplData;
 
     public function __construct(){
         require_once "settings.inc.php";
         require_once DIRECTORY_CONTROLLERS . "/ProPrihlaseny.class.php";
         $this->userMan = new ProPrihlaseny();
-    }
-
-    public function show(){
-        if(!$this->userMan->isUserLogged()) {
-            $tplData = $this->kontolRegistrace();
-            if (isset($_POST['action']) && $_POST['action'] == "registrace") {
-                $dataUziv = $this->kontolRegistrace();
-                $tplData = $dataUziv;
-                $res = 0;
-                if ($dataUziv['povolit_reg']) {
-                    $res = $this->userMan->addUser($dataUziv['email']['value'], $dataUziv['heslo']['value'], $dataUziv['username']['value'], $dataUziv['role']['value']);
-                    $tplData = $dataUziv;
-                } else {
-                    echo "Chyba přihlašení";
-                }
-                if ($res) {
-                    echo "OK: Uživatel byl přidán do databáze.";
-                } else {
-                    echo "ERROR: Uložení uživatele se nezdařilo.";
-                }
-
-            }
-            return $tplData;
-        }else{
-            return null;
-        }
-
-    }
-
-    private function kontolRegistrace(){
-        $result = array(
+        $this->tplData = array(
             "username" => array( "value" => '', "error" => ''),
             "email" => array( "value" => '', "error" => ''),
             "role" => array( "value" => '', "error" => ''),
@@ -46,59 +17,82 @@ class Registrace implements IController {
             "heslo_znovu" => array( "value" => '', "error" => ''),
             "povolit_reg" => true
         );
+    }
 
+    public function show(){
+        if(!$this->userMan->isUserLogged()) {
+            $this->tplData['uzivatel']['role'] = 0;
+            if (isset($_POST['action']) && $_POST['action'] == "registrace") {
+               $this->kontolRegistrace();
+                $res = 0;
+                if ($this->tplData['povolit_reg']) {
+                    $res = $this->userMan->addUser($this->tplData['email']['value'], $this->tplData['heslo']['value'], $this->tplData['username']['value'], $this->tplData['role']['value']);
+                }
+                if ($res) {
+                    $this->tplData['alert'] = "OK: Uživatel byl založen.";
+                    header("Location: index.php?page=uvodni");
+                    echo "OK: Uživatel byl přidán do databáze.";
+                } else {
+                    $this->tplData['alert'] = "ERROR: Založení uživatele se nezdařilo.";
+                    echo "ERROR: Uložení uživatele se nezdařilo.";
+                }
+            }
+        }
+        return $this->tplData;
+    }
+
+    private function kontolRegistrace(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
-                $result['username']['error'] = "Vypňte pole username";
-                $result['povolit_reg'] = false;
+                $this->tplData['username']['error'] = "Vypňte pole username";
+                $this->tplData['povolit_reg'] = false;
             } else {
-                $result['username']['value'] = $this->test_input($_POST["name"]);
-                if (!preg_match("/^[a-z A-Z ]*$/", $result['username']['value'])) {
-                    $result['username']['error'] = "Jsou povolené jen písmena a mezery";
-                    $result['povolit_reg'] = false;
+                $this->tplData['username']['value'] = $this->test_input($_POST["name"]);
+                if (!preg_match("/^[a-z A-Z ]*$/", $this->tplData['username']['value'])) {
+                    $this->tplData['username']['error'] = "Jsou povolené jen písmena a mezery";
+                    $this->tplData['povolit_reg'] = false;
                 }
             }
 
             if (empty($_POST["email"])) {
-                $result['email']['error'] = "Vypňte pole Email";
-                $result['povolit_reg'] = false;
+                $this->tplData['email']['error'] = "Vypňte pole Email";
+                $this->tplData['povolit_reg'] = false;
             } else {
-                $result['email']['value'] = $this->test_input($_POST["email"]);
-                if (!filter_var($result['email']['value'], FILTER_VALIDATE_EMAIL)) {
-                    $result['email']['error'] = "Špatný format emailu";
-                    $result['povolit_reg'] = false;
+                $this->tplData['email']['value'] = $this->test_input($_POST["email"]);
+                if (!filter_var($this->tplData['email']['value'], FILTER_VALIDATE_EMAIL)) {
+                    $this->tplData['email']['error'] = "Špatný format emailu";
+                    $this->tplData['povolit_reg'] = false;
                 }
             }
 
             if (empty($_POST["heslo"])) {
-                $result['heslo']['error'] = "Musíte zadat heslo";
-                $result['povolit_reg'] = false;
+                $this->tplData['heslo']['error'] = "Musíte zadat heslo";
+                $this->tplData['povolit_reg'] = false;
             } else {
-                $result['heslo']['value'] = $this->test_input($_POST["heslo"]);
-                if(strlen($result['heslo']['value']) < 8){
-                    $result['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
-                    $result['povolit_reg'] = false;
+                $this->tplData['heslo']['value'] = $this->test_input($_POST["heslo"]);
+                if(strlen($this->tplData['heslo']['value']) < 8){
+                    $this->tplData['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
+                    $this->tplData['povolit_reg'] = false;
                 }
             }
 
             if (empty($_POST["role"])) {
-                $result['role']['error'] = "Musíte zvolit role";
+                $this->tplData['role']['error'] = "Musíte zvolit role";
             }else{
-                $result['role']['value'] = $this->test_input($_POST["role"]);
+                $this->tplData['role']['value'] = $this->test_input($_POST["role"]);
             }
 
-            $result['heslo_znovu']['value'] = $_POST['heslo_znovu'];
+            $this->tplData['heslo_znovu']['value'] = $_POST['heslo_znovu'];
 
             if (empty($_POST["heslo_znovu"])) {
-                $result['heslo_znovu']['error'] = "Musíte zopakovat heslo";
-                $result['povolit_reg'] = false;
-            } elseif($result['heslo']['value'] != $result['heslo_znovu']['value']){
-                    $result['heslo_znovu']['error'] = "Heslo není stejně";
-                    $result['povolit_reg'] = false;
+                $this->tplData['heslo_znovu']['error'] = "Musíte zopakovat heslo";
+                $this->tplData['povolit_reg'] = false;
+            } elseif($this->tplData['heslo']['value'] != $this->tplData['heslo_znovu']['value']){
+                    $this->tplData['heslo_znovu']['error'] = "Heslo není stejně";
+                    $this->tplData['povolit_reg'] = false;
             }
 
         }
-        return $result;
     }
 
     private function test_input($data) {

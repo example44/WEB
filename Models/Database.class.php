@@ -96,12 +96,12 @@ class Database {
     }
 
     public function getAllRecepts(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti=1");
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
         return $list_receptu;
     }
 
     public function getAutorRecepts(int $id_autora){
-        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "$id_autora");
+        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "UZIVATEL_id_UZIVATEL = $id_autora");
         return $recepty_autora;
     }
 
@@ -125,7 +125,7 @@ class Database {
 
 
     public function getSeznamKPosouzeni($id_uzivatele){
-        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
+        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.PRISPEVEK_id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
         return $k_posouzeni;
     }
 

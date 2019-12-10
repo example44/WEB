@@ -2,7 +2,7 @@
     global $tplData;
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
-    $temp->getHTMLHeader(WEB_PAGES['uvodni']['title']);
+    $temp->getHTMLHeader(WEB_PAGES['uvodni']['title'], $tplData['menu']);
     if(isset($_SESSION['current_user_id'])) {
         ?>
         <form action="" method="POST">

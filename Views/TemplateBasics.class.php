@@ -9,7 +9,7 @@ class TemplateBasics {
      *  Vrati vrsek stranky az po oblast, ve ktere se vypisuje obsah stranky.
      *  @param string $pageTitle    Nazev stranky.
      */
-    public function getHTMLHeader(string $pageTitle) {
+    public function getHTMLHeader(string $pageTitle, $menu) {
         ?>
 
         <!doctype html>
@@ -18,8 +18,8 @@ class TemplateBasics {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <link rel="stylesheet" href="../css/styl.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <link rel="stylesheet" href="../../css/styl.css">
                 <title><?php echo $pageTitle; ?></title>
 
             </head>
@@ -32,8 +32,8 @@ class TemplateBasics {
                         <ul class = "navbar-nav mr-auto">
                             <li class = "nav-item active">
                                 <?php
-                                    foreach (WEB_PAGES as $key => $p){
-                                        echo "<a href='index.php?page=$key'>$p[title]</a>";
+                                    foreach ($menu as $key => $p){
+                                        echo "<a  href='index.php?page=$key'>$p[title]</a>";
                                     }
                                     ?>
                             </li>
