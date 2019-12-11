@@ -22,6 +22,8 @@ class OPortalu implements IController {
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+
+
         return $this->tplData;
     }
 }

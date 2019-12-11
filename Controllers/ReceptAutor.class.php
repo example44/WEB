@@ -22,7 +22,18 @@ class ReceptAutor implements IController {
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'delete'){
+            $ok = $this->userMan->smazatPrispevek($_POST['recept_del']);
+            if($ok){
+                $this->tplData['alert'] = "OK: Recept byl smazan.";
+                echo "OK: Recept byl smazan.";
+            } else {
+                $this->tplData['alert'] = "ERROR: Recept nebyl smazan.";
+                echo "ERROR: Recept nebyl smazan.";
+            }
+        }
         $this->tplData['obsah'] = $this->userMan->getAutorRecept();
+
 
         return $this->tplData;
     }

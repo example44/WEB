@@ -105,11 +105,11 @@ class ProPrihlaseny{
     }
 
     public function smazatPrispevek($id_prispevek){
-        $this->db->deletePrispevek($id_prispevek);
+        return $this->db->deletePrispevek($id_prispevek);
     }
 
-    public function addRecept(string $obsah, string $nazev, string  $rozhodnuti){
-        $this->db->addPrispevek($obsah, $nazev, $rozhodnuti, $_SESSION[$this->userSessionKey]);
+    public function addRecept(string $obsah, string $nazev){
+        return $this->db->addPrispevek("$obsah", "$nazev", $_SESSION[$this->userSessionKey]);
     }
 
     public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
@@ -131,6 +131,10 @@ class ProPrihlaseny{
 
     public function pridatRecenzenta($id_uzivatel, $id_recenze){
         $this->db->priradRecenzenta($id_uzivatel, $id_recenze);
+    }
+
+    public function getUzivatel(int $id_uzivatel){
+        return $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$id_uzivatel");
     }
 }
 ?>
