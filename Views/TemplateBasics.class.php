@@ -11,7 +11,6 @@ class TemplateBasics {
      */
     public function getHTMLHeader(string $pageTitle, $menu) {
         ?>
-
         <!doctype html>
         <html>
             <head>
@@ -22,15 +21,14 @@ class TemplateBasics {
                       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
                 <link rel="stylesheet" href="../css/styl.css">
                 <title><?php echo $pageTitle; ?></title>
-
             </head>
             <body>
 
-                <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
-                    <a href="#" class="navbar-brand">
-                        <img src="logo2.jpg" width="70" height="30" alt="logo">
-                    </a>
-                </nav>
+                <div class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
+
+                        <img src="logo2.jpg" width="150" height="60" alt="logo">
+
+                </div>
 
                 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #1D1F20">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
@@ -43,9 +41,7 @@ class TemplateBasics {
                                     foreach ($menu as $key => $p){
                                         echo "<li class=\"active\"><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue'>$p[title]</a></li>";
                                     }
-                                    ?>
-
-
+                                ?>
                             </ul>
 
                         </div>

@@ -23,6 +23,10 @@ class Recepty implements IController {
             $this->tplData['uzivatel']['role'] = 0;
         }
         $this->tplData['obsah'] = $this->userMan->getVseRecepty();
+        for($i = 0; $i < count($this->tplData['obsah']); $i++){
+            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL']);
+            $this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'] = $user[0]['username'];
+        }
 
 
         return $this->tplData;

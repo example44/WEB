@@ -9,8 +9,9 @@ class NovyRecept implements IController{
         require_once "settings.inc.php";
         require_once DIRECTORY_CONTROLLERS."/ProPrihlaseny.class.php";
         $this->userMan = new ProPrihlaseny();
-        $this->tplData = array("obsah" => "",
-            "alert" => ""
+        $this->tplData = array("obsah" => array( "value" => '', "error" => ''),
+                               "alert" => "",
+                               "recept_naz" => array( "value" => '', "error" => ''),
         );
     }
 
@@ -23,11 +24,48 @@ class NovyRecept implements IController{
             $this->tplData['uzivatel']['role'] = 0;
         }
 
+        if (isset($_POST['action']) && $_POST['action'] == 'create_recept'){
+            $this->kontolNewRecept();
+            $res = $this->userMan->addRecept($this->tplData['obsah']['value'], $this->tplData['recept_naz']['value']);
+            if ($res) {
+                $this->tplData['alert'] = "OK: Vytvořen nový recept.";
+                echo "OK: Vytvořen nový recept.";
+                header("Location: index.php?page=recepAutor");
+            } else {
+                $this->tplData['alert'] = "ERROR: Nezdařilo vytvořit recept.";
+                echo "ERROR: Nezdařilo vytvořit recept.";
+            }
+        }
 
-        /// Zpracovani dat z formy ///
 
 
 
         return $this->tplData;
     }
+
+    private function kontolNewRecept(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST['recept_naz'])) {
+                $this->tplData['recept_naz']['error'] = "Nazadal jste název";
+            } else {
+                $this->tplData['recept_naz']['value'] = $this->test_input($_POST['recept_naz']);
+                //mozna kontrola symbolu
+            }
+
+            if (empty($_POST['recept_ob'])) {
+                $this->tplData['obsah']['error'] = "Musíte napsat popis receptu";
+            } else {
+                $this->tplData['obsah']['value'] = $this->test_input($_POST['recept_ob']);
+            }
+
+        }
+    }
+
+    private function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
 }

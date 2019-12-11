@@ -82,6 +82,8 @@ class Database {
         return $this->selectFromTable( TABLE_UZIVATEL);
     }
 
+
+
     public function addNewUser(string $email, string $heslo, string  $name, int $role ){
         // sloupce
         $columns = "email, heslo, username, role_id_role";
@@ -106,21 +108,28 @@ class Database {
     }
 
     public function deletePrispevek(int $id_prispevku){
-        $this->deleteFromTable(TABLE_PRISPEVEK, "$id_prispevku");
+        $this->deleteRecenze($id_prispevku);
+        return $this->deleteFromTable(TABLE_PRISPEVEK, "id_PRISPEVEK=$id_prispevku");
     }
 
-    public function addPrispevek(string $obsah, string $nazev, string  $rozhodnuti, int $id_uzivatele){
+    public function deleteRecenze(int $id_prispevku){
+        $this->deleteFromTable(TABLE_RECENZE, "PRISPEVEK_id_PRISPEVEK=$id_prispevku");
+    }
+
+    public function addPrispevek(string $obsah, string $nazev, int $id_uzivatele){
         // sloupce
-        $columns = "obsah, nazev, rozhodnuti, uzivatel_id_uzivatel";
+        $columns = "obsah, nazev, UZIVATEL_id_UZIVATEL";
         // hodnoty
-        $values = "'$obsah', '$nazev', '$rozhodnuti', '$id_uzivatele'";
+        $values = "'$obsah', '$nazev', '$id_uzivatele'";
         $podarilo = $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
         if($podarilo){
-            $prispevek = $this->selectFromTable(TABLE_PRISPEVEK, "$nazev");
-            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
-            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
-            $this->addRecenze("", "$prispevek[id_PRISPEVEK]");
+            $prispevek = $this->selectFromTable(TABLE_PRISPEVEK, "nazev='$nazev'");
+            var_dump($prispevek);
+            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
+            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
+            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
         }
+        return $podarilo;
     }
 
 
@@ -129,9 +138,9 @@ class Database {
         return $k_posouzeni;
     }
 
-    public function addRecenze(string $id_uzivatelu, string $id_prispevku){
-        $columns = "originalita, tema, technicka_kvalita, jazykova_kvalita, doporuceni, poznamky, id_UZIVATEL, PRISPEVEK_id_PRISPEVEK";
-        $values = "'0', '0', '0', '0', '0', '', '$id_uzivatelu', '$id_prispevku'";
+    public function addRecenze($id_prispevku){
+        $columns = "PRISPEVEK_id_PRISPEVEK";
+        $values = "$id_prispevku";
         $this->insertIntoTable(TABLE_RECENZE, $columns, $values);
     }
 
