@@ -117,9 +117,7 @@ class Database {
     }
 
     public function addPrispevek(string $obsah, string $nazev, int $id_uzivatele){
-        // sloupce
         $columns = "obsah, nazev, UZIVATEL_id_UZIVATEL";
-        // hodnoty
         $values = "'$obsah', '$nazev', '$id_uzivatele'";
         $podarilo = $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
         if($podarilo){

@@ -12,6 +12,7 @@ class NovyRecept implements IController{
         $this->tplData = array("obsah" => array( "value" => '', "error" => ''),
                                "alert" => "",
                                "recept_naz" => array( "value" => '', "error" => ''),
+                               "povolit_create" => true
         );
     }
 
@@ -26,8 +27,8 @@ class NovyRecept implements IController{
 
         if (isset($_POST['action']) && $_POST['action'] == 'create_recept'){
             $this->kontolNewRecept();
-            $res = $this->userMan->addRecept($this->tplData['obsah']['value'], $this->tplData['recept_naz']['value']);
-            if ($res) {
+            if ($this->tplData['povolit_create']) {
+                $this->userMan->addRecept($this->tplData['obsah']['value'], $this->tplData['recept_naz']['value']);
                 $this->tplData['alert'] = "OK: Vytvořen nový recept.";
                 echo "OK: Vytvořen nový recept.";
                 header("Location: index.php?page=recepAutor");
@@ -46,7 +47,8 @@ class NovyRecept implements IController{
     private function kontolNewRecept(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST['recept_naz'])) {
-                $this->tplData['recept_naz']['error'] = "Nazadal jste název";
+                $this->tplData['recept_naz']['error'] = "Nezadal jste název";
+                $this->tplData['povolit_create'] = false;
             } else {
                 $this->tplData['recept_naz']['value'] = $this->test_input($_POST['recept_naz']);
                 //mozna kontrola symbolu
@@ -54,6 +56,7 @@ class NovyRecept implements IController{
 
             if (empty($_POST['recept_ob'])) {
                 $this->tplData['obsah']['error'] = "Musíte napsat popis receptu";
+                $this->tplData['povolit_create'] = false;
             } else {
                 $this->tplData['obsah']['value'] = $this->test_input($_POST['recept_ob']);
             }
