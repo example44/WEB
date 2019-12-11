@@ -32,4 +32,3 @@ echo $res;
 
     $temp->getHTMLFooter();
 ?>
-
