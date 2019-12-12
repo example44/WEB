@@ -96,8 +96,12 @@ class ProPrihlaseny{
         return $this->db->getAllRightsForRegist();
     }
 
+    public function getVerejRecepty(){
+        return $this->db->getVerejRecept();
+    }
+
     public function getVseRecepty(){
-        return $this->db->getAllRecepts();
+        return $this->db->getVseRecepty();
     }
 
     public function getAutorRecept(){
@@ -120,9 +124,18 @@ class ProPrihlaseny{
         return $this->db->getRecenzenty();
     }
 
+    public function zverejnit($id_prispevek){
+        return $this->db->zverejnit($id_prispevek);
+    }
 
-    public function getReceptyRecenze(){
-        return $this->db->getReceptyRecenze();
+    public function vynulovatRecenze($id_prispevek, $id_recenze){
+        $res1 = $this->db->deleteRecenze($id_recenze);
+        $this->db->addRecenze($id_prispevek);
+        return $res1;
+    }
+
+    public function getRecenzeKReceptu($id_prispevek){
+        return $this->db->getRecenzeKReceptu($id_prispevek);
     }
 
     public function getSeznamRecenzenta(){
@@ -133,8 +146,12 @@ class ProPrihlaseny{
         $this->db->priradRecenzenta($id_uzivatel, $id_recenze);
     }
 
-    public function getUzivatel(int $id_uzivatel){
-        return $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$id_uzivatel");
+    public function getUzivatel($id_uzivatel = 0){
+        if($id_uzivatel) {
+            return $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$id_uzivatel");
+        }else{
+            return "Nezadan";
+        }
     }
 }
 ?>
