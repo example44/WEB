@@ -29,7 +29,7 @@ class Database {
         }
     }
 
-    public function selectFromTable(string $tableName, string $where = "", string $orderBy= ""){
+    public function selectFromTable(string $tableName, string $where = "", string $orderBy = ""){
         $q = "SELECT * FROM ".$tableName.(($where == "") ? "" : " WHERE ".$where).
             (($orderBy == "") ? "" : " ORDER BY ".$orderBy);
         $result = $this->executeQuery($q);
@@ -97,8 +97,13 @@ class Database {
         return $users;
     }
 
-    public function getAllRecepts(){
+    public function getVerejRecept(){
         $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
+        return $list_receptu;
+    }
+
+    public function getVseRecepty(){
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
         return $list_receptu;
     }
 
@@ -108,12 +113,16 @@ class Database {
     }
 
     public function deletePrispevek(int $id_prispevku){
-        $this->deleteRecenze($id_prispevku);
+        $this->deleteRecenPrispevku($id_prispevku);
         return $this->deleteFromTable(TABLE_PRISPEVEK, "id_PRISPEVEK=$id_prispevku");
     }
 
-    public function deleteRecenze(int $id_prispevku){
+    public function deleteRecenPrispevku(int $id_prispevku){
         $this->deleteFromTable(TABLE_RECENZE, "PRISPEVEK_id_PRISPEVEK=$id_prispevku");
+    }
+
+    public function deleteRecenze(int $id_recenze){
+        return $this->deleteFromTable(TABLE_RECENZE, "id_RECENZE=$id_recenze");
     }
 
     public function addPrispevek(string $obsah, string $nazev, int $id_uzivatele){
@@ -147,12 +156,17 @@ class Database {
         $this->updateInTable(TABLE_RECENZE, $stmt, "$id_prispevku");
     }
 
+    public function zverejnit($id_prispevek){
+        return $this->updateInTable(TABLE_PRISPEVEK, "rozhodnuti = 1", "$id_prispevek");
+    }
+
     public function getRecenzenty(){
         return $this->selectFromTable(TABLE_UZIVATEL, "ROLE_id_ROLE=2");
     }
 
-    public function getReceptyRecenze(){
-        return $this->selectFromTable(TABLE_PRISPEVEK.", ".TABLE_RECENZE, "prispevek.id_PRISPEVEK=recenze.PRISPEVEK_id_PRISPEVEK");
+
+    public function getRecenzeKReceptu($id_prispevek){
+        return $this->selectFromTable(TABLE_RECENZE, "PRISPEVEK_id_PRISPEVEK=$id_prispevek");
     }
 
     public function priradRecenzenta($id_uzivatele, $id_recenze){
