@@ -9,7 +9,7 @@
                 <h1>Registrace</h1>
                     <div style="color: ">
                         <form class="prihlaseni" method="post" action="">
-                            <label>Username: <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" placeholder="Napište username" required></label>
+                            <label >Username: <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" placeholder="Napište username" required></label>
                             <span class="error"> <?php echo $tplData['username']['error'];?></span>
                             <br><br>
                             <label>Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label>

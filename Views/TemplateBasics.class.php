@@ -10,6 +10,7 @@ class TemplateBasics {
      *  @param string $pageTitle    Nazev stranky.
      */
     public function getHTMLHeader(string $pageTitle, $menu) {
+        global $tplData;
         ?>
         <!doctype html>
         <html>
@@ -27,7 +28,21 @@ class TemplateBasics {
                 <div class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
 
                         <img src="logo2.jpg" width="150" height="60" alt="logo">
+                        <?php
+                            if(isset($_SESSION['current_user_id'])) {
+                        ?>
+                        <span class="navbar-text" style="color: aliceblue">
+                            Ahoj, <?php echo $tplData['uzivatel']['username']?>
 
+                        </span>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="action" value="logout">
+                                    <input type="submit" name="action" value="odhlaseni">
+                                </form>
+
+                                <?php
+                            }
+                            ?>
                 </div>
 
                 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #1D1F20">
