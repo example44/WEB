@@ -15,6 +15,7 @@ class Registrace implements IController {
             "role" => array( "value" => '', "error" => ''),
             "heslo" => array( "value" => '', "error" => ''),
             "heslo_znovu" => array( "value" => '', "error" => ''),
+            "role_mozne" => $this->userMan->getAllRightsForRegist(),
             "povolit_reg" => true
         );
     }
@@ -26,12 +27,9 @@ class Registrace implements IController {
                $this->kontolRegistrace();
                 $res = 0;
                 if ($this->tplData['povolit_reg']) {
-                    $res = $this->userMan->addUser($this->tplData['email']['value'], $this->tplData['heslo']['value'], $this->tplData['username']['value'], $this->tplData['role']['value']);
-                }
-                if ($res) {
+                    $this->userMan->addUser($this->tplData['email']['value'], $this->tplData['heslo']['value'], $this->tplData['username']['value'], $this->tplData['role']['value']);
                     $this->tplData['alert'] = "OK: Uživatel byl založen.";
-                    header("Location: index.php?page=uvodni");
-                    echo "OK: Uživatel byl přidán do databáze.";
+                    header("Location: index.php?page=autorizace");
                 } else {
                     $this->tplData['alert'] = "ERROR: Založení uživatele se nezdařilo.";
                     echo "ERROR: Uložení uživatele se nezdařilo.";
@@ -48,8 +46,8 @@ class Registrace implements IController {
                 $this->tplData['povolit_reg'] = false;
             } else {
                 $this->tplData['username']['value'] = $this->test_input($_POST["name"]);
-                if (!preg_match("/^[a-z A-Z ]*$/", $this->tplData['username']['value'])) {
-                    $this->tplData['username']['error'] = "Jsou povolené jen písmena a mezery";
+                if (!preg_match("/^[a-z A-Z][0-9]*$/", $this->tplData['username']['value']) && !substr_count($this->tplData['username']['value'], " ")) {
+                    $this->tplData['username']['error'] = "Jsou povolené jen písmena a číslice";
                     $this->tplData['povolit_reg'] = false;
                 }
             }
@@ -70,8 +68,8 @@ class Registrace implements IController {
                 $this->tplData['povolit_reg'] = false;
             } else {
                 $this->tplData['heslo']['value'] = $this->test_input($_POST["heslo"]);
-                if(strlen($this->tplData['heslo']['value']) < 8){
-                    $this->tplData['heslo']['error'] = "Heslo musí být délší než 8 symbolů";
+                if(strlen($this->tplData['heslo']['value']) < 8 || strlen($this->tplData['heslo']['value']) > 40){
+                    $this->tplData['heslo']['error'] = "Heslo musí být délší než 8 symbolů a kratší než 40";
                     $this->tplData['povolit_reg'] = false;
                 }
             }
@@ -80,6 +78,16 @@ class Registrace implements IController {
                 $this->tplData['role']['error'] = "Musíte zvolit role";
             }else{
                 $this->tplData['role']['value'] = $this->test_input($_POST["role"]);
+                for($i = 0; $i < count($this->tplData['role_mozne']); $i++){
+                    if($this->tplData['role']['value'] == $this->tplData['role_mozne'][$i]['id_ROLE']){
+                        $this->tplData['role']['error'] = '';
+                        $this->tplData['povolit_reg'] = true;
+                        break;
+                    }else{
+                        $this->tplData['role']['error'] = "Špatná role";
+                        $this->tplData['povolit_reg'] = false;
+                    }
+                }
             }
 
             $this->tplData['heslo_znovu']['value'] = $_POST['heslo_znovu'];

@@ -6,7 +6,7 @@ $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
 ?>
 <div class="container mt-4" id="hlavni" xmlns="http://www.w3.org/1999/html">
     <h1>Přidání nového receptu</h1>
-    <form class="novy_recept" method="post" id="novy_rcept" action="">
+    <form class="novy_recept" method="post" id="novy_rcept" action="" enctype="multipart/form-data">
         <label>Název receptu:<br> <input type="text" class="form-control" name="recept_naz"  id="recept_naz" value="<?php echo $tplData['recept_naz']['value'];?>" placeholder="Zadejte název receptu" required></label>
         <span class="error"> <?php echo $tplData['recept_naz']['error'];?></span>
         <br>
@@ -15,7 +15,7 @@ $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
         <span class="error"> <?php echo $tplData['obsah']['error'];?></span>
         <br>
         <br>
-        <label>PDF Soubor:<br><input type="file" name="soubor" accept="application/pdf" id="soubor" multiple></label>
+        <label>PDF Soubor:<br><input type="file" name="soubor" accept="application/pdf" id="soubor"></label>
         <br><br>
         <button class="btn btn-success" name="action" value="create_recept" type="submit">Odeslat</button><br>
     </form>

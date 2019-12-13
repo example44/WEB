@@ -27,7 +27,7 @@ $res = '<table class="table table-sm table-bordered table-striped table-hover">
 
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
-    $autor = $tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'];
+    $autor = $tplData['obsah'][$i]['id_UZIVATEL'];
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $res .= '<tr>
                 <td rowspan="3">'.$nazev.'</td>

@@ -83,20 +83,6 @@ class Database {
     }
 
 
-
-    public function addNewUser(string $email, string $heslo, string  $name, int $role ){
-        // sloupce
-        $columns = "email, heslo, username, role_id_role";
-        // hodnoty
-        $values = "'$email', '$heslo', '$name', '$role'";
-        return $this->insertIntoTable(TABLE_UZIVATEL, $columns, $values);
-    }
-
-    public function getAllRightsForRegist(){
-        $users = $this->selectFromTable(TABLE_PRAVO, "vah < 100");
-        return $users;
-    }
-
     public function getVerejRecept(){
         $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
         return $list_receptu;
@@ -108,45 +94,35 @@ class Database {
     }
 
     public function getAutorRecepts(int $id_autora){
-        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "UZIVATEL_id_UZIVATEL = $id_autora");
+        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "id_UZIVATEL = $id_autora");
         return $recepty_autora;
     }
 
-    public function deletePrispevek(int $id_prispevku){
-        $this->deleteRecenPrispevku($id_prispevku);
-        return $this->deleteFromTable(TABLE_PRISPEVEK, "id_PRISPEVEK=$id_prispevku");
-    }
 
-    public function deleteRecenPrispevku(int $id_prispevku){
-        $this->deleteFromTable(TABLE_RECENZE, "PRISPEVEK_id_PRISPEVEK=$id_prispevku");
-    }
+
 
     public function deleteRecenze(int $id_recenze){
         return $this->deleteFromTable(TABLE_RECENZE, "id_RECENZE=$id_recenze");
     }
 
-    public function addPrispevek(string $obsah, string $nazev, int $id_uzivatele){
-        $columns = "obsah, nazev, UZIVATEL_id_UZIVATEL";
+    public function addPrispevek1(string $obsah, string $nazev, int $id_uzivatele){
+        $columns = "obsah, nazev, id_UZIVATEL";
         $values = "'$obsah', '$nazev', '$id_uzivatele'";
         $podarilo = $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
         if($podarilo){
             $prispevek = $this->selectFromTable(TABLE_PRISPEVEK, "nazev='$nazev'");
-            var_dump($prispevek);
-            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
-            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
-            $this->addRecenze($prispevek[0]['id_PRISPEVEK']);
         }
         return $podarilo;
     }
 
 
     public function getSeznamKPosouzeni($id_uzivatele){
-        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.PRISPEVEK_id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
+        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
         return $k_posouzeni;
     }
 
     public function addRecenze($id_prispevku){
-        $columns = "PRISPEVEK_id_PRISPEVEK";
+        $columns = "id_PRISPEVEK";
         $values = "$id_prispevku";
         $this->insertIntoTable(TABLE_RECENZE, $columns, $values);
     }
@@ -166,7 +142,7 @@ class Database {
 
 
     public function getRecenzeKReceptu($id_prispevek){
-        return $this->selectFromTable(TABLE_RECENZE, "PRISPEVEK_id_PRISPEVEK=$id_prispevek");
+        return $this->selectFromTable(TABLE_RECENZE, "id_PRISPEVEK=$id_prispevek");
     }
 
     public function priradRecenzenta($id_uzivatele, $id_recenze){
@@ -174,5 +150,87 @@ class Database {
     }
     
 ///////////////////  KONEC: Specificke funkce /////////////////
+/// ////////////// NOVE FUNKCE   ////////////////
+    public function getUserAutoriz(string $email, string $heslo){
+        $q = "SELECT * FROM ".TABLE_UZIVATEL." WHERE email=:userEm AND heslo=:userPas;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":userEm" => $email,
+            ":userPas" => $heslo
+        ));
+        return $stmt->fetchAll();
+    }
+
+    public function addNewUser(string $email, string $heslo, string  $name, int $role ){
+        $columns = "email, heslo, username, id_role";
+        $q = "INSERT INTO ".TABLE_UZIVATEL."($columns) VALUES (:userEm, :userPas, :userName, :userRole)";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":userEm" => $email,
+            ":userPas" => $heslo,
+            ":userName" => $name,
+            ":userRole" => $role
+        ));
+    }
+
+    public function deletePrispevek(int $id_prispevku){
+        $this->deleteSouborPrispevku($id_prispevku);
+        $this->deleteRecenPrispevku($id_prispevku);
+        $q = "DELETE FROM ".TABLE_PRISPEVEK." WHERE id_PRISPEVEK=:idPrisp;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idPrisp" => $id_prispevku
+        ));
+    }
+
+    public function deleteRecenPrispevku(int $id_prispevku){
+        $q = "DELETE FROM ".TABLE_RECENZE." WHERE id_PRISPEVEK=:idPrisp;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idPrisp" => $id_prispevku
+        ));
+    }
+
+    public function deleteSouborPrispevku(int $id_prispevku){
+        $fileName = $this->getFileName($id_prispevku)[0]['nazev'];
+        var_dump($fileName);
+        $q = "DELETE FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idPrisp" => $id_prispevku
+        ));
+
+        unlink("soubory/".$fileName);
+    }
+
+    public function getFileName(int $id_prispevku){
+        $q = "SELECT nazev FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
+        $fileName = $this->pdo->prepare($q);
+        $fileName->execute(array(
+            ":idPrisp" => $id_prispevku
+        ));
+        return $fileName->fetchAll();
+    }
+
+    public function addPrispevek(string $obsah, string $nazev, int $id_uzivatele){
+        $columns = "obsah, nazev, id_UZIVATEL";
+        $q = "INSERT INTO ".TABLE_PRISPEVEK."($columns) VALUES (:obsah, :nazev, :user_id)";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":obsah" => $obsah,
+            ":nazev" => $nazev,
+            ":user_id" => $id_uzivatele
+        ));
+    }
+
+    public function addSoubor(string $nazev, string $id_prispevek){
+        $columns = "nazev, id_PRISPEVEK";
+        $q = "INSERT INTO ".TABLE_SOUBOR."($columns) VALUES (:nazev, :id_prispevek)";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":nazev" => $nazev,
+            ":id_prispevek" => $id_prispevek
+        ));
+    }
 }
 ?>

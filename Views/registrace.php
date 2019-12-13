@@ -1,4 +1,3 @@
-
 <?php
     global $tplData;
     require_once "TemplateBasics.class.php";
@@ -6,7 +5,6 @@
     $temp->getHTMLHeader(WEB_PAGES['registrace']['title'], $tplData['menu']);
 ?>
         <div class="container mt-4" id="hlavni" style="">
-                <h1>Registrace</h1>
                     <div style="color: ">
                         <form class="prihlaseni" method="post" action="">
                             <label>Username: <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" placeholder="Napište username" required></label>
@@ -23,11 +21,15 @@
                             <br><br>
                             <label>Typ uživatele:<br>
                                 <select name="role" class="form-control" >
-                                    <option value="">     </option>
-                                    <option value="3">Autor</option>
-                                    <option value="2">Recenzent</option>
+                                    <option value=""></option>
+                                    <?php
+                                        for($i = 0; $i < count($tplData['role_mozne']); $i++){
+                                            echo "<option value='".$tplData['role_mozne'][$i]['id_ROLE']."'>".$tplData['role_mozne'][$i]['nazev']."</option>";
+                                        }
+                                    ?>
                                 </select>
-                            </label> <?php echo $tplData['role']['error'];?>
+                            </label>
+                            <span class="error"><?php echo $tplData['role']['error'];?></span>
                             <br><br>
 
 

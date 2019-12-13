@@ -15,7 +15,7 @@ $res = '<table class="table table-sm table-bordered table-striped table-hover">
             <tbody>';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
-    $autor = $tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'];
+    $autor = $tplData['obsah'][$i]['id_UZIVATEL'];
     $obsah = $tplData['obsah'][$i]['obsah'];
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $res .= '<tr class="position-relative">
@@ -24,7 +24,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 <td class="text-center">
                     <form method="post" action="">
                     <input type="hidden" name="recept_zob" value="$id">
-                    <button class="btn btn-warning" onclick="alert(`$obsah`)">Zobrazit obsah</button>
+                    <button class="btn btn-warning" onclick="alert(`'.$obsah.'`)">Zobrazit obsah</button>
                     </form>
                 </td>
             </tr>';

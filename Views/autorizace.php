@@ -1,13 +1,10 @@
-
-
 <?php
     global $tplData;
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['autorizace']['title'], $tplData['menu']);
 ?>
-<div class="container mt-4">
-        <h1>Autorizace</h1>
+        <div class="container mt-4" id="hlavni" style="">
             <form class="autorizace" method="post" action="">
                 <label>Email: <br><input type="email" class="form-control" name="email" id="emal" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label>
                 <?php echo $tplData['email']['error'];?>
@@ -19,7 +16,7 @@
                 <br>
                 <button class="btn btn-success" name="action" value="vstup" type="submit" >Vstup</button><br>
             </form>
-</div>
+        </div>
 <?php
     $temp->getHTMLFooter();
 ?>
