@@ -41,7 +41,7 @@ class TemplateBasics {
 
 
                                 <form action="" method="POST">
-                                    <div class="container ">
+                                    <div class="container">
                                         <span class="navbar-text" style="color: aliceblue">
                                             Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>,
                                             jste prihlasen jako <?php echo $tplData['uzivatel']['role']?>
@@ -120,17 +120,12 @@ class TemplateBasics {
                             </div>
                         </div>
                         <!-- Grid column -->
-
                     </div>
                     <!-- Grid row-->
-
                 </div>
                 <!-- Footer Elements -->
-
                 <!-- Copyright -->
-                <div class="footer-copyright  py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span>
-
-                </div>
+                <div class="footer-copyright  py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
                 <!-- Copyright -->
 
             </footer>
