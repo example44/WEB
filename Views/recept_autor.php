@@ -4,7 +4,7 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['recepAutor']['title'], $tplData['menu']);
 
-    $res = '<table class="table table-sm table-bordered table-striped table-hover">
+    $res = '<table class="table table-sm table-bordered table-striped table-hover container mt-4">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>Název</th>

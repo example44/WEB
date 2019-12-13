@@ -20,54 +20,68 @@ class TemplateBasics {
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
                       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
                 <link rel="stylesheet" href="css/styl.css">
+
                 <title><?php echo $pageTitle; ?></title>
             </head>
             <body>
-        <div class="container mt-4">
-                <div class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
+
+                <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
 
                         <img src="logo2.jpg" width="150" height="60" alt="logo">
                         <?php
                             if(isset($_SESSION['current_user_id'])) {
                         ?>
-                        <span class="navbar-text" style="color: aliceblue">
-                            Ahoj, <?php echo $tplData['uzivatel']['username']?>
 
-                        </span>
+
                                 <form action="" method="POST">
-                                    <input type="hidden" name="action" value="logout">
-                                    <input type="submit" name="action" value="odhlaseni">
+                                    <div class="container ">
+                                        <span class="navbar-text" style="color: aliceblue">
+                                            Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>,
+                                            jste prihlasen jako <?php echo $tplData['uzivatel']['role']?>
+
+                                        </span>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <input type="hidden" name="action" value="logout">
+                                        <input type="submit" name="action" value="odhlaseni">
+                                    </div>
                                 </form>
+
 
                                 <?php
                             }
                             ?>
-                </div>
+                </nav>
 
-                <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #1D1F20">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
-                        <span class="icon-bar"></span>
-
+                <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #1D1F20">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                        <div class="collapse navbar-collapse" id="navbar-main">
-                            <ul class="navbar-nav ">
-                                <?php
-                                    foreach ($menu as $key => $p){
-                                        echo "<li class=\"active\"><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue'>$p[title]</a></li>";
-                                    }
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav ">
+                            <?php
+                                foreach ($menu as $key => $p){
+                                    echo "<li class='nav-item'><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue '>$p[title]</a></li>";
+                                }
                                 ?>
-                            </ul>
+                        </ul>
+                    </div>
+                </nav>
 
-                        </div>
-                    </nav>
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-            <h1> <?php echo $pageTitle; ?></h1>
-
+        <div class="container" id="head">
+                <div class="row padded">
+                    <div class="form-group ">
+                        <h1> <?php echo $pageTitle; ?>:</h1>
+                    </div>
+                </div>
+            </div>
         <?php
         }
 
@@ -76,11 +90,52 @@ class TemplateBasics {
          */
         public function getHTMLFooter(){
             ?>
-                    <footer class="page-footer footer-dark" style="background-color: black">
-                        <div class="footer-copyright text-center py-3"style="color: aliceblue">© 2019 Copyright:
+            <!-- Footer -->
+            <footer class="page-footer font-small cyan darken-3 " id="footer" style="background-color: #1D1F20">
+
+                <!-- Footer Elements -->
+                <div class="container">
+
+                    <!-- Grid row-->
+                    <div class="row">
+
+                        <!-- Grid column -->
+                        <div class="col-md-12 py-5" >
+                            <div class="mb-5 flex-center" >
+                                <div class="form-group ">
+                                    <!-- Facebook -->
+                                    <a class="fb-ic">
+                                        <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                                    </a>
+
+                                    <!--Instagram-->
+                                    <a class="ins-ic">
+                                        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                                    </a>
+                                    <a class="gplus-ic">
+                                        <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                                    </a>
+
+                                </div>
+                            </div>
                         </div>
-                    </footer>
-            </div>
+                        <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row-->
+
+                </div>
+                <!-- Footer Elements -->
+
+                <!-- Copyright -->
+                <div class="footer-copyright  py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span>
+
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+
                 </body>
             </html>
             <?php

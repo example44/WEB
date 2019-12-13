@@ -1,10 +1,24 @@
 .error{
     color: red;
 }
-.btn-rounded {
+body{
+    /*background-color: red;*/
+    background: url("fon.jpg");
 
-    border-radius: 10px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
+}
+#forms{
+    /*background-color: #1D1F20;*/
+    color: aliceblue;
+    text-shadow: black ;
+}
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: #f8931f;
+    text-align: center;
+}
+table{
+    background-color: #1D1F20;
+    color: aliceblue;
 }
