@@ -94,7 +94,7 @@ const WEB_PAGES = array(
     "nematePravo" => array("file_name" => "NematePravo.class.php",
                             "class_name" => "NematePravo",
                             "template_name" => "nemate_pravo.php",
-                           // "role" => 0,
+                            //"role" => array(0,1,2,3),
                             "title" => "Chyba přístupu"),
 );
 

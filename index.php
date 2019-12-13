@@ -41,7 +41,7 @@ class ApplicationStart {
         global $tplData;
 
         $tplData = $controller->show();
-        //var_dump($tplData);
+        var_dump($tplData);
         $tplData['menu'] = [];
         foreach (WEB_PAGES as $key => $p){
             if(isset(WEB_PAGES[$key]['role']) && in_array($tplData['uzivatel']['role'], WEB_PAGES[$key]['role'])){

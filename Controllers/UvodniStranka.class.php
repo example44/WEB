@@ -10,14 +10,15 @@ class UvodniStranka implements IController {
         require_once DIRECTORY_CONTROLLERS."/ProPrihlaseny.class.php";
         $this->userMan = new ProPrihlaseny();
         $this->tplData = array("obsah" => "",
-                               "alert" => ""
+                               "alert" => "",
+                               "uzivatel" => array()
         );
     }
 
     public function show(){
         if($this->userMan->isUserLogged()){
             $this->tplData['uzivatel']['username'] = $this->userMan->getLoggedUserData()['username'];
-            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['ROLE_id_ROLE'];
+            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['id_ROLE'];
         }
         else{
             $this->tplData['uzivatel']['role'] = 0;

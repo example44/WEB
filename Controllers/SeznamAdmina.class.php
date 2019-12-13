@@ -17,15 +17,15 @@ class SeznamAdmina implements IController {
     public function show(){
         if($this->userMan->isUserLogged()){
             $this->tplData['uzivatel']['username'] = $this->userMan->getLoggedUserData()['username'];
-            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['ROLE_id_ROLE'];
+            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['id_ROLE'];
         }
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
         $this->tplData['obsah'] = $this->userMan->getVseRecepty();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
-            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL']);
-            $this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'] = $user[0]['username'];
+            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
+            $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user[0]['username'];
             $this->tplData['obsah'][$i]['recenze'] = $this->userMan->getRecenzeKReceptu($this->tplData['obsah'][$i]['id_PRISPEVEK']);
             for($j = 0; $j < count($this->tplData['obsah'][$i]['recenze']); $j++){
                 $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['recenze'][$j]['id_UZIVATEL']);

@@ -17,15 +17,19 @@ class Recepty implements IController {
     public function show(){
         if($this->userMan->isUserLogged()){
             $this->tplData['uzivatel']['username'] = $this->userMan->getLoggedUserData()['username'];
-            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['ROLE_id_ROLE'];
+            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['id_ROLE'];
         }
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
         $this->tplData['obsah'] = $this->userMan->getVerejRecepty();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
-            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL']);
-            $this->tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'] = $user[0]['username'];
+            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
+            if($user != "Nezadan") {
+                $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user[0]['username'];
+            }else{
+                $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user;
+            }
         }
 
 

@@ -13,7 +13,8 @@ class Autorizace implements IController
         $this->userMan = new ProPrihlaseny();
         $this->tplData = array(
             "email" => array( "value" => '', "error" => ''),
-            "heslo" => array( "value" => '', "error" => '')
+            "heslo" => array( "value" => '', "error" => ''),
+            "uzivatel" => array()
         );
     }
 

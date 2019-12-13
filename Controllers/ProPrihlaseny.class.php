@@ -14,23 +14,16 @@ class ProPrihlaseny{
     }
 
     /**
-     * Overi, zda muse byt uzivatel prihlasen a pripadne ho prihlasi.
-     *
-     * @param string $login     Login uzivatele.
-     * @param string $heslo     Heslo uzivatele.
-     * @return bool             Byl prihlasen?
+     * @param string $email
+     * @param string $heslo
+     * @return bool
      */
     public function userLogin(string $email, string $heslo){
-        // ziskam uzivatele z DB - primo overuju login i heslo
-        $where = "email='$email' AND heslo='$heslo'";
-        $user = $this->db->selectFromTable(TABLE_UZIVATEL, $where);
-        // ziskal jsem uzivatele
+        $user = $this->db->getUserAutoriz("$email", "$heslo");
         if(count($user)){
-            // ziskal - ulozim ho do session
-            $_SESSION[$this->userSessionKey] = $user[0]['id_UZIVATEL']; // beru prvniho nalezeneho a ukladam jen jeho ID
+            $_SESSION[$this->userSessionKey] = $user[0]['id_UZIVATEL'];
             return true;
         } else {
-            // neziskal jsem uzivatele
             return false;
         }
     }
@@ -58,63 +51,97 @@ class ProPrihlaseny{
      * @return mixed|null   Data uzivatele nebo null.
      */
     public function getLoggedUserData(){
-        if($this->isUserLogged()){
-            // ziskam data uzivatele ze session
             $userId = $_SESSION[$this->userSessionKey];
-            // pokud nemam data uzivatele, tak vypisu chybu a vynutim odhlaseni uzivatele
             if($userId == null) {
-                // nemam data uzivatele ze session - vypisu jen chybu, uzivatele odhlasim a vratim null
                 echo "SEVER ERROR: Data přihlášeného uživatele nebyla nalezena, a proto byl uživatel odhlášen.";
                 $this->userLogout();
-                // vracim null
                 return null;
             } else {
-                // nactu data uzivatele z databaze
                 $userData = $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$userId");
-                // mam data uzivatele?
                 if(empty($userData)){
-                    // nemam - vypisu jen chybu, uzivatele odhlasim a vratim null
                     echo "ERROR: Data přihlášeného uživatele se nenachází v databázi (mohl být smazán), a proto byl uživatel odhlášen.";
                     $this->userLogout();
                     return null;
                 } else {
-                    // protoze DB vraci pole uzivatelu, tak vyjmu jeho prvni polozku a vratim ziskana data uzivatele
                     return $userData[0];
                 }
             }
-        } else {
-            // uzivatel neni prihlasen - vracim null
-            return null;
-        }
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAllRightsForRegist(){
+        $users = $this->db->selectFromTable(TABLE_ROLE, "id_ROLE > 1");
+        return $users;
+    }
+
+    /**
+     * @param string $email
+     * @param string $heslo
+     * @param string $name
+     * @param int $role
+     */
     public function addUser(string $email, string $heslo, string  $name, int $role){
-        return $this->db->addNewUser($email, $heslo, $name, $role);
+        $this->db->addNewUser($email, $heslo, $name, $role);
     }
 
-    public function getRoleProRegist(){
-        return $this->db->getAllRightsForRegist();
+    /**
+     * @param $id_prispevek
+     * @return bool
+     */
+    public function smazatPrispevek($id_prispevek){
+        $this->db->deletePrispevek($id_prispevek);
     }
 
-    public function getVerejRecepty(){
-        return $this->db->getVerejRecept();
-    }
-
-    public function getVseRecepty(){
-        return $this->db->getVseRecepty();
-    }
-
+    /**
+     * @return array
+     */
     public function getAutorRecept(){
         return $this->db->getAutorRecepts($_SESSION[$this->userSessionKey]);
     }
 
-    public function smazatPrispevek($id_prispevek){
-        return $this->db->deletePrispevek($id_prispevek);
+    /**
+     * @return array
+     */
+    public function getVerejRecepty(){
+        return $this->db->getVerejRecept();
     }
 
+    /**
+     * @param string $obsah
+     * @param string $nazev
+     */
     public function addRecept(string $obsah, string $nazev){
-        return $this->db->addPrispevek("$obsah", "$nazev", $_SESSION[$this->userSessionKey]);
+        $this->db->addPrispevek("$obsah", "$nazev", $_SESSION[$this->userSessionKey]);
     }
+
+    /**
+     * @param string $nazev_pris
+     * @param string $id_prispevek
+     */
+    public function addSoubor(string $nazev_pris, string $nazev_dok){
+        $id_prispevek = $this->getReceptProSoubor($nazev_pris)[0]['id_PRISPEVEK'];
+        $this->db->addSoubor("$nazev_dok", "$id_prispevek");
+    }
+
+    /**
+     * @param string $nazev
+     * @return array
+     */
+    public function getReceptProSoubor(string $nazev){
+        return $this->db->selectFromTable(TABLE_PRISPEVEK, "nazev='$nazev'");
+    }
+
+    /**
+     * @return array
+     */
+    public function getVseRecepty(){
+        return $this->db->getVseRecepty();
+    }
+
+
+
 
     public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
         $this->db->editPosudku($originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky,  $id_prispevku);

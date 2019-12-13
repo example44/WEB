@@ -1,5 +1,3 @@
-
-
 <?php
     global $tplData;
     require_once "TemplateBasics.class.php";
@@ -29,6 +27,3 @@
 <?php
     $temp->getHTMLFooter();
 ?>
-
-
-

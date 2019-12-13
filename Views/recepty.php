@@ -15,7 +15,7 @@ $res = '<table class="table table-sm table-bordered table-striped table-hover co
             <tbody>';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
-    $autor = $tplData['obsah'][$i]['UZIVATEL_id_UZIVATEL'];
+    $autor = $tplData['obsah'][$i]['id_UZIVATEL'];
     $obsah = $tplData['obsah'][$i]['obsah'];
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $res .= '<tr class="position-relative">
@@ -26,7 +26,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                         <div id="demo" class="collapse">
                             '.$obsah.'
                         </div>
-                    
+
                 </td>
             </tr>';
 }
@@ -34,4 +34,3 @@ $res .= '</tbody></table>';
 echo $res;
 
     $temp->getHTMLFooter();
-

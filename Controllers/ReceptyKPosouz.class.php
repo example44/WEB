@@ -17,7 +17,7 @@ class ReceptyKPosouz implements IController{
     public function show(){
         if($this->userMan->isUserLogged()){
             $this->tplData['uzivatel']['username'] = $this->userMan->getLoggedUserData()['username'];
-            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['ROLE_id_ROLE'];
+            $this->tplData['uzivatel']['role'] = $this->userMan->getLoggedUserData()['id_ROLE'];
         }
         else{
             $this->tplData['uzivatel']['role'] = 0;
