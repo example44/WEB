@@ -12,7 +12,7 @@ $res = '<table class="table table-sm table-bordered table-striped table-hover">
                         <th>Akce</th>
                     </tr>
                 </thead>
-                <tbody>';
+                <tbody class="table-dark text-center">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
     $orig = $tplData['obsah'][$i][6];

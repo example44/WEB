@@ -140,30 +140,58 @@ class ProPrihlaseny{
         return $this->db->getVseRecepty();
     }
 
+    /**
+     * @param int $id_uzivatel
+     * @return array|string
+     */
+    public function getUzivatel($id_uzivatel = 0){
+        if($id_uzivatel) {
+            return $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$id_uzivatel");
+        }else{
+            return "Nezadan";
+        }
+    }
 
+    /**
+     * @param $id_prispevek
+     * @return bool
+     */
+    public function zverejnit($id_prispevek){
+        return $this->db->zverejnit($id_prispevek);
+    }
 
+    /**
+     * @return array
+     */
+    public function getRecenzenty(){
+        return $this->db->getRecenzenty();
+    }
+
+    /**
+     * @param $id_prispevek
+     * @return array
+     */
+    public function getRecenzeKReceptu($id_prispevek){
+        return $this->db->getRecenzeKReceptu($id_prispevek);
+    }
+
+    /**
+     * @param $id_recenze
+     */
+    public function deleteRecenze($id_recenze){
+        $this->db->deleteRecenze($id_recenze);
+    }
+
+    public function addRecenze($id_uziv, $id_prispevek){
+        $this->db->addRecenze($id_uziv, $id_prispevek);
+    }
 
     public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
         $this->db->editPosudku($originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky,  $id_prispevku);
     }
 
-    public function getRecenzenty(){
-        return $this->db->getRecenzenty();
-    }
 
-    public function zverejnit($id_prispevek){
-        return $this->db->zverejnit($id_prispevek);
-    }
 
-    public function vynulovatRecenze($id_prispevek, $id_recenze){
-        $res1 = $this->db->deleteRecenze($id_recenze);
-        $this->db->addRecenze($id_prispevek);
-        return $res1;
-    }
-
-    public function getRecenzeKReceptu($id_prispevek){
-        return $this->db->getRecenzeKReceptu($id_prispevek);
-    }
 
     public function getSeznamRecenzenta(){
         return $this->db->getSeznamKPosouzeni($_SESSION[$this->userSessionKey]);
@@ -173,12 +201,6 @@ class ProPrihlaseny{
         $this->db->priradRecenzenta($id_uzivatel, $id_recenze);
     }
 
-    public function getUzivatel($id_uzivatel = 0){
-        if($id_uzivatel) {
-            return $this->db->selectFromTable(TABLE_UZIVATEL, "id_UZIVATEL=$id_uzivatel");
-        }else{
-            return "Nezadan";
-        }
-    }
+
 }
 ?>
