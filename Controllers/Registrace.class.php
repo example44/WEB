@@ -25,7 +25,6 @@ class Registrace implements IController {
             $this->tplData['uzivatel']['role'] = 0;
             if (isset($_POST['action']) && $_POST['action'] == "registrace") {
                $this->kontolRegistrace();
-                $res = 0;
                 if ($this->tplData['povolit_reg']) {
                     $this->userMan->addUser($this->tplData['email']['value'], $this->tplData['heslo']['value'], $this->tplData['username']['value'], $this->tplData['role']['value']);
                     $this->tplData['alert'] = "OK: Uživatel byl založen.";
@@ -46,8 +45,8 @@ class Registrace implements IController {
                 $this->tplData['povolit_reg'] = false;
             } else {
                 $this->tplData['username']['value'] = $this->test_input($_POST["name"]);
-                if (!preg_match("/^[a-z A-Z][0-9]*$/", $this->tplData['username']['value']) && !substr_count($this->tplData['username']['value'], " ")) {
-                    $this->tplData['username']['error'] = "Jsou povolené jen písmena a číslice";
+                if (!preg_match("/^[a-z A-Z]*$/", $this->tplData['username']['value']) && substr_count($this->tplData['username']['value'], " ")) {
+                    $this->tplData['username']['error'] = "Nejsou povolené mezery";
                     $this->tplData['povolit_reg'] = false;
                 }
             }
@@ -76,6 +75,7 @@ class Registrace implements IController {
 
             if (empty($_POST["role"])) {
                 $this->tplData['role']['error'] = "Musíte zvolit role";
+                $this->tplData['povolit_reg'] = false;
             }else{
                 $this->tplData['role']['value'] = $this->test_input($_POST["role"]);
                 for($i = 0; $i < count($this->tplData['role_mozne']); $i++){

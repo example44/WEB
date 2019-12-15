@@ -7,10 +7,10 @@
             <div class="container mt-4" >
                 <div class="row-padded">
                     <div class="form-group text-center">
-                        <form class="prihlaseni" method="post" action="" id="forms" oninput="over_pas.value=(heslo.value == heslo_znovu.value)?'Hesla jsou stejná':'Hesla není stejná'">
+                        <form class="prihlaseni" method="post" action="" id="forms" oninput="over_pas.value=(heslo.value == heslo_znovu.value)?'Hesla jsou stejná':'Hesla nejsou stejná'">
                                 <h1>Registrace</h1>
                                 <br><br>
-                                <label >Username <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" oninput="kontrolUsername(this.value)" placeholder="Napište username" required></label>
+                                <label >Username <input type="text" class="form-control" name="name" id="name" value="<?php echo $tplData['username']['value'];?>" oninput="kontrolUsername(this.value)" placeholder="Napište username" required></label>
                                 <span class="error" id="usName"> <?php echo $tplData['username']['error'];?></span>
                                 <br><br>
                                 <label>Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" oninput="kontrolEmail(this.value)" placeholder="Napište email" required></label>

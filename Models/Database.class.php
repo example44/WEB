@@ -95,7 +95,7 @@ class Database {
     }
 
 
-    public function addNewUser(string $email, string $heslo, string  $name, int $role ){
+    public function addNewUser(string $email, string $heslo, string  $name, $role ){
         $columns = "email, heslo, username, id_role";
         $q = "INSERT INTO ".TABLE_UZIVATEL."($columns) VALUES (:userEm, :userPas, :userName, :userRole)";
         $stmt = $this->pdo->prepare($q);
