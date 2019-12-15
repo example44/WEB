@@ -25,6 +25,12 @@ class NovyRecept implements IController{
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
+            $this->userMan->userLogout();
+            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
+            echo "OK: Uživatel byl odhlášen.";
+            header("Location: index.php?page=uvodni");
+        }
 
         if (isset($_POST['action']) && $_POST['action'] == 'create_recept'){
             $this->kontolNewRecept();

@@ -82,73 +82,6 @@ class Database {
         return $this->selectFromTable( TABLE_UZIVATEL);
     }
 
-
-    public function getVerejRecept(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
-        return $list_receptu;
-    }
-
-    public function getVseRecepty(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
-        return $list_receptu;
-    }
-
-    public function getAutorRecepts(int $id_autora){
-        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "id_UZIVATEL = $id_autora");
-        return $recepty_autora;
-    }
-
-
-
-
-    public function deleteRecenze(int $id_recenze){
-        return $this->deleteFromTable(TABLE_RECENZE, "id_RECENZE=$id_recenze");
-    }
-
-    public function addPrispevek1(string $obsah, string $nazev, int $id_uzivatele){
-        $columns = "obsah, nazev, id_UZIVATEL";
-        $values = "'$obsah', '$nazev', '$id_uzivatele'";
-        $podarilo = $this->insertIntoTable(TABLE_PRISPEVEK, $columns, $values);
-        if($podarilo){
-            $prispevek = $this->selectFromTable(TABLE_PRISPEVEK, "nazev='$nazev'");
-        }
-        return $podarilo;
-    }
-
-
-    public function getSeznamKPosouzeni($id_uzivatele){
-        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
-        return $k_posouzeni;
-    }
-
-    public function addRecenze($id_prispevku){
-        $columns = "id_PRISPEVEK";
-        $values = "$id_prispevku";
-        $this->insertIntoTable(TABLE_RECENZE, $columns, $values);
-    }
-
-    public function editPosudku(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
-        $stmt = "originalita = '$originalita', tema = '$tema', technicka_kvalita = '$tech_kval', jazykova_kvalita = '$jazyk_kval', doporuceni = '$doporuc', poznamky = '$poznamky'";
-        $this->updateInTable(TABLE_RECENZE, $stmt, "$id_prispevku");
-    }
-
-    public function zverejnit($id_prispevek){
-        return $this->updateInTable(TABLE_PRISPEVEK, "rozhodnuti = 1", "$id_prispevek");
-    }
-
-    public function getRecenzenty(){
-        return $this->selectFromTable(TABLE_UZIVATEL, "ROLE_id_ROLE=2");
-    }
-
-
-    public function getRecenzeKReceptu($id_prispevek){
-        return $this->selectFromTable(TABLE_RECENZE, "id_PRISPEVEK=$id_prispevek");
-    }
-
-    public function priradRecenzenta($id_uzivatele, $id_recenze){
-        $this->updateInTable(TABLE_RECENZE, "recenze.id_UZIVATEL=".$id_uzivatele, "recenze.id_RECENZE=".$id_recenze);
-    }
-    
 ///////////////////  KONEC: Specificke funkce /////////////////
 /// ////////////// NOVE FUNKCE   ////////////////
     public function getUserAutoriz(string $email, string $heslo){
@@ -161,6 +94,7 @@ class Database {
         return $stmt->fetchAll();
     }
 
+
     public function addNewUser(string $email, string $heslo, string  $name, int $role ){
         $columns = "email, heslo, username, id_role";
         $q = "INSERT INTO ".TABLE_UZIVATEL."($columns) VALUES (:userEm, :userPas, :userName, :userRole)";
@@ -171,6 +105,16 @@ class Database {
             ":userName" => $name,
             ":userRole" => $role
         ));
+    }
+
+    public function getVerejRecept(){
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
+        return $list_receptu;
+    }
+
+    public function getAutorRecepts(int $id_autora){
+        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "id_UZIVATEL = $id_autora");
+        return $recepty_autora;
     }
 
     public function deletePrispevek(int $id_prispevku){
@@ -231,6 +175,67 @@ class Database {
             ":nazev" => $nazev,
             ":id_prispevek" => $id_prispevek
         ));
+    }
+
+    public function getVseRecepty(){
+        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
+        return $list_receptu;
+    }
+
+    public function getRecenzenty(){
+        return $this->selectFromTable(TABLE_UZIVATEL, "id_ROLE=2");
+    }
+
+    public function deleteRecenze(int $id_recenze){
+        $q = "DELETE FROM ".TABLE_RECENZE." WHERE id_RECENZE=:idRec;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idRec" => $id_recenze
+        ));
+    }
+
+    public function zverejnit($id_prispevek){
+        return $this->updateInTable(TABLE_PRISPEVEK, "rozhodnuti = 1", "$id_prispevek");
+    }
+
+    public function getRecenzeKReceptu($id_prispevek){
+        $q = "SELECT * FROM ".TABLE_RECENZE." WHERE id_PRISPEVEK=:idPrisp;";
+        $fileName = $this->pdo->prepare($q);
+        $fileName->execute(array(
+            ":idPrisp" => $id_prispevek
+        ));
+        return $fileName->fetchAll();
+    }
+
+    public function addRecenze($id_uziv, $id_prispevek){
+        $columns = "id_UZIVATEL, id_PRISPEVEK";
+        $q = "INSERT INTO ".TABLE_RECENZE."($columns) VALUES (:idUziv, :id_prispevek)";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idUziv" => $id_uziv,
+            ":id_prispevek" => $id_prispevek
+        ));
+    }
+
+    public function getSeznamKPosouzeni($id_uzivatele){
+        $k_posouzeni = $this->selectFromTable( TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "r.id_PRISPEVEK=p.id_prispevek AND r.id_UZIVATEL=".$id_uzivatele);
+        return $k_posouzeni;
+    }
+
+    public function editPosudku(string $id_recenze, string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky){
+        $q = "UPDATE ".TABLE_RECENZE." SET originalita =:orig, tema =:tema, technicka_kvalita =:tech, jazykova_kvalita =:jazyk, doporuceni =:dopor, poznamky =:pozn WHERE id_RECENZE=:id_rec";
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->execute(array(
+            ":orig" => $originalita,
+            ":tema" => $tema,
+            ":tech" => $tech_kval,
+            ":jazyk" => $jazyk_kval,
+            ":dopor" => $doporuc,
+            ":pozn" => $poznamky,
+            ":id_rec" => $id_recenze
+        ));
+        var_dump($stmt);
     }
 }
 ?>

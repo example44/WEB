@@ -22,7 +22,23 @@ class ReceptyKPosouz implements IController{
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
+            $this->userMan->userLogout();
+            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
+            echo "OK: Uživatel byl odhlášen.";
+            header("Location: index.php?page=uvodni");
+        }
+
         $this->tplData['obsah'] = $this->userMan->getSeznamRecenzenta();
+
+        for($i = 0; $i < count($this->tplData['obsah']); $i++){
+            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
+            if($user != "Nezadan") {
+                $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user[0]['username'];
+            }else{
+                $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user;
+            }
+        }
 
         return $this->tplData;
     }

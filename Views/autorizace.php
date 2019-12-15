@@ -10,7 +10,8 @@
 
                     <div class="row-padded">
                         <div class="form-group text-center">
-
+                            <h1>Autorizace</h1>
+                            <br><br>
                                 <label>Email <br><input type="email" class="form-control" name="email" id="emal" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label>
                                 <?php echo $tplData['email']['error'];?>
                                 <br>

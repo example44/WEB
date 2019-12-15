@@ -4,36 +4,42 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['receptyKPosouz']['title'], $tplData['menu']);
 
-$res = '<table class="table table-sm table-bordered table-striped table-hover">
+$res = '<div class="container mt-4" id="tables">
+        <h1>Tvoje recepty</h1>
+        <br>
+        <table class="table table-sm table-bordered table-striped table-hover">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>Název</th>
                         <th>Průměr</th>
-                        <th>Akce</th>
+                        <th>Obsah receptu</th>
+                        <th>Stáhnout</th>
                     </tr>
                 </thead>
-                <tbody>';
+                <tbody class="table-dark text-center">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
-    $orig = $tplData['obsah'][$i][6];
-    $tema = $tplData['obsah'][$i][7];
-    $tech = $tplData['obsah'][$i][8];
-    $jazyk = $tplData['obsah'][$i][9];
-    $dopor = $tplData['obsah'][$i][10];
+    $obsah = $tplData['obsah'][$i]['obsah'];
+    $orig = $tplData['obsah'][$i]['originalita'];
+    $tema = $tplData['obsah'][$i]['tema'];
+    $tech = $tplData['obsah'][$i]['technicka_kvalita'];
+    $jazyk = $tplData['obsah'][$i]['jazykova_kvalita'];
+    $dopor = $tplData['obsah'][$i]['doporuceni'];
     $prumer = ($orig + $tema + $tech + $jazyk + $dopor)/5.0;
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $res .= '<tr class="position-relative">
-                <td>'.$nazev.'</td>
-                <th>'.$prumer.'</th>
-                <td class="text-center">
-                    <form method="post" action="">
-                        <input type="hidden" name="recept_del" value="'.$id.'">
-                        <button class="btn btn-warning" type="submit" name="action" value="delete">Smazat</button>
-                    </form>
+                <td onclick="goToPage(`index.php?page=editPosud`)">'.$nazev.'</td>
+                <td>'.$prumer.'</td>
+                 <td class="text-center">
+                    <button id="butt" onclick="chan()" data-toggle="collapse" type="button" class="btn btn-primary" data-target="#collap'.$i.'">Zobrazit obsah</button>
+                        <div id="collap'.$i.'" class="collapse">
+                            '.$obsah.'
+                        </div>
                 </td>
+                <td></td>
             </tr>';
 }
-$res .= '</tbody></table>';
+$res .= '</tbody></table></div>';
 echo $res;
 
     $temp->getHTMLFooter();

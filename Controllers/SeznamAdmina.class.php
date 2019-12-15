@@ -22,6 +22,13 @@ class SeznamAdmina implements IController {
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
+            $this->userMan->userLogout();
+            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
+            echo "OK: Uživatel byl odhlášen.";
+            header("Location: index.php?page=uvodni");
+        }
+
         $this->tplData['obsah'] = $this->userMan->getVseRecepty();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
@@ -34,21 +41,15 @@ class SeznamAdmina implements IController {
                 }else{
                     $this->tplData['obsah'][$i]['recenze'][$j]['id_UZIVATEL'] = $user;
                 }
-                //var_dump($this->tplData['obsah'][$i]['recenze']);
             }
         }
 
         if (isset($_POST['action'])){
             if($_POST['action'] == 'delete') {
-                $ok = $this->userMan->vynulovatRecenze($_POST['recept'], $_POST['recenze_del']);
-                if ($ok) {
-                    $this->tplData['alert'] = "OK: Recenze byla smazana.";
-                    echo "OK: Recenze byla smazana.";
-                    header("Location: index.php?page=seznamAdmina");
-                } else {
-                    $this->tplData['alert'] = "ERROR: Recenze nebyla smazana.";
-                    echo "ERROR: Recenze nebyla smazana.";
-                }
+                $this->userMan->deleteRecenze($_POST['recenze_del']);
+                $this->tplData['alert'] = "OK: Recenze byla smazana.";
+                echo "OK: Recenze byla smazana.";
+                header("Location: index.php?page=seznamAdmina");
             }elseif ($_POST['action'] == 'zverejnit'){
                 $ok = $this->userMan->zverejnit($_POST['recept']);
                 if ($ok) {
@@ -58,9 +59,17 @@ class SeznamAdmina implements IController {
                     $this->tplData['alert'] = "ERROR: Recept nebyl zveřejnit.";
                     echo "ERROR: Recept nebyl zveřejnit.";
                 }
+            }elseif($_POST['action'] == 'create_rec'){
+                if($_POST['prirad'] != '') {
+                    $this->userMan->addRecenze($_POST['prirad'], $_POST['recept']);
+                    header("Location: index.php?page=seznamAdmina");
+                }else{
+                    $this->tplData['alert'] = "Zvolte uživatele";
+                    echo "Zvolte uživatele";
+                }
             }
         }
-
+        $this->tplData['recenzenty'] = $this->userMan->getRecenzenty();
         return $this->tplData;
     }
 }
