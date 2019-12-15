@@ -17,7 +17,7 @@ body{
 #forms{
     /*background-color: #1D1F20;*/
     color: aliceblue;
-    text-shadow: black 1px 2px;
+    text-shadow: black 1px 1px;
 
 }
 #footer {
@@ -29,13 +29,14 @@ body{
     text-align: center;
 }
 
-table{
+#tables{
     background-color: #1D1F20;
     color: aliceblue;
 }
 #text{
-    color: black;
-    background-color: aliceblue;
+    color: beige;
+    background-color: #1D1F20;
+    font-size: 17px;
 
 }
 #header{
@@ -46,7 +47,9 @@ html{
     min-height: 100%;
 }
 #carousel{
-    height: 45vh;
+   min-height: 45vh;
+    max-height: 65vh;
+
 
 
 }
