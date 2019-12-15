@@ -60,7 +60,7 @@ class TemplateBasics {
                             ?>
                 </nav>
 
-                <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #1D1F20">
+                <nav class="navbar navbar-expand-md navbar-dark " id="nav_hlavni" style="background-color: #1D1F20" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>

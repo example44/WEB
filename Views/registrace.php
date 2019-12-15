@@ -3,7 +3,7 @@
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['registrace']['title'], $tplData['menu']);
-?>
+?>  <div class="content">
         <div class="container mt-4" id="forms" >
             <div style="color: ">
                 <div class="row-padded">
@@ -43,6 +43,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <?php
         $temp->getHTMLFooter();

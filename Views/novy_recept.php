@@ -4,10 +4,11 @@ require_once "TemplateBasics.class.php";
 $temp = new TemplateBasics();
 $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
 ?>
+
 <div class="container mt-4" id="hlavni">
   <div class="row-padded">
     <div class="form-group text-center">
-      <form class="novy_recept" method="post" id="novy_rcept" action="" enctype="multipart/form-data">
+      <form class="novy_recept" method="post" id="forms" action="" enctype="multipart/form-data">
           <label>Název receptu:<br> <input type="text" class="form-control" name="recept_naz"  id="recept_naz" value="<?php echo $tplData['recept_naz']['value'];?>" placeholder="Zadejte název receptu" required></label>
           <span class="error"> <?php echo $tplData['recept_naz']['error'];?></span>
           <br>
