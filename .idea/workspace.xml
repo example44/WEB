@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ajax-server.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Recepty.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Recepty.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Database.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Database.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/TemplateBasics.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/edit_posud.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/edit_posud.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/nemate_pravo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/nemate_pravo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/novy_recept.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/novy_recept.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/recepty.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styl.css" afterDir="false" />
@@ -34,7 +42,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../06-PHP-a-PDO-reseni" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -50,11 +58,11 @@
       <recent name="C:\wamp64\www\Conference\Views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\Conference" />
       <recent name="C:\wamp64\www\Conference\css" />
       <recent name="C:\wamp64\www\Conference\javascript" />
       <recent name="C:\wamp64\www\Conference\" />
       <recent name="C:\wamp64\www\Conference\Views" />
-      <recent name="C:\wamp64\www\Conference\databaze\Views" />
     </key>
   </component>
   <component name="RunDashboard">

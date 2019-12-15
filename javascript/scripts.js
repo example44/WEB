@@ -2,6 +2,22 @@ function goToPage(url_adres) {
     window.location.href = url_adres;
 }
 
+function kontrolUsername(str) {
+    if (str == "") {
+        document.getElementById("usName").innerHTML = "";
+        return;
+    } else {
+        const xmlhttp = getXmlHttp();
+        xmlhttp.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200){
+                document.getElementById("usName").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "ajax-server.php?username="+str, true);
+        xmlhttp.send();
+    }
+}
+
 function getXmlHttp() {
     var xmlhttp;
     try {

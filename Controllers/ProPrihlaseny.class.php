@@ -209,5 +209,16 @@ class ProPrihlaseny{
     public function editRecenz(string $id_recenze, string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky){
         $this->db->editPosudku($id_recenze, $originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky);
     }
+
+    /**
+     * @return array
+     */
+    public function getAllusers(){
+        return $this->db->getAllusers();
+    }
+
+    public function getSouborRecepta($id_pris){
+        return $this->db->getSouborRecepta($id_pris);
+    }
 }
 ?>

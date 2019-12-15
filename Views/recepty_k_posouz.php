@@ -31,7 +31,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 <td onclick="goToPage(`index.php?page=editPosud`)">'.$nazev.'</td>
                 <td>'.$prumer.'</td>
                  <td class="text-center">
-                    <button id="butt" onclick="chan()" data-toggle="collapse" type="button" class="btn btn-primary" data-target="#collap'.$i.'">Zobrazit obsah</button>
+                    <button onclick="chan('.$i.')" data-toggle="collapse" type="button" class="btn btn-primary" data-target="#collap'.$i.'">Zobrazit obsah</button>
                         <div id="collap'.$i.'" class="collapse">
                             '.$obsah.'
                         </div>
