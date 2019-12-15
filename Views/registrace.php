@@ -10,16 +10,16 @@
                         <form class="prihlaseni" method="post" action=""id="forms">
                                 <h1>Registrace</h1>
                                 <br><br>
-                                <label >Username <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" placeholder="Napište username" required></label>
+                                <label >Username <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" placeholder="Napište username" required></label><br>
                                 <span class="error"> <?php echo $tplData['username']['error'];?></span>
                                 <br><br>
-                                <label>Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label>
+                                <label>Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label><br>
                                 <span class="error"> <?php echo $tplData['email']['error'];?></span>
                                 <br><br>
-                                <label>Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="<?php echo $tplData['heslo']['value'];?>" placeholder="Napište heslo" required></label>
+                                <label>Heslo: <input type="password" class="form-control" name="heslo" id="heslo" value="<?php echo $tplData['heslo']['value'];?>" placeholder="Napište heslo" required></label><br>
                                 <span class="error"> <?php echo $tplData['heslo']['error'];?></span>
                                 <br><br>
-                                <label>Heslo znovu: <input type="password" class="form-control" name="heslo_znovu" id="heslo_znovu" value="<?php echo $tplData['heslo_znovu']['value'];?>" placeholder="Zopakujte heslo" required></label>
+                                <label>Heslo znovu: <input type="password" class="form-control" name="heslo_znovu" id="heslo_znovu" value="<?php echo $tplData['heslo_znovu']['value'];?>" placeholder="Zopakujte heslo" required></label><br>
                                 <span class="error"> <?php echo $tplData['heslo_znovu']['error'];?></span>
                                 <br><br>
                                 <label>Typ uživatele:<br>
@@ -31,7 +31,7 @@
                                             }
                                         ?>
                                     </select>
-                                </label>
+                                </label><br>
                                 <span class="error"><?php echo $tplData['role']['error'];?></span>
                                 <br><br>
                                 <button class="btn btn-success" name="action" value="registrace" type="submit" id="button">Zaregistrovat</button>
