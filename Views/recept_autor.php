@@ -4,7 +4,9 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['recepAutor']['title'], $tplData['menu']);
 
-    $res = '<table class="table table-sm table-bordered table-striped table-hover container mt-4">
+    $res = '<div class="container mt-4" id="tables">
+            <h1>Tvoje recepty</h1>
+            <table class="table table-sm table-bordered table-striped table-hover container mt-4">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>Název</th>
@@ -25,7 +27,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 </td>
             </tr>';
 }
-        $res .= '</tbody></table>';
+        $res .= '</tbody></table></div>';
 echo $res;
     $temp->getHTMLFooter();
 ?>

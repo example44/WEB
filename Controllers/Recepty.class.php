@@ -22,6 +22,12 @@ class Recepty implements IController {
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
+            $this->userMan->userLogout();
+            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
+            echo "OK: Uživatel byl odhlášen.";
+            header("Location: index.php?page=uvodni");
+        }
         $this->tplData['obsah'] = $this->userMan->getVerejRecepty();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);

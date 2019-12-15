@@ -6,13 +6,16 @@
 for($i = 0; $i < count($tplData['recenzenty']); $i++){
     $sezn_recenzentu = "<option value='".$tplData['recenzenty'][$i]['id_UZIVATEL']."'>".$tplData['recenzenty'][$i]['username']."</option>";
 }
-$res = '<table class="table table-sm table-bordered table-striped table-hover">
+$res = '<div class="container mt-4" id="tables">
+        <h1>Správa receptů</h1>
+        <br>
+        <table class="table table-sm table-bordered table-striped table-hover">
             <thead class="table-dark text-center">
             <tr>
-                <td rowspan="2">název receptů</td>
-                <td rowspan="2">autor</td>
-                <td colspan="8">recenze</td>
-                <td rowspan="2">rozhodnutí</td>
+                <td rowspan="2">Název receptů</td>
+                <td rowspan="2">Autor</td>
+                <td colspan="8">Recenze</td>
+                <td rowspan="2">Rozhodnutí</td>
             </tr>
             <tr>
                 <td>recenzent</td>
@@ -83,7 +86,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     }
 }
 
-$res .= '</tbody></table>';
+$res .= '</tbody></table></div><br><br>';
 echo $res;
     $temp->getHTMLFooter();
 ?>

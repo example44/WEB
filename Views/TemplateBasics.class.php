@@ -21,9 +21,11 @@ class TemplateBasics {
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
                       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+                <script src="javascript/scripts.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
                       integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
                 <link rel="stylesheet" href="css/styl.css">
@@ -38,14 +40,10 @@ class TemplateBasics {
                         <?php
                             if(isset($_SESSION['current_user_id'])) {
                         ?>
-
-
                                 <form action="" method="POST">
                                     <div class="container">
                                         <span class="navbar-text" style="color: aliceblue">
-                                            Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>,
-                                            jste prihlasen jako <?php echo $tplData['uzivatel']['role']?>
-
+                                            Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
                                         </span>
                                     </div>
                                     <div class="form-group text-center">
@@ -74,14 +72,6 @@ class TemplateBasics {
                         </ul>
                     </div>
                 </nav>
-
-        <div class="container" id="head">
-                <div class="row padded">
-                    <div class="form-group ">
-                        <h1> <?php echo $pageTitle; ?>:</h1>
-                    </div>
-                </div>
-            </div>
         <?php
         }
 
@@ -97,7 +87,7 @@ class TemplateBasics {
                 <div class="container">
 
                     <!-- Grid row-->
-                    <div class="row">
+                    <div class="row-">
 
                         <!-- Grid column -->
                         <div class="col-md-12 py-5" >
@@ -122,10 +112,12 @@ class TemplateBasics {
                         <!-- Grid column -->
                     </div>
                     <!-- Grid row-->
+
                 </div>
                 <!-- Footer Elements -->
                 <!-- Copyright -->
-                <div class="footer-copyright  py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
+
+                <div class="footer-copyright py-3  " style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
                 <!-- Copyright -->
 
             </footer>

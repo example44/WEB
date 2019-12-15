@@ -23,6 +23,13 @@ class ReceptAutor implements IController {
         else{
             $this->tplData['uzivatel']['role'] = 0;
         }
+        if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
+            $this->userMan->userLogout();
+            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
+            echo "OK: Uživatel byl odhlášen.";
+            header("Location: index.php?page=uvodni");
+        }
+
         $this->tplData['obsah'] = $this->userMan->getAutorRecept();
         if (isset($_POST['action']) && $_POST['action'] == 'delete'){
             for($i = 0; $i < count($this->tplData['obsah']); $i++) {

@@ -82,24 +82,6 @@ class Database {
         return $this->selectFromTable( TABLE_UZIVATEL);
     }
 
-    public function getSeznamKPosouzeni($id_uzivatele){
-        $k_posouzeni = $this->selectFromTable( TABLE_UZIVATEL." u, ".TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "u.id_UZIVATEL=r.id_UZIVATEL AND r.id_PRISPEVEK=p.id_prispevek AND u.id_UZIVATEL=".$id_uzivatele);
-        return $k_posouzeni;
-    }
-
-
-
-    public function editPosudku(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
-        $stmt = "originalita = '$originalita', tema = '$tema', technicka_kvalita = '$tech_kval', jazykova_kvalita = '$jazyk_kval', doporuceni = '$doporuc', poznamky = '$poznamky'";
-        $this->updateInTable(TABLE_RECENZE, $stmt, "$id_prispevku");
-    }
-
-
-
-    public function priradRecenzenta($id_uzivatele, $id_recenze){
-        $this->updateInTable(TABLE_RECENZE, "recenze.id_UZIVATEL=".$id_uzivatele, "recenze.id_RECENZE=".$id_recenze);
-    }
-    
 ///////////////////  KONEC: Specificke funkce /////////////////
 /// ////////////// NOVE FUNKCE   ////////////////
     public function getUserAutoriz(string $email, string $heslo){
@@ -233,6 +215,27 @@ class Database {
             ":idUziv" => $id_uziv,
             ":id_prispevek" => $id_prispevek
         ));
+    }
+
+    public function getSeznamKPosouzeni($id_uzivatele){
+        $k_posouzeni = $this->selectFromTable( TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "r.id_PRISPEVEK=p.id_prispevek AND r.id_UZIVATEL=".$id_uzivatele);
+        return $k_posouzeni;
+    }
+
+    public function editPosudku(string $id_recenze, string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky){
+        $q = "UPDATE ".TABLE_RECENZE." SET originalita =:orig, tema =:tema, technicka_kvalita =:tech, jazykova_kvalita =:jazyk, doporuceni =:dopor, poznamky =:pozn WHERE id_RECENZE=:id_rec";
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->execute(array(
+            ":orig" => $originalita,
+            ":tema" => $tema,
+            ":tech" => $tech_kval,
+            ":jazyk" => $jazyk_kval,
+            ":dopor" => $doporuc,
+            ":pozn" => $poznamky,
+            ":id_rec" => $id_recenze
+        ));
+        var_dump($stmt);
     }
 }
 ?>

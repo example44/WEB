@@ -3,13 +3,14 @@
 }
 body{
     /*background-color: red;*/
-    background: url("fon.jpg");
-
+    background: url("background.jpg") repeat-y;
+   background-size: 100%;
 }
 #forms{
     /*background-color: #1D1F20;*/
     color: aliceblue;
-    text-shadow: black ;
+    text-shadow: black 1px 2px;
+
 }
 #footer {
     position: relative;
@@ -17,8 +18,4 @@ body{
     width: 100%;
     color: #f8931f;
     text-align: center;
-}
-table{
-    background-color: #1D1F20;
-    color: aliceblue;
 }

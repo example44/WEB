@@ -182,25 +182,32 @@ class ProPrihlaseny{
         $this->db->deleteRecenze($id_recenze);
     }
 
+    /**
+     * @param $id_uziv
+     * @param $id_prispevek
+     */
     public function addRecenze($id_uziv, $id_prispevek){
         $this->db->addRecenze($id_uziv, $id_prispevek);
     }
 
-    public function editRecenz(string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky, string $id_prispevku){
-        $this->db->editPosudku($originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky,  $id_prispevku);
-    }
-
-
-
-
+    /**
+     * @return array
+     */
     public function getSeznamRecenzenta(){
         return $this->db->getSeznamKPosouzeni($_SESSION[$this->userSessionKey]);
     }
 
-    public function pridatRecenzenta($id_uzivatel, $id_recenze){
-        $this->db->priradRecenzenta($id_uzivatel, $id_recenze);
+    /**
+     * @param string $id_recenze
+     * @param string $originalita
+     * @param string $tema
+     * @param string $tech_kval
+     * @param string $jazyk_kval
+     * @param string $doporuc
+     * @param string $poznamky
+     */
+    public function editRecenz(string $id_recenze, string $originalita, string $tema, string $tech_kval, string $jazyk_kval, string $doporuc, string $poznamky){
+        $this->db->editPosudku($id_recenze, $originalita, $tema, $tech_kval,  $jazyk_kval, $doporuc,  $poznamky);
     }
-
-
 }
 ?>
