@@ -22,6 +22,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     $autor = $tplData['obsah'][$i]['id_UZIVATEL'];
     $obsah = $tplData['obsah'][$i]['obsah'];
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
+    $soubor = $tplData['obsah'][$i]['nazev_souboru'][0]['nazev'];
     $res .= '<tr class="position-relative">
                 <td>'.$nazev.'</td>
                 <td>'.$autor.'</td>
@@ -31,7 +32,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                             '.$obsah.'
                         </div>
                 </td>
-                <td></td>
+                <td>'.$soubor.'</td>
             </tr>';
 }
 $res .= '</tbody></table></div>';

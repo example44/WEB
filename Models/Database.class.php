@@ -237,5 +237,14 @@ class Database {
         ));
         var_dump($stmt);
     }
+
+    public function getSouborRecepta($id_pris){
+        $q = "SELECT * FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idPrisp" => $id_pris
+        ));
+        return $stmt->fetchAll();
+    }
 }
 ?>

@@ -10,7 +10,7 @@ $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
       <form class="novy_recept" method="post" id="forms" action="" enctype="multipart/form-data">
           <h1>Vytvoření nového receptu</h1>
           <br><br>
-          <label>Název receptu:<br> <input type="text" class="form-control" name="recept_naz"  id="recept_naz" value="<?php echo $tplData['recept_naz']['value'];?>" placeholder="Zadejte název receptu" required></label>
+          <label>Název receptu:<br> <input type="text" class="form-control" name="recept_naz" id="recept_naz" value="<?php echo $tplData['recept_naz']['value'];?>" placeholder="Zadejte název receptu" required></label>
           <span class="error"> <?php echo $tplData['recept_naz']['error'];?></span>
           <br>
           <br>
