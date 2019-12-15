@@ -82,7 +82,7 @@ class ProPrihlaseny{
      * @param string $name
      * @param int $role
      */
-    public function addUser(string $email, string $heslo, string  $name, int $role){
+    public function addUser(string $email, string $heslo, string  $name, $role){
         $this->db->addNewUser($email, $heslo, $name, $role);
     }
 
