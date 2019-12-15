@@ -36,12 +36,13 @@
                                 </label><br>
                                 <span class="error"><?php echo $tplData['role']['error'];?></span>
                                 <br><br>
-                                <button class="btn btn-success" name="action" value="registrace" type="submit" id="button">Zaregistrovat</button>
+                                <button class="btn btn-success btn-lg" name="action" value="registrace" type="submit" id="button">Zaregistrovat</button>
                             <br><br>
                         </form>
                     </div>
                 </div>
             </div>
+
 <script>
 function kontrolUsername(str) {
     if (str == "") {

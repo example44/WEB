@@ -36,7 +36,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 <td>'.$soubor.'</td>
             </tr>';
 }
-$res .= '</tbody></table></div></div>';
+$res .= '</tbody></table></div>';
 echo $res;
 $temp->getHTMLFooter();
 ?>

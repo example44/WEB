@@ -7,8 +7,7 @@
 
 
             <form class="autorizace container mt-4 " id="forms" role="form" method="post" action="">
-
-                    <div class="row-padded">
+                <div class="row-padded">
                         <div class="form-group text-center">
                             <h1>Autorizace</h1>
                             <br><br>
@@ -24,7 +23,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+
 
 <?php
     $temp->getHTMLFooter();

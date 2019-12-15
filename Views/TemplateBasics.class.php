@@ -42,7 +42,7 @@ class TemplateBasics {
                         ?>
                                 <form action="" method="POST">
                                     <div class="container">
-                                        <span class="navbar-text" style="color: aliceblue">
+                                        <span class="navbar-text" style="color: aliceblue" >
                                             Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
                                         </span>
                                     </div>
@@ -62,7 +62,7 @@ class TemplateBasics {
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar" >
                         <ul class="navbar-nav ">
                             <?php
                                 foreach ($menu as $key => $p){
@@ -80,6 +80,7 @@ class TemplateBasics {
          */
         public function getHTMLFooter(){
             ?>
+            </div>
             <!-- Footer -->
             <footer class="page-footer font-small cyan darken-3  " id="footer" style="background-color: #1D1F20">
 
