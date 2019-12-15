@@ -34,7 +34,7 @@
                         <option value="5">5 - vyborně</option>
                 </select></label>
                 <br>
-                <label>Technická kvalita:<br><select name="technicka_kvalita" id="tema"  class="form-control" required>
+                <label>Technická kvalita:<br><select name="jazykova_kvalita" id="jazykova_kvalita"  class="form-control" required>
                         <option value="1">1 - špatně</option>
                         <option value="2">2 - docéla špatně</option>
                         <option value="3">3 - docéla dobře </option>
@@ -42,7 +42,7 @@
                         <option value="5">5 - vyborně</option>
                 </select></label>
                 <br>
-                <label>Jazyková kvalita:<br><select name="jazykova_kvalita" id="tema" class="form-control" required>
+                <label>Jazyková kvalita:<br><select name="jazykova_kvalita" id="jazykova_kvalita" class="form-control" required>
                         <option value="1">1 - špatně</option>
                         <option value="2">2 - docéla špatně</option>
                         <option value="3">3 - docéla dobře </option>
@@ -50,7 +50,7 @@
                         <option value="5">5 - vyborně</option>
                 </select></label>
                 <br>
-                <label>Doporučení:<br><select name="doporuceni" id="tema" class="form-control" required>
+                <label>Doporučení:<br><select name="doporuceni" id="doporuceni" class="form-control" required>
                         <option value="1">1 - špatně</option>
                         <option value="2">2 - docéla špatně</option>
                         <option value="3">3 - docéla dobře </option>

@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </div>
+
 <script>
 function kontrolUsername(str) {
     if (str == "") {

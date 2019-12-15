@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Registrace.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registrace.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Database.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Database.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/TemplateBasics.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/autorizace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/autorizace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/edit_posud.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/edit_posud.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/scripts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

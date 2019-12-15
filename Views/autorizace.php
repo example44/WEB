@@ -4,8 +4,6 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['autorizace']['title'], $tplData['menu']);
 ?>
-
-
             <form class="autorizace container mt-4 " id="forms" role="form" method="post" action="">
 
                     <div class="row-padded">
