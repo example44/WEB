@@ -12,10 +12,12 @@
       <change beforePath="$PROJECT_DIR$/Views/nemate_pravo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/nemate_pravo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/novy_recept.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/novy_recept.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/recepty.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/recepty_k_posouz.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty_k_posouz.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/uvodni_stranka.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/uvodni_stranka.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/fon-web.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo2.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +96,8 @@
       <workItem from="1575724421028" duration="121870000" />
       <workItem from="1576191139455" duration="18646000" />
       <workItem from="1576319244577" duration="18829000" />
-      <workItem from="1576342992343" duration="27276000" />
+      <workItem from="1576342992343" duration="13399000" />
+      <workItem from="1576423852903" duration="259000" />
     </task>
     <servers />
   </component>

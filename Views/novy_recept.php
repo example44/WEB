@@ -4,6 +4,7 @@ require_once "TemplateBasics.class.php";
 $temp = new TemplateBasics();
 $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
 ?>
+
 <div class="container mt-4" id="hlavni">
   <div class="row-padded">
     <div class="form-group text-center">

@@ -34,10 +34,9 @@ class TemplateBasics {
                 <title><?php echo $pageTitle; ?></title>
             </head>
             <body>
-
+            <div id="main">
                 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
-
-                        <img src="logo2.jpg" width="150" height="60" alt="logo">
+                    <img src="img/logo2.jpg" width="150" height="60" alt="logo">
                         <?php
                             if(isset($_SESSION['current_user_id'])) {
                         ?>
@@ -59,7 +58,7 @@ class TemplateBasics {
                             ?>
                 </nav>
 
-                <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #1D1F20">
+                <nav class="navbar navbar-expand-md navbar-dark " id="nav_hlavni" style="background-color: #1D1F20" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -82,7 +81,7 @@ class TemplateBasics {
         public function getHTMLFooter(){
             ?>
             <!-- Footer -->
-            <footer class="page-footer font-small cyan darken-3 " id="footer" style="background-color: #1D1F20">
+            <footer class="page-footer font-small cyan darken-3  " id="footer" style="background-color: #1D1F20">
 
                 <!-- Footer Elements -->
                 <div class="container">
@@ -118,7 +117,7 @@ class TemplateBasics {
                 <!-- Footer Elements -->
                 <!-- Copyright -->
 
-                <div class="footer-copyright py-3  " style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
+                <div class="footer-copyright py-3   " style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
                 <!-- Copyright -->
 
             </footer>

@@ -3,9 +3,10 @@
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['recepty']['title'], $tplData['menu']);
-
-$res = '<div class="container mt-4" id="tables">
-        <h1>Recepty naších uživatelů</h1>
+?>
+<div class="container mt-4" id="tables">
+<?php 
+$res = '<h1>Recepty naších uživatelů</h1>
         <br>
         <table class="table table-sm table-bordered table-striped table-hover">
              <thead class="table-dark text-center ">
@@ -35,7 +36,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 <td>'.$soubor.'</td>
             </tr>';
 }
-$res .= '</tbody></table></div>';
+$res .= '</tbody></table></div></div>';
 echo $res;
 $temp->getHTMLFooter();
 ?>
