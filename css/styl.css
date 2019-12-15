@@ -34,8 +34,9 @@ body{
     color: aliceblue;
 }
 #text{
-    color: black;
-    background-color: aliceblue;
+    color: beige;
+    background-color: #1D1F20;
+    font-size: 17px;
 
 }
 #header{

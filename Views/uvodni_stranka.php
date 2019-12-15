@@ -35,7 +35,7 @@
     </div>
     </div>
     <div class="container mt-4" id="forms">
-        <h1>Vitáme portalu cookhub</h1>
+        <h1>Vitáme na portalu cookhub</h1>
     </div>
     <div class="container mt-4" id="text">
         <?php echo $tplData['obsah']; ?>
