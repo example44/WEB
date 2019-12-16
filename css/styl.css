@@ -62,8 +62,8 @@ html{
 }
 
 .btn:hover{
-    background-color: #f8931f;
-    color: black;
+    background-color: black;
+    color: #f8931f;
 }
 
 .fa{
@@ -79,8 +79,6 @@ html{
     color: white;
     margin-bottom: 15px;
 }
-
-/* The close button */
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -95,3 +93,11 @@ html{
 .closebtn:hover {
     color: black;
 }
+#nav{
+    background-color: black;
+}
+#nav_mal{
+    background-color: #1D1F20;
+
+}
+

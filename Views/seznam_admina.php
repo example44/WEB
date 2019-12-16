@@ -3,19 +3,18 @@
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['seznamAdmina']['title'], $tplData['menu']);
+    $sezn_recenzentu = "";
 for($i = 0; $i < count($tplData['recenzenty']); $i++){
-    $sezn_recenzentu = "<option value='".$tplData['recenzenty'][$i]['id_UZIVATEL']."'>".$tplData['recenzenty'][$i]['username']."</option>";
-}
-        ?>
-        <div class="container mt-4" id="forms">
-        <h1>Správa receptů</h1>
-        </div>;
+    $sezn_recenzentu .= "<option value='".$tplData['recenzenty'][$i]['id_UZIVATEL']."'>".$tplData['recenzenty'][$i]['username']."</option>";
+}?>
+<div class="container mt-4" id="forms">
+    <h1>Správa uživatelů</h1>
+</div>
 <?php
 $res = '<div class="container mt-4" id="tables">
-        
         <br>
-        <table class="table table-sm table-bordered table-striped ">
-            <thead class=" text-center " style="background-color: black; color:bisque">
+        <table class="table table-sm table-bordered table-striped table-hover">
+            <thead class="table-dark text-center">
             <tr>
                 <td rowspan="2">Název receptů</td>
                 <td rowspan="2">Autor</td>
@@ -33,7 +32,7 @@ $res = '<div class="container mt-4" id="tables">
                 <td>vymazat</td>
             </tr>
             </thead>
-            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
+            <tbody class="table-dark text-center">';
 
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
@@ -41,13 +40,14 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     $id_pris = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $zverej = $tplData['obsah'][$i]['rozhodnuti'];
     if(!$zverej) {
-        $zver = '<td rowspan="' . (1 + (count($tplData['obsah'][$i]['recenze']))) . '">
+        $zver = '<td rowspan="'.(1 + (count($tplData['obsah'][$i]['recenze']))) . '">
                     <form method="post" action="" onsubmit="if(confirmAktiv(`udělat veřejným`)){this.submit();}else{ return false;}">
                         <input type="hidden" name="recept" value="' . $id_pris . '">
                         <button class="btn btn-warning" type="submit" name="action" value="zverejnit">Zveřejnit</button>
-                    </form></td>';
+                    </form>
+                    </td>';
     }else{
-        $zver = '<td rowspan="' . (1 + (count($tplData['obsah'][$i]['recenze']))) . '">Zveřejněn</td>';
+        $zver = '<td rowspan="'.(1 + (count($tplData['obsah'][$i]['recenze']))) . '">Zveřejněn</td>';
     }
     $res .= '<tr>
                 <td rowspan="'.(1+(count($tplData['obsah'][$i]['recenze']))).'">'.$nazev.'</td>
@@ -61,7 +61,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 </td>
                 <td colspan="7">
                             <input type="hidden" name="recept" value="'.$id_pris.'">
-                            <button class="btn btn-warning" type="submit" name="action" value="create_rec">Vytvořit recenze</button>
+                            <button class="btn" type="submit" name="action" value="create_rec">Vytvořit recenze</button>
                         </form>
                 </td>'.
                 $zver.'
@@ -89,7 +89,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                         <form method="post" action="" onsubmit="if(confirmAktiv(`smazat`)){this.submit();}else{ return false;}">
                             <input type="hidden" name="recept" value="'.$id_recept.'">
                             <input type="hidden" name="recenze_del" value="'.$id_recen.'">
-                            <button class="btn btn-warning" type="submit" name="action" value="delete"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn" type="submit" name="action" value="delete"><i class="fas fa-trash-alt"></i></button>
                         </form></td>
                 </tr>';
     }

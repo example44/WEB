@@ -231,5 +231,17 @@ class ProPrihlaseny{
     public function getRecenze($id_recenze){
         return $this->db->getRecenze($id_recenze);
     }
+
+    public function deleteUser($user_del){
+        $this->db->deleteUser($user_del);
+    }
+
+    public function zmenRole($user_up, $nova_role){
+        $this->db->zmenRole($user_up, $nova_role);
+    }
+
+    public function zmenaStat($id_user, int $stat){
+        $this->db->zmenStat($id_user, $stat);
+    }
 }
 ?>

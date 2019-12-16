@@ -28,6 +28,7 @@ class Registrace implements IController {
                 if ($this->tplData['povolit_reg']) {
                     $this->userMan->addUser($this->tplData['email']['value'], $this->tplData['heslo']['value'], $this->tplData['username']['value'], $this->tplData['role']['value']);
                     $GLOBALS['alert'] = "OK: Uživatel byl založen.";
+                    header("Location: index.php?page=autorizace");
                 } else {
                     $GLOBALS['alert'] = "CHYBA: Založení uživatele se nezdařilo.";
                 }

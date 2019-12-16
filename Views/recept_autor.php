@@ -9,7 +9,6 @@
     </div>
 <?php
     $res = '<div class="container mt-4" id="tables">
-            <h1>Tvoje recepty</h1>
             <table class="table table-sm table-bordered table-striped container mt-4">
                 <thead class="text-center " style="background-color: black; color:bisque">
                     <tr>
