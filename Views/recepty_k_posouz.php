@@ -3,12 +3,16 @@
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['receptyKPosouz']['title'], $tplData['menu']);
-
+?>
+<div class="container mt-4" id="forms">
+    <h1>Recepty k posouzení</h1>
+</div>
+<?php
 $res = '<div class="container mt-4" id="tables">
         <h1>Tvoje recenze</h1>
         <br>
         <table class="table table-sm table-bordered table-striped">
-                <thead class="table-dark text-center">
+                <thead class=" text-center " style="background-color: black; color:bisque">
                     <tr>
                         <th>Název</th>
                         <th>Průměr</th>
@@ -16,7 +20,7 @@ $res = '<div class="container mt-4" id="tables">
                         <th>Stáhnout</th>
                     </tr>
                 </thead>
-                <tbody class="table-dark text-center">';
+                <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
     $obsah = $tplData['obsah'][$i]['obsah'];
@@ -58,4 +62,3 @@ echo $res;
 
     $temp->getHTMLFooter();
 ?>
-

@@ -2,7 +2,6 @@
     color: red;
 }
 body{
-    /*background-color: red;*/
     background: url("../img/background.jpg") repeat-y;
     background-size: 100%;
     display: flex;
@@ -15,8 +14,7 @@ body{
     min-height: 30vh;
 }
 #forms{
-    /*background-color: #1D1F20;*/
-    color: aliceblue;
+    color: bisque;
     text-shadow: black 1px 1px;
 }
 #footer {
@@ -29,10 +27,6 @@ body{
     text-align: center;
 }
 
-#tables{
-    background-color: #1D1F20;
-    color: aliceblue;
-}
 #text{
     color: bisque;
     background-color: #1D1F20;
@@ -47,8 +41,7 @@ html{
     min-height: 100%;
 }
 #carousel{
-   min-height: 45vh;
-    max-height: 65vh;
+   min-height: 40vh;
 }
 .btn {
     background-color: #f8931f;
@@ -58,6 +51,7 @@ html{
     font-size: 16px;
 
 }
+
 .btn:active {
     background-color: #f8931f;
     border: none;
@@ -66,13 +60,12 @@ html{
     font-size: 16px;
 
 }
+
 .btn:hover{
-    background-color: black;
-    color: #f8931f;
-    border: none;
-    padding: 12px 16px;
-    font-size: 16px;
+    background-color: #f8931f;
+    color: black;
 }
+
 .fa{
      color: #f8931f;
 }

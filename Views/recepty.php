@@ -4,20 +4,23 @@
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['recepty']['title'], $tplData['menu']);
 ?>
-<div class="container mt-4" id="tables">
+<div class="container mt-4" id="forms">
+    <h1>Recepty naších uživatelů</h1>
+</div>
 <?php
-$res = '<h1>Recepty naších uživatelů</h1>
+
+$res = '<div class="container mt-4 " id="forms"></div>
         <br>
-        <table class="table table-sm table-bordered table-striped table-hover">
-             <thead class="table-dark text-center ">
-                <tr>
+        <table class="table table-sm table-bordered container mt-4">
+             <thead class=" text-center " style="background-color: black; color:bisque">
+             <tr>
                 <th>Název receptu</th>
                 <th>Autor</th>
                 <th>Obsah receptu</th>
                 <th>Stáhnout</th>
                 </tr>
             </thead >
-            <tbody class="table-dark text-center">';
+            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
     $autor = $tplData['obsah'][$i]['id_UZIVATEL'];
