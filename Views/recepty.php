@@ -33,7 +33,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                             '.$obsah.'
                         </div>
                 </td>
-                <td>'.$soubor.'</td>
+                <td><a href="soubory/'.$soubor.'" download><i class="fas fa-download"></i></a></td>
             </tr>';
 }
 $res .= '</tbody></table></div>';

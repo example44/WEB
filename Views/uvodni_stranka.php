@@ -5,7 +5,7 @@
     $temp->getHTMLHeader(WEB_PAGES['uvodni']['title'], $tplData['menu']);
 ?>
     <div class="container mt-4" id="forms">
-        <h1>Vitáme na portalu Cookhub</h1>
+        <h1>Vitáme Vás na portalu Cookhub</h1>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide container mt-4" data-ride="carousel">
         <ol class="carousel-indicators">

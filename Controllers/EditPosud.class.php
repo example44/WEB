@@ -1,6 +1,5 @@
 <?php
 
-
 class EditPosud implements IController {
     private $userMan;
     private $tplData;
@@ -42,7 +41,14 @@ class EditPosud implements IController {
                 }
             }
             if($this->tplData['povolit']) {
-                $this->userMan->editRecenz($_POST['recenze'], $_POST['originalita'], $_POST['tema'], $_POST['technicka_kvalita'], $_POST['jazykova_kvalita'], $_POST['doporuceni'], $_POST['poznamky']);
+                $this->kontolRegistrace();
+                $this->userMan->editRecenz($this->tplData['obsah'][$i]['id_RECENZE'],
+                                            $this->tplData['originalita']['value'],
+                                            $this->tplData['tema']['value'],
+                                            $this->tplData['technicka_kvalita']['value'],
+                                            $this->tplData['jazykova_kvalita']['value'],
+                                            $this->tplData['doporuceni']['value'],
+                                            $this->tplData['poznamky']['value']);
                 header("Location: index.php?page=receptyKPosouz");
                 $this->tplData['alert'] = "OK: Recept byl ohodnocen.";
                 echo "OK: Recept byl ohodnocen.";

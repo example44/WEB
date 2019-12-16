@@ -10,14 +10,15 @@
             <form class="editPosud" method="post" action="" id="forms">
                 <h1>Posouzení receptů</h1>
                 <br><br>
-                <label>Recept:<br><select name="recenze" class="form-control" onchange="getRecenze(this.value)" required>
+                <label>Recept:<br><select name="recenze" class="form-control" id="zvol_recep" onchange="getRecenze(this.value)" required>
                     <option value="">Zvolte recept</option>
                     <?php
                     for($i = 0; $i < count($tplData['obsah']); $i++){
-                        echo "<option value='".$tplData['obsah'][$i]['id_RECENZE']."'>".$tplData['obsah'][$i]['nazev']."</option>";
+                            echo "<option value='" . $tplData['obsah'][$i]['id_RECENZE'] . "'>" . $tplData['obsah'][$i]['nazev'] . "</option>";
                     }
                     ?>
-                </select>
+                </select></label>
+                <br>
                 <label>Originalita:<br><select name="originalita" id="originalita" class="form-control" required>
                         <option value="1">1 - špatně</option>
                         <option value="2">2 - docéla špatně</option>
@@ -42,7 +43,7 @@
                         <option value="5">5 - vyborně</option>
                 </select></label>
                 <br>
-                <label>Jazyková kvalita:<br><select name="jazykova_kvalita" id="jazykova_kvalita" class="form-control" required>
+                <label>Jazyková kvalita:<br><select name="technicka_kvalita" id="technicka_kvalita" class="form-control" required>
                         <option value="1">1 - špatně</option>
                         <option value="2">2 - docéla špatně</option>
                         <option value="3">3 - docéla dobře </option>
@@ -69,8 +70,26 @@
     </div>
 
 <script>
-    function getRecenze(id_recenze) {
-
+    function getRecenze(id_pris) {
+        if (id_pris == "") {
+            return;
+        } else {
+            const xmlhttp = getXmlHttp();
+            xmlhttp.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status == 200){
+                    const jsonObj =JSON.parse(this.responseText);
+                    console.log(jsonObj);
+                    document.getElementById("originalita").value = jsonObj['1'];
+                    document.getElementById("tema").value = jsonObj['2'];
+                    document.getElementById("jazykova_kvalita").value = jsonObj['3'];
+                    document.getElementById("technicka_kvalita").value = jsonObj['4'];
+                    document.getElementById("doporuceni").value = jsonObj['5'];
+                    document.getElementById("poznamky").value = jsonObj['6'];
+                }
+            };
+            xmlhttp.open("GET", "ajax-server.php?id_recenze="+id_pris, true);
+            xmlhttp.send();
+        }
     }
 </script>
 <?php
