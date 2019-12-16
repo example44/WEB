@@ -1,5 +1,5 @@
-function goToPage(url_adres) {
-    window.location.href = url_adres;
+function kPosouzeni(url_adres) {
+    window.location.href = "index.php?page=editPosud&&id_recenze="+id_rec;
 }
 
 function getXmlHttp() {
@@ -20,10 +20,10 @@ function getXmlHttp() {
 }
 
 function chan(i) {
-    const txt = document.getElementsByTagName("button")[i+1].innerText;
+    const txt = document.getElementsByTagName("button")[i+2].innerText;
     if(txt == "Zobrazit obsah"){
-        document.getElementsByTagName("button")[i+1].innerText = "Skryt";
+        document.getElementsByTagName("button")[i+2].innerText = "Skryt";
     }else if(txt == "Skryt"){
-        document.getElementsByTagName("button")[i+1].innerText = "Zobrazit obsah";
+        document.getElementsByTagName("button")[i+2].innerText = "Zobrazit obsah";
     }
 }

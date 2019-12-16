@@ -246,5 +246,14 @@ class Database {
         ));
         return $stmt->fetchAll();
     }
+
+    public function getRecenze($id_recenze){
+        $q = "SELECT * FROM ".TABLE_RECENZE." WHERE id_RECENZE=:idRec;";
+        $fileName = $this->pdo->prepare($q);
+        $fileName->execute(array(
+            ":idRec" => $id_recenze
+        ));
+        return $fileName->fetchAll();
+    }
 }
 ?>

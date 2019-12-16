@@ -25,51 +25,50 @@ class TemplateBasics {
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
                 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
                 <script src="javascript/scripts.js"></script>
-
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
                 <link rel="stylesheet" href="css/styl.css">
 
                 <title><?php echo $pageTitle; ?></title>
             </head>
             <body>
-            <div id="main">
-                <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
-                    <img src="img/logo2.jpg" width="150" height="60" alt="logo">
-                        <?php
-                            if(isset($_SESSION['current_user_id'])) {
-                        ?>
-                                <form action="" method="POST">
-                                    <div class="container">
-                                        <span class="navbar-text" style="color: aliceblue" >
-                                            Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
-                                        </span>
-                                    </div>
-                                    <div class="form-group text-center">
-                                        <input type="hidden" name="action" value="logout">
-                                        <input type="submit" name="action" value="odhlaseni">
-                                    </div>
-                                </form>
-
-
-                                <?php
-                            }
-                            ?>
-                </nav>
-
-                <nav class="navbar navbar-expand-md navbar-dark " id="nav_hlavni" style="background-color: #1D1F20" >
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavbar" >
-                        <ul class="navbar-nav ">
+                <div id="main">
+                    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black " >
+                        <img src="img/logo2.jpg" width="150" height="60" alt="logo">
                             <?php
-                                foreach ($menu as $key => $p){
-                                    echo "<li class='nav-item'><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue '>$p[title]</a></li>";
+                                if(isset($_SESSION['current_user_id'])) {
+                            ?>
+                                    <form action="" method="POST">
+                                        <div class="container">
+                                            <span class="navbar-text" style="color: aliceblue">
+                                                Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
+                                            </span>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input type="hidden" name="action" value="logout">
+                                            <button type="submit" class="btn"  name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i> Odhlásit</button>
+                                        </div>
+                                    </form>
+
+
+                                    <?php
                                 }
                                 ?>
-                        </ul>
-                    </div>
-                </nav>
+                    </nav>
+
+                    <nav class="navbar navbar-expand-md navbar-dark " id="nav_hlavni" style="background-color: #1D1F20" >
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavbar" >
+                            <ul class="navbar-nav ">
+                                <?php
+                                    foreach ($menu as $key => $p){
+                                        echo "<li class='nav-item'><a  href='index.php?page=$key'class='nav-link' style='color: aliceblue '>$p[title]</a></li>";
+                                    }
+                                    ?>
+                            </ul>
+                        </div>
+                    </nav>
         <?php
         }
 
@@ -107,22 +106,11 @@ class TemplateBasics {
                                 </div>
                             </div>
                         </div>
-                        <!-- Grid column -->
                     </div>
-                    <!-- Grid row-->
-
-                </div>
-                <!-- Footer Elements -->
-                <!-- Copyright -->
-
-                <div class="footer-copyright py-3   " style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
-
-                </body>
-            </html>
+                    <div class="footer-copyright py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
+                </footer>
+            </body>
+         </html>
             <?php
     }
 

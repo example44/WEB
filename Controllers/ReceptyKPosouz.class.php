@@ -33,6 +33,12 @@ class ReceptyKPosouz implements IController{
 
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
+            $soubor = $this->userMan->getSouborRecepta($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            if(count($soubor)) {
+                $this->tplData['obsah'][$i]['nazev_souboru'] = $soubor;
+            }else{
+                $this->tplData['obsah'][$i]['nazev_souboru'][0]['nazev'] = "Žadný soubor";
+            }
             if($user != "Nezadan") {
                 $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user[0]['username'];
             }else{

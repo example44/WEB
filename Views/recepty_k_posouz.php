@@ -7,7 +7,7 @@
 $res = '<div class="container mt-4" id="tables">
         <h1>Tvoje recepty</h1>
         <br>
-        <table class="table table-sm table-bordered table-striped table-hover">
+        <table class="table table-sm table-bordered table-striped">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>Název</th>
@@ -25,10 +25,11 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     $tech = $tplData['obsah'][$i]['technicka_kvalita'];
     $jazyk = $tplData['obsah'][$i]['jazykova_kvalita'];
     $dopor = $tplData['obsah'][$i]['doporuceni'];
-    $prumer = ($orig + $tema + $tech + $jazyk + $dopor)/5.0;
+    $soubor = $tplData['obsah'][$i]['nazev_souboru'][0]['nazev'];
+    $prumer = ($orig + $tema + $tech + $jazyk + $dopor)/5;
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];
     $res .= '<tr class="position-relative">
-                <td onclick="goToPage(`index.php?page=editPosud`)">'.$nazev.'</td>
+                <td>'.$nazev.'</td>
                 <td>'.$prumer.'</td>
                  <td class="text-center">
                     <button onclick="chan('.$i.')" data-toggle="collapse" type="button" class="btn btn-primary" data-target="#collap'.$i.'">Zobrazit obsah</button>
@@ -36,11 +37,13 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                             '.$obsah.'
                         </div>
                 </td>
-                <td></td>
-            </tr>';
+               <td><a href="soubory/'.$soubor.'" download><i class="fas fa-download"></i></a></td>
+            </tr>
+            ';
 }
 $res .= '</tbody></table></div>';
 echo $res;
 
     $temp->getHTMLFooter();
 ?>
+

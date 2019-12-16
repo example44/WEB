@@ -217,8 +217,16 @@ class ProPrihlaseny{
         return $this->db->getAllusers();
     }
 
+    /**
+     * @param $id_pris
+     * @return array
+     */
     public function getSouborRecepta($id_pris){
         return $this->db->getSouborRecepta($id_pris);
+    }
+
+    public function getRecenze($id_recenze){
+        return $this->db->getRecenze($id_recenze);
     }
 }
 ?>

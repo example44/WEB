@@ -24,5 +24,11 @@
         }
         echo $text;
     }
+    if(isset($_GET['id_recenze'])){
+        $users = $userMan->getRecenze($_GET['id_recenze']);
+        $text = $users[0];
+        echo json_encode($text);
+    }
+
 
 ?>
