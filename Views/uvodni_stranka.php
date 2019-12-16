@@ -15,13 +15,13 @@
         </ol>
         <div class="carousel-inner"id="carousel" >
             <div class="carousel-item active">
-                <img class="d-block w-100" src="img/jidlo1.jpg" height="550"  alt="prvni"id="img" >
+                <img class="d-block w-100" src="img/jidlo1.jpg"   alt="prvni"id="img" >
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/jidlo2.jpg" height="550" alt="druhy"id="img">
+                <img class="d-block w-100" src="img/jidlo2.jpg"  alt="druhy"id="img">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/jidlo3.jpg" height="550" alt="treti"id="img">
+                <img class="d-block w-100" src="img/jidlo3.jpg"  alt="treti"id="img">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -34,9 +34,8 @@
         </a>
     </div>
     </div>
-    <div class="container mt-4" id="forms">
 
-    </div>
+
     <div class="container mt-4" id="text">
         <h1>O portálu</h1>
         <?php echo $tplData['obsah']; ?>

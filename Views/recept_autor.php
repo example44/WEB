@@ -3,17 +3,21 @@
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
     $temp->getHTMLHeader(WEB_PAGES['recepAutor']['title'], $tplData['menu']);
-
+    ?>
+    <div class="container mt-4" id="forms">
+        <h1>Tvoje recepty</h1>
+    </div>
+<?php
     $res = '<div class="container mt-4" id="tables">
-            <h1>Tvoje recepty</h1>
-            <table class="table table-sm table-bordered table-striped table-hover container mt-4">
+            
+            <thead class=" text-center " style="background-color: black; color:bisque">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>Název</th>
                         <th>Akce</th>
                     </tr>
                 </thead>
-                <tbody>';
+                <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
     $id = $tplData['obsah'][$i]['id_PRISPEVEK'];

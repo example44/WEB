@@ -16,7 +16,7 @@ body{
 }
 #forms{
     /*background-color: #1D1F20;*/
-    color: aliceblue;
+    color: bisque;
     text-shadow: black 1px 1px;
 }
 #footer {
@@ -29,10 +29,6 @@ body{
     text-align: center;
 }
 
-#tables{
-    background-color: #1D1F20;
-    color: aliceblue;
-}
 #text{
     color: bisque;
     background-color: #1D1F20;
@@ -57,6 +53,21 @@ html{
     font-size: 16px;
 
 }
+.btn:hover{
+    background-color: #f8931f;
+    color: black;
+}
 .fa-download{
     color: #f8931f;
+}
+#odhlaseni{
+
+
+}
+#nav{
+    background-color: black;
+}
+#nav_mal{
+    background-color: #1D1F20;
+
 }
