@@ -80,7 +80,7 @@ class TemplateBasics {
             ?>
             </div>
             <!-- Footer -->
-            <footer class="page-footer font-small cyan darken-3" id="footer" style="background-color: #1D1F20">
+            <footer class="page-footer font-small cyan darken-3" id="footer"  style="background-color: #1D1F20">
 
                 <!-- Footer Elements -->
                 <div class="container">
@@ -93,14 +93,14 @@ class TemplateBasics {
                             <div class="mb-5 flex-center" >
                                 <div class="form-group ">
                                     <!-- Facebook -->
-                                    <a class="fb-ic">
+                                    <a class="fb-ic" data-toggle="tooltip" title="Facebook">
                                         <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                                     </a>
                                     <!--Instagram-->
-                                    <a class="ins-ic">
+                                    <a class="ins-ic"data-toggle="tooltip" title="Instagram">
                                         <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                                     </a>
-                                    <a class="gplus-ic">
+                                    <a class="gplus-ic"data-toggle="tooltip" title="Google plus">
                                         <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                                     </a>
 

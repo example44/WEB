@@ -4,11 +4,11 @@
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/TemplateBasics.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/autorizace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/autorizace.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/recepty.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/uvodni_stranka.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/uvodni_stranka.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/jidlo1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/jidlo1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/jidlo2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/jidlo2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/jidlo3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/jidlo3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../06-PHP-a-PDO-reseni" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/html/verst" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
