@@ -217,6 +217,9 @@ class ProPrihlaseny{
         return $this->db->getAllusers();
     }
 
+    public function getAllRole(){
+        return $this->db->getAllRole();
+    }
     /**
      * @param $id_pris
      * @return array

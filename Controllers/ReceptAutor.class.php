@@ -25,8 +25,7 @@ class ReceptAutor implements IController {
         }
         if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
             $this->userMan->userLogout();
-            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
-            echo "OK: Uživatel byl odhlášen.";
+            $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
 
@@ -42,18 +41,24 @@ class ReceptAutor implements IController {
                     $this->tplData['povolit_smazani'] = false;
                 }
             }
-            if($this->tplData['povolit_smazani']) {
-               $this->userMan->smazatPrispevek($_POST['recept_del']);
-                header("Location: index.php?page=recepAutor");
-                $this->tplData['alert'] = "OK: Recept byl smazan.";
-                echo "OK: Recept byl smazan.";
-                } else {
-                    $this->tplData['alert'] = "ERROR: Recept nebyl smazan.";
-                    echo "ERROR: Recept nebyl smazan.";
-                }
+        if($this->tplData['povolit_smazani']) {
+             $this->userMan->smazatPrispevek($_POST['recept_del']);
+             header("Location: index.php?page=recepAutor");
+            $GLOBALS['alert'] = "OK: Recept byl smazan.";
+
+             } else {
+            $GLOBALS['alert'] = "CHYBA: Recept nebyl smazan.";
+             }
+        }
+        for($i = 0; $i < count($this->tplData['obsah']); $i++) {
+            $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
+            $soubor = $this->userMan->getSouborRecepta($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            if (count($soubor)) {
+                $this->tplData['obsah'][$i]['nazev_souboru'] = $soubor;
+            } else {
+                $this->tplData['obsah'][$i]['nazev_souboru'][0]['nazev'] = "Žadný soubor";
             }
-
-
+        }
 
 
         return $this->tplData;

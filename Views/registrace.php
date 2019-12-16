@@ -10,7 +10,7 @@
                         <form class="prihlaseni" method="post" action="" id="forms" oninput="over_pas.value=(heslo.value == heslo_znovu.value)?'Hesla jsou stejná':'Hesla nejsou stejná'">
                                 <h1>Registrace</h1>
                                 <br><br>
-                                <label >Username <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" oninput="kontrolUsername(this.value)" placeholder="Napište username" required></label><br>
+                                <label >Uživatelské jmeno: <input type="text" class="form-control" name="name"  id="name" value="<?php echo $tplData['username']['value'];?>" oninput="kontrolUsername(this.value)" placeholder="Napište username" required></label><br>
                                 <span class="error" id="usName"> <?php echo $tplData['username']['error'];?></span>
                                 <br><br>
                                 <label>Email: <input type="email" class="form-control" name="email" id="email" value="<?php echo $tplData['email']['value'];?>" oninput="kontrolEmail(this.value)" placeholder="Napište email" required></label><br>

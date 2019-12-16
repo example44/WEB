@@ -24,8 +24,7 @@ class SeznamAdmina implements IController {
         }
         if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
             $this->userMan->userLogout();
-            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
-            echo "OK: Uživatel byl odhlášen.";
+            $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
 
@@ -47,25 +46,22 @@ class SeznamAdmina implements IController {
         if (isset($_POST['action'])){
             if($_POST['action'] == 'delete') {
                 $this->userMan->deleteRecenze($_POST['recenze_del']);
-                $this->tplData['alert'] = "OK: Recenze byla smazana.";
-                echo "OK: Recenze byla smazana.";
+                $GLOBALS['alert'] = "OK: Recenze byla smazana.";
                 header("Location: index.php?page=seznamAdmina");
             }elseif ($_POST['action'] == 'zverejnit'){
                 $ok = $this->userMan->zverejnit($_POST['recept']);
                 if ($ok) {
-                    $this->tplData['alert'] = "OK: Recept byl zveřejnit.";
-                    echo "OK: Recept byl zveřejnit.";
+                    $GLOBALS['alert'] = "OK: Recept byl zveřejněn.";
+                    header("Location: index.php?page=seznamAdmina");
                 } else {
-                    $this->tplData['alert'] = "ERROR: Recept nebyl zveřejnit.";
-                    echo "ERROR: Recept nebyl zveřejnit.";
+                    $GLOBALS['alert'] = "CHYBA: Recept nebyl zveřejněn.";
                 }
             }elseif($_POST['action'] == 'create_rec'){
                 if($_POST['prirad'] != '') {
                     $this->userMan->addRecenze($_POST['prirad'], $_POST['recept']);
                     header("Location: index.php?page=seznamAdmina");
                 }else{
-                    $this->tplData['alert'] = "Zvolte uživatele";
-                    echo "Zvolte uživatele";
+                    $GLOBALS['alert'] = "Zvolte uživatele";
                 }
             }
         }

@@ -23,8 +23,7 @@ class EditPosud implements IController {
         }
         if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
             $this->userMan->userLogout();
-            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
-            echo "OK: Uživatel byl odhlášen.";
+            $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
 
@@ -49,12 +48,9 @@ class EditPosud implements IController {
                                             $this->tplData['jazykova_kvalita']['value'],
                                             $this->tplData['doporuceni']['value'],
                                             $this->tplData['poznamky']['value']);
-                header("Location: index.php?page=receptyKPosouz");
-                $this->tplData['alert'] = "OK: Recept byl ohodnocen.";
-                echo "OK: Recept byl ohodnocen.";
+                $GLOBALS['alert'] = "OK: Recept byl ohodnocen.";
             } else {
-                $this->tplData['alert'] = "ERROR: Recept nebyl ohodnocen.";
-                echo "ERROR: Recept nebyl ohodnocen.";
+                $GLOBALS['alert'] = "CHYBA: Recept nebyl ohodnocen.";
             }
         }
         return $this->tplData;

@@ -2,7 +2,6 @@
     color: red;
 }
 body{
-    /*background-color: red;*/
     background: url("../img/background.jpg") repeat-y;
     background-size: 100%;
     display: flex;
@@ -15,7 +14,6 @@ body{
     min-height: 30vh;
 }
 #forms{
-    /*background-color: #1D1F20;*/
     color: bisque;
     text-shadow: black 1px 1px;
 }
@@ -53,21 +51,47 @@ html{
     font-size: 16px;
 
 }
+
+.btn:active {
+    background-color: #f8931f;
+    border: none;
+    color: black;
+    padding: 12px 16px;
+    font-size: 16px;
+
+}
+
 .btn:hover{
     background-color: #f8931f;
     color: black;
 }
-.fa-download{
-    color: #f8931f;
-}
-#odhlaseni{
 
-
+.fa{
+     color: #f8931f;
 }
-#nav{
-    background-color: black;
-}
-#nav_mal{
-    background-color: #1D1F20;
 
+.fa:hover{
+    color: blue;
+}
+.alert {
+    padding: 20px;
+    background-color: #f47918; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
 }

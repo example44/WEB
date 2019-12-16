@@ -29,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/html/verst" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -87,6 +87,8 @@
       <workItem from="1576319244577" duration="18829000" />
       <workItem from="1576342992343" duration="13399000" />
       <workItem from="1576423852903" duration="1784000" />
+      <workItem from="1576488156013" duration="16292000" />
+      <workItem from="1576514391783" duration="6879000" />
     </task>
     <servers />
   </component>

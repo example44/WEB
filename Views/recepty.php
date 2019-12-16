@@ -31,13 +31,23 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                 <td>'.$nazev.'</td>
                 <td>'.$autor.'</td>
                 <td class="text-center">
-                    <button onclick="chan('.$i.')" data-toggle="collapse" type="button" class="btn btn-primary" data-target="#collap'.$i.'">Zobrazit obsah</button>
+                    <button onclick="chan('.$i.')" id="butt'.$i.'" data-toggle="collapse" type="button" class="btn" data-target="#collap'.$i.'">Zobrazit obsah</button>
                         <div id="collap'.$i.'" class="collapse">
                             '.$obsah.'
                         </div>
                 </td>
-                <td><a href="soubory/'.$soubor.'" download><i class="fas fa-download"></i></a></td>
-            </tr>';
+                <td><a href="soubory/'.$soubor.'" download><i class="fa fa-download"></i></a></td>
+            </tr>
+            <script>
+                function chan(i) {
+                    const txt = document.getElementById("butt"+i).innerText;
+                    if(txt == "Zobrazit obsah"){
+                        document.getElementById("butt"+i).innerText = "Skryt";
+                    }else if(txt == "Skryt"){
+                        document.getElementById("butt"+i).innerText = "Zobrazit obsah";
+                    }
+                }
+            </script>';
 }
 $res .= '</tbody></table></div>';
 echo $res;

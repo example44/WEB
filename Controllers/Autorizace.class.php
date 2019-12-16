@@ -26,12 +26,10 @@ class Autorizace implements IController
                     $this->kontolAutorizace();
                     $res = $this->userMan->userLogin($this->tplData['email']['value'], $this->tplData['heslo']['value']);
                     if ($res) {
-                        $this->tplData['alert'] = "OK: Uživatel byl přihlášen.";
-                        echo "OK: Uživatel byl přihlášen.";
+                        $GLOBALS['alert'] = "OK: Uživatel byl přihlášen.";
                         header("Location: index.php?page=uvodni");
                     } else {
-                        $this->tplData['alert'] = "ERROR: Přihlášení uživatele se nezdařilo.";
-                        echo "ERROR: Přihlášení uživatele se nezdařilo.";
+                        $GLOBALS['alert'] = "CHYBA: Přihlášení uživatele se nezdařilo.";
                     }
                 }
             }

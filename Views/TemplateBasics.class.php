@@ -5,6 +5,7 @@
  */
 class TemplateBasics {
 
+
     /**
      *  Vrati vrsek stranky az po oblast, ve ktere se vypisuje obsah stranky.
      *  @param string $pageTitle    Nazev stranky.
@@ -29,23 +30,21 @@ class TemplateBasics {
                 <link rel="stylesheet" href="css/styl.css">
                 <title><?php echo $pageTitle; ?></title>
             </head>
-            <body>
+            <body onload="labelUser(<?php echo $tplData['uzivatel']['role'] ?>)">
                 <div id="main">
                     <nav class="navbar navbar-expand-lg navbar-dark " id="nav" >
                         <img src="img/logo2.jpg" width="150" height="60" alt="logo">
                             <?php
                                 if(isset($_SESSION['current_user_id'])) {
                             ?>
-                                    <form method="POST">
-                                        <div class="container" id="odhlaseni">
-                                            <span class="navbar-text" >
-                                                Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
+                                    <form action="" method="POST" onsubmit="if(confirmAktiv(`vyjít`)){this.submit();}else{ return false;}">
+                                      <div class="container" id="odhlaseni">
+                                          <span class="navbar-text">
+                                                Ahoj, <span id="labelUs" style="color: #f8931f"><?php echo $tplData['uzivatel']['username'] ?></span>
                                             </span>
-                                            <input type="hidden" name="action" value="logout">
-                                            <button type="submit" class="btn"  name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i> Odhlásit</button>
+                                            <button type="submit" class="btn" name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i> Odhlásit</button>
                                         </div>
                                     </form>
-
                                     <?php
                                 }
                                 ?>
@@ -66,6 +65,13 @@ class TemplateBasics {
                     </nav>
 
         <?php
+        if(isset($GLOBALS['alert'])){
+
+           echo '<div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display=`none`;">&times;</span>
+               '.$GLOBALS["alert"].'
+            </div>';
+        }
         }
 
         /**
@@ -108,6 +114,23 @@ class TemplateBasics {
 
                     <div class="footer-copyright py-3" style=" background-color: black"  >© 2019 Copyright: <span style="color: #f8931f ">Simonov Yan </span></div>
                 </footer>
+            <script>
+                function labelUser(id_role) {
+                    if (id_role == 0) {
+                        document.getElementById("labelUs").innerHTML = "";
+                        return;
+                    } else {
+                        const xmlhttp = getXmlHttp();
+                        xmlhttp.onreadystatechange = function () {
+                            if(this.readyState == 4 && this.status == 200){
+                                document.getElementById("labelUs").innerHTML += " ("+this.responseText+")";
+                            }
+                        };
+                        xmlhttp.open("GET", "ajax-server.php?id_role="+id_role, true);
+                        xmlhttp.send();
+                    }
+                }
+            </script>
             </body>
          </html>
             <?php

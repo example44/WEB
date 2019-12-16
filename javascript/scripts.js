@@ -1,7 +1,3 @@
-function kPosouzeni(url_adres) {
-    window.location.href = "index.php?page=editPosud&&id_recenze="+id_rec;
-}
-
 function getXmlHttp() {
     var xmlhttp;
     try {
@@ -19,11 +15,11 @@ function getXmlHttp() {
     return xmlhttp;
 }
 
-function chan(i) {
-    const txt = document.getElementsByTagName("button")[i+2].innerText;
-    if(txt == "Zobrazit obsah"){
-        document.getElementsByTagName("button")[i+2].innerText = "Skryt";
-    }else if(txt == "Skryt"){
-        document.getElementsByTagName("button")[i+2].innerText = "Zobrazit obsah";
+function confirmAktiv(txt) {
+    if(confirm("Opravdu chcete "+txt+"?")){
+        return true;
+    }else{
+        return false;
     }
+
 }
