@@ -27,8 +27,7 @@ class NovyRecept implements IController{
         }
         if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
             $this->userMan->userLogout();
-            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
-            echo "OK: Uživatel byl odhlášen.";
+            $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
 
@@ -37,13 +36,10 @@ class NovyRecept implements IController{
             $this->uploadFile();
             if ($this->tplData['povolit_create']) {
                 $this->userMan->addRecept($this->tplData['obsah']['value'], $this->tplData['recept_naz']['value']);
-                $this->tplData['alert'] = "OK: Vytvořen nový recept.";
-                echo "OK: Vytvořen nový recept.";
+                $GLOBALS['alert'] = "OK: Vytvořen nový recept.";
                 $this->userMan->addSoubor($this->tplData['recept_naz']['value'], $this->tplData['soubor']['value']);
-                header("Location: index.php?page=recepAutor");
             } else {
-                $this->tplData['alert'] = "ERROR: Nezdařilo vytvořit recept.";
-                echo "ERROR: Nezdařilo vytvořit recept.";
+                $GLOBALS['alert'] = "CHYBA: Nezdařilo vytvořit recept.";
             }
 
         }
@@ -58,7 +54,6 @@ class NovyRecept implements IController{
                 $this->tplData['povolit_create'] = false;
             } else {
                 $this->tplData['recept_naz']['value'] = $this->test_input($_POST['recept_naz']);
-                //mozna kontrola symbolu
             }
             if (empty($_POST['recept_ob'])) {
                 $this->tplData['obsah']['error'] = "Musíte napsat popis receptu";
@@ -66,7 +61,6 @@ class NovyRecept implements IController{
             } else {
                 $this->tplData['obsah']['value'] = $this->test_input($_POST['recept_ob']);
             }
-
         }
     }
 
@@ -87,44 +81,36 @@ class NovyRecept implements IController{
         if(isset($_POST["action"])) {
             $check = filesize($_FILES["soubor"]["tmp_name"]);
             if($check != null) {
-                $this->tplData['alert'] = "Soubor je dokumentem ";
-                echo "Soubor je dokumentem";
+                $GLOBALS['alert'] = "Soubor je dokumentem ";
                 $uploadOk = 1;
             } else {
-                $this->tplData['alert'] = "Soubor není dokumentem.";
-                echo "Soubor není dokumentem.";
+                $GLOBALS['alert'] = "Soubor není dokumentem.";
                 $uploadOk = 0;
             }
         }
 
         if (file_exists($target_file)) {
-            $this->tplData['alert'] = "Soubor už existuje.";
-            echo "Soubor už existuje.";
+            $GLOBALS['alert'] = "Soubor už existuje.";
             $uploadOk = 0;
         }
 
         if ($_FILES["soubor"]["size"] > 10485760) {
-            $this->tplData['alert'] = "Soubor je přilíš velký.";
-            echo "Soubor je přilíš velký.";
+            $GLOBALS['alert'] = "Soubor je přilíš velký.";
             $uploadOk = 0;
         }
 
         if($fileType != "pdf") {
-            $this->tplData['alert'] = "Povolené jsou soubory PDF.";
-            echo "Povolené jsou soubory PDF.";
+            $GLOBALS['alert'] = "Povolené jsou soubory PDF.";
             $uploadOk = 0;
         }
 
         if ($uploadOk == 0) {
-            $this->tplData['alert'] = "Soubor nebyl nahrán.";
-            echo "Soubor nebyl nahrán.";
+            $GLOBALS['alert'] = "Soubor nebyl nahrán.";
         } else {
             if (move_uploaded_file($_FILES["soubor"]["tmp_name"], $target_file)) {
-                $this->tplData['alert'] = "Soubor ". basename( $_FILES["soubor"]["name"]). " byl nahrán.";
-                echo "Soubor ". basename( $_FILES["soubor"]["name"]). " byl nahrán.";
+                $GLOBALS['alert'] = "Soubor ". basename( $_FILES["soubor"]["name"]). " byl nahrán.";
             } else {
-                $this->tplData['alert'] = "Chyba při nahraní souboru.";
-                echo "Chyba při nahraní souboru.";
+                $GLOBALS['alert'] = "Chyba při nahraní souboru.";
             }
         }
         $this->tplData['povolit_create'] = $uploadOk;

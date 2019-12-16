@@ -218,7 +218,7 @@ class Database {
     }
 
     public function getSeznamKPosouzeni($id_uzivatele){
-        $k_posouzeni = $this->selectFromTable( TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "r.id_PRISPEVEK=p.id_prispevek AND r.id_UZIVATEL=".$id_uzivatele);
+        $k_posouzeni = $this->selectFromTable( TABLE_RECENZE." r, ".TABLE_PRISPEVEK." p", "r.id_PRISPEVEK=p.id_prispevek AND r.id_UZIVATEL=".$id_uzivatele." AND p.rozhodnuti=0");
         return $k_posouzeni;
     }
 
@@ -254,6 +254,10 @@ class Database {
             ":idRec" => $id_recenze
         ));
         return $fileName->fetchAll();
+    }
+
+    public function getAllRole(){
+        return $this->selectFromTable( TABLE_ROLE);
     }
 }
 ?>

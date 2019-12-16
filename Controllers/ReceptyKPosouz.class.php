@@ -24,8 +24,7 @@ class ReceptyKPosouz implements IController{
         }
         if (isset($_POST['action']) && $_POST['action'] == 'odhlaseni') {
             $this->userMan->userLogout();
-            $this->tplData['alert'] = "OK: Uživatel byl odhlášen.";
-            echo "OK: Uživatel byl odhlášen.";
+            $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
 

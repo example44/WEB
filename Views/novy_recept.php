@@ -4,7 +4,6 @@ require_once "TemplateBasics.class.php";
 $temp = new TemplateBasics();
 $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
 ?>
-
 <div class="container mt-4" id="hlavni">
   <div class="row-padded">
     <div class="form-group text-center">
@@ -15,7 +14,7 @@ $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
           <span class="error"> <?php echo $tplData['recept_naz']['error'];?></span>
           <br>
           <br>
-          <label>Popis receptu: <br><textarea name="recept_ob" rows="4" cols="30" id="recept_ob" value="<?php echo $tplData['obsah']['value'];?>" placeholder="Popiště svůj recept" required></textarea></label>
+          <label>Popis receptu: <br><textarea name="recept_ob" rows="4" cols="30" id="recept_ob" placeholder="Popiště svůj recept" required><?php echo $tplData['obsah']['value'];?></textarea></label>
           <span class="error"> <?php echo $tplData['obsah']['error'];?></span>
           <br>
           <br>
