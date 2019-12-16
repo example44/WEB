@@ -6,6 +6,7 @@
 ?>
     <div class="container mt-4" id="forms">
         <h1>Vitáme Vás na portalu Cookhub</h1>
+        <br>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide container mt-4" data-ride="carousel">
         <ol class="carousel-indicators">

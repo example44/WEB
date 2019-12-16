@@ -21,6 +21,7 @@ $temp->getHTMLHeader(WEB_PAGES['novyRecept']['title'], $tplData['menu']);
           <label>PDF Soubor:<br><input type="file" name="soubor" accept="application/pdf" id="soubor"></label>
           <br><br>
           <button class="btn btn-success" name="action" value="create_recept" type="submit">Odeslat</button><br>
+          <br><br>
       </form>
     </div>
   </div>

@@ -9,7 +9,7 @@
 </div>
 <?php
 $res = '<div class="container mt-4" id="tables">
-        <h1>Tvoje recenze</h1>
+        <h2 style="color: bisque">Tvoje recenze:</h2>
         <br>
         <table class="table table-sm table-bordered table-striped">
                 <thead class=" text-center " style="background-color: black; color:bisque">
