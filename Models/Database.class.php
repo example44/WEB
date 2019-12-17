@@ -85,7 +85,7 @@ class Database {
 ///////////////////  KONEC: Specificke funkce /////////////////
 /// ////////////// NOVE FUNKCE   ////////////////
     public function getUserAutoriz(string $email, string $heslo){
-        $q = "SELECT * FROM ".TABLE_UZIVATEL." WHERE email=:userEm AND heslo=:userPas;";
+        $q = "SELECT * FROM ".TABLE_UZIVATEL." WHERE email=:userEm AND heslo=:userPas AND active=1;";
         $stmt = $this->pdo->prepare($q);
         $stmt->execute(array(
             ":userEm" => $email,
@@ -135,7 +135,7 @@ class Database {
         ));
     }
 
-    public function deleteSouborPrispevku(int $id_prispevku){
+    public function deleteSouborPrispevku($id_prispevku){
         $fileName = $this->getFileName($id_prispevku)[0]['nazev'];
         var_dump($fileName);
         $q = "DELETE FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
@@ -183,7 +183,7 @@ class Database {
     }
 
     public function getRecenzenty(){
-        return $this->selectFromTable(TABLE_UZIVATEL, "id_ROLE=2");
+        return $this->selectFromTable(TABLE_UZIVATEL, "id_ROLE=2 AND active=1");
     }
 
     public function deleteRecenze(int $id_recenze){
@@ -235,7 +235,6 @@ class Database {
             ":pozn" => $poznamky,
             ":id_rec" => $id_recenze
         ));
-        var_dump($stmt);
     }
 
     public function getSouborRecepta($id_pris){
@@ -258,6 +257,59 @@ class Database {
 
     public function getAllRole(){
         return $this->selectFromTable( TABLE_ROLE);
+    }
+
+    public function deleteUser($user_del){
+        $this->deleteRecenzeUser($user_del);
+        $this->deletePrispevekUser($user_del);
+        $q = "DELETE FROM ".TABLE_UZIVATEL." WHERE id_UZIVATEL=:idUser;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idUser" => $user_del
+        ));
+    }
+
+    public function zmenRole($user_up, $nova_role){
+        $q = "UPDATE ".TABLE_UZIVATEL." SET id_ROLE =:idRole WHERE id_UZIVATEL=:idUser";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idRole" => $nova_role,
+            ":idUser" => $user_up
+        ));
+    }
+
+    public function zmenStat($id_user, int $stat){
+        $q = "UPDATE ".TABLE_UZIVATEL." SET active =:stat WHERE id_UZIVATEL=:idUser";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idUser" => $id_user,
+            ":stat" => $stat
+        ));
+    }
+
+    private function deletePrispevekUser($user_del){
+        $q = "SELECT * FROM ".TABLE_PRISPEVEK." WHERE id_UZIVATEL=:idUser;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idUser" => $user_del
+        ));
+        $prispevek = $stmt->fetchAll();
+        if(!empty($prispevek[0])) {
+            $this->deleteSouborPrispevku($prispevek[0]['id_PRISPEVEK']);
+            $q = "DELETE FROM " . TABLE_PRISPEVEK . " WHERE id_UZIVATEL=:idUser;";
+            $stmt = $this->pdo->prepare($q);
+            $stmt->execute(array(
+                ":idUser" => $user_del
+            ));
+        }
+    }
+
+    private function deleteRecenzeUser($user_del){
+        $q = "DELETE FROM ".TABLE_RECENZE." WHERE id_UZIVATEL=:idUser;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idUser" => $user_del
+        ));
     }
 }
 ?>

@@ -71,8 +71,8 @@ html{
     font-size: 16px;
 }
 .btn:hover{
-    background-color:black;
-    color:#f8931f;
+    background-color: black;
+    color: #f8931f;
 }
 
 .fa{
@@ -88,8 +88,6 @@ html{
     color: white;
     margin-bottom: 15px;
 }
-
-/* The close button */
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -159,7 +157,3 @@ html{
 .jmeno{
     color: #f8931f;
 }
-
-
-
-
