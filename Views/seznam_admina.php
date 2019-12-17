@@ -13,8 +13,8 @@ for($i = 0; $i < count($tplData['recenzenty']); $i++){
 <?php
 $res = '<div class="container mt-4" id="tables">
         <br>
-        <table class="table table-sm table-bordered table-striped table-hover">
-            <thead class="table-dark text-center">
+        <table class="table table-sm table-bordered  ">
+            <thead class=" text-center " style="background-color: black; color:bisque">
             <tr>
                 <td rowspan="2">Název receptů</td>
                 <td rowspan="2">Autor</td>
@@ -32,7 +32,7 @@ $res = '<div class="container mt-4" id="tables">
                 <td>vymazat</td>
             </tr>
             </thead>
-            <tbody class="table-dark text-center">';
+            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
 
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];

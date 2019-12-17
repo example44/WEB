@@ -10,11 +10,12 @@
                             <h1>Autorizace</h1>
                             <br><br>
                                 <label>Email <br><input type="email" class="form-control" name="email" id="emal" value="<?php echo $tplData['email']['value'];?>" placeholder="Napište email" required></label>
-                                <?php echo $tplData['email']['error'];?>
                                 <br>
+                                <span class="error" id="usName"> <?php echo $tplData['email']['error'];?></span>
                                 <br>
                                 <label>Heslo <br><input type="password" class="form-control" name="heslo" id="heslo" value="" placeholder="Napište heslo" required></label>
-                                <?php echo $tplData['heslo']['error'];?>
+                                <br>
+                                <span class="error" id="usName"> <?php echo $tplData['heslo']['error'];?></span>
                                 <br>
                                 <br>
                                 <button class="btn btn-success" id="button" name="action" value="vstup" type="submit" >Vstup</button><br>

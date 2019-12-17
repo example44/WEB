@@ -10,8 +10,8 @@ $temp->getHTMLHeader(WEB_PAGES['spravaUziv']['title'], $tplData['menu']);
 <?php
 $res = '<div class="container mt-4" id="tables">
         <br>
-        <table class="table table-sm table-bordered table-striped ">
-            <thead class=" text-center" style="background-color: black; color:bisque">
+        <table class="table table-sm table-bordered ">
+            <thead class=" text-center " style="background-color: black; color:bisque">
             <tr>
                 <th>Jméno</th>
                 <th>Email</th>

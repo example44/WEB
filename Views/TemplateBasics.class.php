@@ -37,9 +37,9 @@ class TemplateBasics {
                                 if(isset($_SESSION['current_user_id'])) {
                             ?>
                                     <form method="POST">
-                                        <div class="container" id="odhlaseni">
+                                        <div id="odhlaseni">
                                             <span class="navbar-text" id="nav_text" >
-                                                Ahoj, <span style="color: #f8931f "><?php echo $tplData['uzivatel']['username']?></span>
+                                                Ahoj, <span id="nikname"><?php echo $tplData['uzivatel']['username']?></span>
                                             </span>
                                             <input type="hidden" name="action" value="logout">
                                             <button type="submit" class="btn" id="btn_nav"  name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i> Odhlásit</button>
@@ -64,10 +64,14 @@ class TemplateBasics {
                             </ul>
                         </div>
                     </nav>
-
-
         <?php
+        if(isset($GLOBALS['alert'])){
+            echo '<div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display=`none`;">&times;</span>
+               '.$GLOBALS["alert"].'
+            </div>';
         }
+    }
 
         /**
          *  Vrati paticku stranky.
@@ -75,18 +79,12 @@ class TemplateBasics {
         public function getHTMLFooter(){
             ?>
             </div>
-            <!-- Footer -->
             <footer class="page-footer font-small cyan darken-3" id="footer" >
+                <div class="container mt-4">
 
-                <!-- Footer Elements -->
-                <div class="container">
-
-                    <!-- Grid row-->
-                    <div class="row">
-                        <!-- Grid column -->
-                        <div class="col-md-10 py-5" >
-                            <div class="mb-5 flex-center" >
-                                <div class="form-group ">
+                        <div class="col-md-12 py-4" >
+                            <div class="mb-5" >
+                                <div class="form-group" id="skupina_znacku">
                                     <a class="fb-ic" data-toggle="tooltip" title="Facebook">
                                         <i class="fab fa-facebook-f fa-lg  mr-md-5 mr-3 fa-2x"> </i>
                                     </a>
@@ -104,7 +102,7 @@ class TemplateBasics {
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </div>
 
 

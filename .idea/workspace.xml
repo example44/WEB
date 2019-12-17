@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/soubory/7._Php_4.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/soubory/8._Webovy_server.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Registrace.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registrace.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/TemplateBasics.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/TemplateBasics.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/autorizace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/autorizace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/nemate_pravo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/nemate_pravo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/registrace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/seznam_admina.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/seznam_admina.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/sprava_uziv.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/sprava_uziv.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styl.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

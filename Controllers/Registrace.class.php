@@ -95,7 +95,7 @@ class Registrace implements IController {
                 $this->tplData['heslo_znovu']['error'] = "Musíte zopakovat heslo";
                 $this->tplData['povolit_reg'] = false;
             } elseif($this->tplData['heslo']['value'] != $this->tplData['heslo_znovu']['value']){
-                    $this->tplData['heslo_znovu']['error'] = "Heslo není stejně";
+                    $this->tplData['heslo_znovu']['error'] = "Hesla nejsou stejná";
                     $this->tplData['povolit_reg'] = false;
             }
 
