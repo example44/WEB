@@ -54,3 +54,4 @@ class SpravaUziv implements IController
         return $this->tplData;
     }
 }
+?>

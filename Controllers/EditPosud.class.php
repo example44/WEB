@@ -85,7 +85,7 @@ class EditPosud implements IController {
                 $this->tplData['povolit'] = false;
             } else {
                 $this->tplData['technicka_kvalita']['value'] = $this->test_input($_POST["technicka_kvalita"]);
-                if (is_numeric($this->tplData['technicka_kvalita']['value'])&&is_int($this->tplData['technicka_kvalita']['value']) && $this->tplData['technicka_kvalita']['value'] > 0 && $this->tplData['technicka_kvalita']['value'] < 6) {
+                if (is_numeric($this->tplData['technicka_kvalita']['value']) && is_int($this->tplData['technicka_kvalita']['value']) && $this->tplData['technicka_kvalita']['value'] > 0 && $this->tplData['technicka_kvalita']['value'] < 6) {
                     $this->tplData['technicka_kvalita']['error'] = "Špatná hodnota";
                     $this->tplData['povolit'] = false;
                 }

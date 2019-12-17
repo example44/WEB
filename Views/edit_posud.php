@@ -73,8 +73,14 @@
     </div>
 
 <script>
-    function getRecenze(id_pris) {
-        if (id_pris == "") {
+    function getRecenze(id_rec) {
+        if (id_rec == "") {
+            document.getElementById("originalita").value = "";
+            document.getElementById("tema").value = "";
+            document.getElementById("jazykova_kvalita").value = "";
+            document.getElementById("technicka_kvalita").value = "";
+            document.getElementById("doporuceni").value = "";
+            document.getElementById("poznamky").value = "";
             return;
         } else {
             const xmlhttp = getXmlHttp();
@@ -90,7 +96,7 @@
                     document.getElementById("poznamky").value = jsonObj['6'];
                 }
             };
-            xmlhttp.open("GET", "ajax-server.php?id_recenze="+id_pris, true);
+            xmlhttp.open("GET", "ajax-server.php?id_recenze="+id_rec, true);
             xmlhttp.send();
         }
     }

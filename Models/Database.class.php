@@ -311,5 +311,14 @@ class Database {
             ":idUser" => $user_del
         ));
     }
+
+    public function getRecept($id_recept){
+        $q = "SELECT * FROM ".TABLE_PRISPEVEK." WHERE id_PRISPEVEK=:idRec;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->execute(array(
+            ":idRec" => $id_recept
+        ));
+        return $stmt->fetchAll();
+    }
 }
 ?>

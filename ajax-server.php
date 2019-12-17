@@ -41,6 +41,13 @@
     }
     echo $text;
     }
-
+    if(isset($_GET['id_recept'])){
+        $recept = $userMan->getRecept($_GET['id_recept']);
+        $fileName = $userMan->getSouborRecepta($_GET['id_recept']);
+        $fileName = $fileName[0][1];
+        $text = $recept[0];
+        $text[5]=$fileName;
+        echo json_encode($text);
+    }
 
 ?>

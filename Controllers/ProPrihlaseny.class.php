@@ -243,5 +243,9 @@ class ProPrihlaseny{
     public function zmenaStat($id_user, int $stat){
         $this->db->zmenStat($id_user, $stat);
     }
+
+    public function getRecept($id_recept){
+        return $this->db->getRecept($id_recept);
+    }
 }
 ?>
