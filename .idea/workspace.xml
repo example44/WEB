@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/SpravaUziv.class.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/sprava_uziv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ProPrihlaseny.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Registrace.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registrace.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Database.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Database.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/recept_autor.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recept_autor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/recepty_k_posouz.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/recepty_k_posouz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/seznam_admina.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/seznam_admina.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.inc.php" afterDir="false" />
-    </list>
+    <list default="true" id="7374636f-88f1-438e-9da8-b7d6c9c4d739" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
