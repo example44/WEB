@@ -42,8 +42,8 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     if(!$zverej) {
         $zver = '<td rowspan="'.(1 + (count($tplData['obsah'][$i]['recenze']))) . '">
                     <form method="post" action="" onsubmit="if(confirmAktiv(`udělat veřejným`)){this.submit();}else{ return false;}">
-                        <input type="hidden" name="recenze" value="' . $id_pris . '">
-                        <button class="btn btn-warning" type="submit" name="action" value="zverejnit">Zveřejnit</button>
+                        <input type="hidden" name="recept" value="' . $id_pris . '">
+                        <button class="btn" type="submit" name="action" value="zverejnit">Zveřejnit</button>
                     </form>
                     </td>';
     }else{

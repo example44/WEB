@@ -18,7 +18,7 @@
                                 <span class="error" id="usName"> <?php echo $tplData['heslo']['error'];?></span>
                                 <br>
                                 <br>
-                                <button class="btn btn-success" id="button" name="action" value="vstup" type="submit" >Vstup</button><br>
+                                <button class="btn" id="button" name="action" value="vstup" type="submit" >Vstup</button><br>
                         </div>
                     </div>
                 </form>

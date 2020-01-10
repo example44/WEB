@@ -137,7 +137,6 @@ class Database {
 
     public function deleteSouborPrispevku($id_prispevku){
         $fileName = $this->getFileName($id_prispevku)[0]['nazev'];
-        var_dump($fileName);
         $q = "DELETE FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
         $stmt = $this->pdo->prepare($q);
         $stmt->execute(array(
