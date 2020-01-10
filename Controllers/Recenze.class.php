@@ -1,7 +1,7 @@
 <?php
 
 
-class Recepty implements IController {
+class Recenze implements IController {
     private $userMan;
     private $tplData;
 
@@ -27,10 +27,10 @@ class Recepty implements IController {
             $GLOBALS['alert'] = "OK: Uživatel byl odhlášen.";
             header("Location: index.php?page=uvodni");
         }
-        $this->tplData['obsah'] = $this->userMan->getVerejRecepty();
+        $this->tplData['obsah'] = $this->userMan->getVerejRecenze();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
-            $soubor = $this->userMan->getSouborRecepta($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            $soubor = $this->userMan->getSouborRecenze($this->tplData['obsah'][$i]['id_PRISPEVEK']);
             if(count($soubor)) {
                 $this->tplData['obsah'][$i]['nazev_souboru'] = $soubor;
             }else{

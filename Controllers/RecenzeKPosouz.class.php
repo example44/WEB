@@ -1,7 +1,7 @@
 <?php
 
 
-class ReceptyKPosouz implements IController{
+class RecenzeKPosouz implements IController{
     private $userMan;
     private $tplData;
 
@@ -32,7 +32,7 @@ class ReceptyKPosouz implements IController{
 
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
-            $soubor = $this->userMan->getSouborRecepta($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            $soubor = $this->userMan->getSouborRecenze($this->tplData['obsah'][$i]['id_PRISPEVEK']);
             if(count($soubor)) {
                 $this->tplData['obsah'][$i]['nazev_souboru'] = $soubor;
             }else{

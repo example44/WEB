@@ -41,11 +41,11 @@
     }
     echo $text;
     }
-    if(isset($_GET['id_recept'])){
-        $recept = $userMan->getRecept($_GET['id_recept']);
-        $fileName = $userMan->getSouborRecepta($_GET['id_recept']);
+    if(isset($_GET['id_recenze'])){
+        $recenze = $userMan->getRecenze($_GET['id_recenze']);
+        $fileName = $userMan->getSouborRecenze($_GET['id_recenze']);
         $fileName = $fileName[0][1];
-        $text = $recept[0];
+        $text = $recenze[0];
         $text[5]=$fileName;
         echo json_encode($text);
     }

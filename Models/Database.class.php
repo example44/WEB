@@ -107,14 +107,14 @@ class Database {
         ));
     }
 
-    public function getVerejRecept(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
-        return $list_receptu;
+    public function getVerejRecenze(){
+        $list_recenze = $this->selectFromTable(TABLE_PRISPEVEK, "rozhodnuti = 1");
+        return $list_recenze;
     }
 
-    public function getAutorRecepts(int $id_autora){
-        $recepty_autora = $this->selectFromTable(TABLE_PRISPEVEK, "id_UZIVATEL = $id_autora");
-        return $recepty_autora;
+    public function getAutorRecenze(int $id_autora){
+        $recenze_autora = $this->selectFromTable(TABLE_PRISPEVEK, "id_UZIVATEL = $id_autora");
+        return $recenze_autora;
     }
 
     public function deletePrispevek(int $id_prispevku){
@@ -177,9 +177,9 @@ class Database {
         ));
     }
 
-    public function getVseRecepty(){
-        $list_receptu = $this->selectFromTable(TABLE_PRISPEVEK);
-        return $list_receptu;
+    public function getVseRecenze(){
+        $list_recenze = $this->selectFromTable(TABLE_PRISPEVEK);
+        return $list_recenze;
     }
 
     public function getRecenzenty(){
@@ -198,7 +198,7 @@ class Database {
         return $this->updateInTable(TABLE_PRISPEVEK, "rozhodnuti = 1", "$id_prispevek");
     }
 
-    public function getRecenzeKReceptu($id_prispevek){
+    public function getRecenzeKRecenze($id_prispevek){
         $q = "SELECT * FROM ".TABLE_RECENZE." WHERE id_PRISPEVEK=:idPrisp;";
         $fileName = $this->pdo->prepare($q);
         $fileName->execute(array(
@@ -237,7 +237,7 @@ class Database {
         ));
     }
 
-    public function getSouborRecepta($id_pris){
+    public function getSouborRecenze($id_pris){
         $q = "SELECT * FROM ".TABLE_SOUBOR." WHERE id_PRISPEVEK=:idPrisp;";
         $stmt = $this->pdo->prepare($q);
         $stmt->execute(array(
@@ -312,13 +312,6 @@ class Database {
         ));
     }
 
-    public function getRecept($id_recept){
-        $q = "SELECT * FROM ".TABLE_PRISPEVEK." WHERE id_PRISPEVEK=:idRec;";
-        $stmt = $this->pdo->prepare($q);
-        $stmt->execute(array(
-            ":idRec" => $id_recept
-        ));
-        return $stmt->fetchAll();
-    }
+
 }
 ?>

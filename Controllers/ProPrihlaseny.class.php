@@ -97,22 +97,22 @@ class ProPrihlaseny{
     /**
      * @return array
      */
-    public function getAutorRecept(){
-        return $this->db->getAutorRecepts($_SESSION[$this->userSessionKey]);
+    public function getAutorRecenze(){
+        return $this->db->getAutorRecenze($_SESSION[$this->userSessionKey]);
     }
 
     /**
      * @return array
      */
-    public function getVerejRecepty(){
-        return $this->db->getVerejRecept();
+    public function getVerejRecenze(){
+        return $this->db->getVerejRecenze();
     }
 
     /**
      * @param string $obsah
      * @param string $nazev
      */
-    public function addRecept(string $obsah, string $nazev){
+    public function addRecenze(string $obsah, string $nazev){
         $this->db->addPrispevek("$obsah", "$nazev", $_SESSION[$this->userSessionKey]);
     }
 
@@ -121,7 +121,7 @@ class ProPrihlaseny{
      * @param string $id_prispevek
      */
     public function addSoubor(string $nazev_pris, string $nazev_dok){
-        $id_prispevek = $this->getReceptProSoubor($nazev_pris)[0]['id_PRISPEVEK'];
+        $id_prispevek = $this->getRecenzeProSoubor($nazev_pris)[0]['id_PRISPEVEK'];
         $this->db->addSoubor("$nazev_dok", "$id_prispevek");
     }
 
@@ -129,15 +129,15 @@ class ProPrihlaseny{
      * @param string $nazev
      * @return array
      */
-    public function getReceptProSoubor(string $nazev){
+    public function getRecenzeProSoubor(string $nazev){
         return $this->db->selectFromTable(TABLE_PRISPEVEK, "nazev='$nazev'");
     }
 
     /**
      * @return array
      */
-    public function getVseRecepty(){
-        return $this->db->getVseRecepty();
+    public function getVseRecenze(){
+        return $this->db->getVseRecenze();
     }
 
     /**
@@ -171,8 +171,8 @@ class ProPrihlaseny{
      * @param $id_prispevek
      * @return array
      */
-    public function getRecenzeKReceptu($id_prispevek){
-        return $this->db->getRecenzeKReceptu($id_prispevek);
+    public function getRecenzeKRecenze($id_prispevek){
+        return $this->db->getRecenzeKRecenze($id_prispevek);
     }
 
     /**
@@ -182,13 +182,8 @@ class ProPrihlaseny{
         $this->db->deleteRecenze($id_recenze);
     }
 
-    /**
-     * @param $id_uziv
-     * @param $id_prispevek
-     */
-    public function addRecenze($id_uziv, $id_prispevek){
-        $this->db->addRecenze($id_uziv, $id_prispevek);
-    }
+
+
 
     /**
      * @return array
@@ -224,8 +219,8 @@ class ProPrihlaseny{
      * @param $id_pris
      * @return array
      */
-    public function getSouborRecepta($id_pris){
-        return $this->db->getSouborRecepta($id_pris);
+    public function getSouborRecenze($id_pris){
+        return $this->db->getSouborRecenze($id_pris);
     }
 
     public function getRecenze($id_recenze){
@@ -244,8 +239,6 @@ class ProPrihlaseny{
         $this->db->zmenStat($id_user, $stat);
     }
 
-    public function getRecept($id_recept){
-        return $this->db->getRecept($id_recept);
-    }
+
 }
 ?>

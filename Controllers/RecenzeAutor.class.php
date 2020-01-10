@@ -1,7 +1,7 @@
 <?php
 
 
-class ReceptAutor implements IController {
+class RecenzeAutor implements IController {
     private $userMan;
     private $tplData;
 
@@ -29,30 +29,30 @@ class ReceptAutor implements IController {
             header("Location: index.php?page=uvodni");
         }
 
-        $this->tplData['obsah'] = $this->userMan->getAutorRecept();
+        $this->tplData['obsah'] = $this->userMan->getAutorRecenze();
         if (isset($_POST['action']) && $_POST['action'] == 'delete'){
             for($i = 0; $i < count($this->tplData['obsah']); $i++) {
-                if ($this->tplData['obsah'][$i]['id_PRISPEVEK'] == $_POST['recept_del']) {
+                if ($this->tplData['obsah'][$i]['id_PRISPEVEK'] == $_POST['recenze_del']) {
                     $this->tplData['error'] = '';
                     $this->tplData['povolit_smazani'] = true;
                     break;
                 } else {
-                    $this->tplData['error'] = "Špatný recept";
+                    $this->tplData['error'] = "Špatná recenze";
                     $this->tplData['povolit_smazani'] = false;
                 }
             }
         if($this->tplData['povolit_smazani']) {
-             $this->userMan->smazatPrispevek($_POST['recept_del']);
+             $this->userMan->smazatPrispevek($_POST['recenze_del']);
              header("Location: index.php?page=recepAutor");
-            $GLOBALS['alert'] = "OK: Recept byl smazan.";
+            $GLOBALS['alert'] = "OK: Recenze bylá smazana.";
 
              } else {
-            $GLOBALS['alert'] = "CHYBA: Recept nebyl smazan.";
+            $GLOBALS['alert'] = "CHYBA: Recenze nebyla smazana.";
              }
         }
         for($i = 0; $i < count($this->tplData['obsah']); $i++) {
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
-            $soubor = $this->userMan->getSouborRecepta($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            $soubor = $this->userMan->getSouborRecenze($this->tplData['obsah'][$i]['id_PRISPEVEK']);
             if (count($soubor)) {
                 $this->tplData['obsah'][$i]['nazev_souboru'] = $soubor;
             } else {

@@ -31,29 +31,36 @@ class TemplateBasics {
             </head>
             <body>
                 <div id="main">
-                    <nav class="navbar navbar-expand-lg navbar-dark " id="nav" >
-                        <img src="img/logo2.jpg" width="150" height="60" alt="logo">
-                            <?php
-                                if(isset($_SESSION['current_user_id'])) {
-                            ?>
-                                    <form method="POST">
-                                        <div id="odhlaseni">
-                                            <span class="navbar-text" id="nav_text" >
-                                                Ahoj, <span id="nikname"><?php echo $tplData['uzivatel']['username']?></span>
-                                            </span>
-                                            <input type="hidden" name="action" value="logout">
-                                            <button type="submit" class="btn" id="btn_nav"  name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i> Odhlásit</button>
-                                        </div>
-                                    </form>
+        <nav class="navbar navbar-expand-lg navbar-dark " id="nav" >
+            <img src="img/logo.png" alt="Logo" title="Logo" style="width:130px; height: 55px">
+            <?php
+            if(isset($_SESSION['current_user_id'])) {
+                ?>
+                <?php
+                if(isset($_SESSION['current_user_id'])) {
+                    ?>
+                    <form method="POST">
+                        <div id="odhlaseni">
+                            <input type="hidden" name="action" value="logout">
+                            <button type="submit" class="btn bg-transparent" id="btn_nav"title="Odhlašení"  name="action" value="odhlaseni"><i class="fas fa-sign-out-alt"></i></button>
+                        </div>
+                    </form>
 
-                                    <?php
-                                }
-                                ?>
-                    </nav>
-                    <nav class="navbar navbar-expand-md navbar-dark " id="nav_mal"  >
+                    <?php
+                }
+                ?>
+
+                <?php
+            }
+            ?>
+        </nav>
+                    <nav class="navbar navbar-expand-md navbar-dark " id="nav_mal"   >
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+
+
+
                         <div class="collapse navbar-collapse" id="collapsibleNavbar" >
                             <ul class="navbar-nav ">
                                 <?php
@@ -63,6 +70,7 @@ class TemplateBasics {
                                     ?>
                             </ul>
                         </div>
+
                     </nav>
         <?php
         if(isset($GLOBALS['alert'])){
@@ -85,19 +93,13 @@ class TemplateBasics {
                         <div class="col-md-12 py-4" >
                             <div class="mb-5" >
                                 <div class="form-group" id="skupina_znacku">
-                                    <a class="fb-ic" data-toggle="tooltip" title="Facebook">
-                                        <i class="fab fa-facebook-f fa-lg  mr-md-5 mr-3 fa-2x"> </i>
-                                    </a>
-
-                                    <a class="ins-ic"data-toggle="tooltip" title="Instagram">
-                                        <i class="fab fa-instagram fa-lg  mr-md-5 mr-3 fa-2x"> </i>
-                                    </a>
-                                    <a class="gplus-ic"data-toggle="tooltip" title="Google plus">
-                                        <i class="fab fa-google-plus-g fa-lg  mr-md-5 mr-3 fa-2x"> </i>
-                                    </a>
-                                    <a class="tw-ic" data-toggle="tooltip" title="Twitter">
-                                        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                                    </a>
+                                    <!--Facebook-->
+                                    <button type="button"id="social1" class="btn btn-fb"><i class="fab fa-facebook-f"title="Facebook"></i></button>
+                                    <button type="button"id="social2" class="btn btn-tw"><i class="fab fa-twitter"title="Twitter"></i></button>
+                                    <!--Google +-->
+                                    <button type="button"id="social3"class="btn btn-yt"><i class="fab fa-youtube"title="Youtube"></i></button>
+                                    <!--Pinterest-->
+                                    <button type="button"id="social4" class="btn btn-pin"><i class="fab fa-pinterest"title="Pinterest"></i></button>
 
                                 </div>
                             </div>
@@ -106,7 +108,7 @@ class TemplateBasics {
                 </div>
 
 
-                    <div class="footer-copyright py-3" "  >© 2019 Copyright: <span class="jmeno" ">Simonov Yan </span></div>
+                    <div class="footer-copyright py-3" "  >Produced in 2020 by <span class="jmeno" ">Karen Arutyunyan </span></div>
                 </footer>
             </body>
          </html>

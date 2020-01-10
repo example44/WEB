@@ -28,11 +28,11 @@ class SeznamAdmina implements IController {
             header("Location: index.php?page=uvodni");
         }
 
-        $this->tplData['obsah'] = $this->userMan->getVseRecepty();
+        $this->tplData['obsah'] = $this->userMan->getVseRecenze();
         for($i = 0; $i < count($this->tplData['obsah']); $i++){
             $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['id_UZIVATEL']);
             $this->tplData['obsah'][$i]['id_UZIVATEL'] = $user[0]['username'];
-            $this->tplData['obsah'][$i]['recenze'] = $this->userMan->getRecenzeKReceptu($this->tplData['obsah'][$i]['id_PRISPEVEK']);
+            $this->tplData['obsah'][$i]['recenze'] = $this->userMan->getRecenzeKRecenze($this->tplData['obsah'][$i]['id_PRISPEVEK']);
             for($j = 0; $j < count($this->tplData['obsah'][$i]['recenze']); $j++){
                 $user = $this->userMan->getUzivatel($this->tplData['obsah'][$i]['recenze'][$j]['id_UZIVATEL']);
                 if($user != "Nezadan") {
@@ -49,16 +49,16 @@ class SeznamAdmina implements IController {
                 $GLOBALS['alert'] = "OK: Recenze byla smazana.";
                 header("Location: index.php?page=seznamAdmina");
             }elseif ($_POST['action'] == 'zverejnit'){
-                $ok = $this->userMan->zverejnit($_POST['recept']);
+                $ok = $this->userMan->zverejnit($_POST['recenze']);
                 if ($ok) {
-                    $GLOBALS['alert'] = "OK: Recept byl zveřejněn.";
+                    $GLOBALS['alert'] = "OK: Recenze byl zveřejněn.";
                     header("Location: index.php?page=seznamAdmina");
                 } else {
-                    $GLOBALS['alert'] = "CHYBA: Recept nebyl zveřejněn.";
+                    $GLOBALS['alert'] = "CHYBA: Recenze nebyl zveřejněn.";
                 }
             }elseif($_POST['action'] == 'create_rec'){
                 if($_POST['prirad'] != '') {
-                    $this->userMan->addRecenze($_POST['prirad'], $_POST['recept']);
+                    $this->userMan->addRecenze($_POST['prirad'], $_POST['recenze']);
                     header("Location: index.php?page=seznamAdmina");
                 }else{
                     $GLOBALS['alert'] = "Zvolte uživatele";

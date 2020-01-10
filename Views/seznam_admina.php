@@ -8,15 +8,15 @@ for($i = 0; $i < count($tplData['recenzenty']); $i++){
     $sezn_recenzentu .= "<option value='".$tplData['recenzenty'][$i]['id_UZIVATEL']."'>".$tplData['recenzenty'][$i]['username']."</option>";
 }?>
 <div class="container mt-4" id="forms">
-    <h1>Správa uživatelů</h1>
+    <h1>Seznam recenze</h1>
 </div>
 <?php
-$res = '<div class="container mt-4" id="tables">
+$res = '<div class="container mt-4" id="forms">
         <br>
         <table class="table table-sm table-bordered  ">
-            <thead class=" text-center " style="background-color: black; color:bisque">
+            <thead class=" text-center " style="background-color: #032329; color:#377D8A">
             <tr>
-                <td rowspan="2">Název receptů</td>
+                <td rowspan="2">Název recenze</td>
                 <td rowspan="2">Autor</td>
                 <td colspan="8">Recenze</td>
                 <td rowspan="2">Rozhodnutí</td>
@@ -32,7 +32,7 @@ $res = '<div class="container mt-4" id="tables">
                 <td>vymazat</td>
             </tr>
             </thead>
-            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
+            <tbody class=" text-center" style="background-color: #14363C; color: #377D8A">';
 
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
@@ -42,7 +42,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
     if(!$zverej) {
         $zver = '<td rowspan="'.(1 + (count($tplData['obsah'][$i]['recenze']))) . '">
                     <form method="post" action="" onsubmit="if(confirmAktiv(`udělat veřejným`)){this.submit();}else{ return false;}">
-                        <input type="hidden" name="recept" value="' . $id_pris . '">
+                        <input type="hidden" name="recenze" value="' . $id_pris . '">
                         <button class="btn btn-warning" type="submit" name="action" value="zverejnit">Zveřejnit</button>
                     </form>
                     </td>';
@@ -60,7 +60,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                         </select>
                 </td>
                 <td colspan="7">
-                            <input type="hidden" name="recept" value="'.$id_pris.'">
+                            <input type="hidden" name="recenze" value="'.$id_pris.'">
                             <button class="btn" type="submit" name="action" value="create_rec">Vytvořit recenze</button>
                         </form>
                 </td>'.
@@ -69,7 +69,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
 
     for($j = 0; $j < count($tplData['obsah'][$i]['recenze']); $j++) {
         $id_recen = $tplData['obsah'][$i]['recenze'][$j][0];
-        $id_recept =  $recenzent = $tplData['obsah'][$i]['recenze'][$j][8];
+        $id_recenze =  $recenzent = $tplData['obsah'][$i]['recenze'][$j][8];
         $recenzent = $tplData['obsah'][$i]['recenze'][$j]['id_UZIVATEL'];
         $orig = $tplData['obsah'][$i]['recenze'][$j][1];
         $tema = $tplData['obsah'][$i]['recenze'][$j][2];
@@ -87,7 +87,7 @@ for($i = 0; $i < count($tplData['obsah']); $i++) {
                     <td>' . $prumer . '</td>
                     <td>
                         <form method="post" action="" onsubmit="if(confirmAktiv(`smazat`)){this.submit();}else{ return false;}">
-                            <input type="hidden" name="recept" value="'.$id_recept.'">
+                            <input type="hidden" name="recenze" value="'.$id_recept.'">
                             <input type="hidden" name="recenze_del" value="'.$id_recen.'">
                             <button class="btn" type="submit" name="action" value="delete"><i class="fas fa-trash-alt"></i></button>
                         </form></td>

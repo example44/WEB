@@ -11,7 +11,7 @@ $temp->getHTMLHeader(WEB_PAGES['spravaUziv']['title'], $tplData['menu']);
 $res = '<div class="container mt-4" id="tables">
         <br>
         <table class="table table-sm table-bordered ">
-            <thead class=" text-center " style="background-color: black; color:bisque">
+            <thead class=" text-center " style="background-color: #032329; color:#377D8A">
             <tr>
                 <th>Jméno</th>
                 <th>Email</th>
@@ -20,7 +20,7 @@ $res = '<div class="container mt-4" id="tables">
                 <th>Akce</th>
             </tr>
             </thead>
-            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
+            <tbody class=" text-center" style="background-color: #14363C; color:#377D8A">';
 for($i = 0; $i < count($tplData['users']); $i++) {
     $id_user = $tplData['users'][$i]['id_UZIVATEL'];
     $jmeno = $tplData['users'][$i]['username'];
@@ -75,7 +75,7 @@ for($i = 0; $i < count($tplData['users']); $i++) {
                                         <option value>Zvolte role</option>'.
                                         $sezn_roli.'
                         </select>
-                         <input type="hidden" name="user_up" value="'.$id_user.'">
+                         <input type="hidden" name="user_up" value="'.$id_user.'"><br>
                          <button class="btn" type="submit" name="action" value="save"><i class="fas fa-save"></i></button>
                  </form>
             </td>

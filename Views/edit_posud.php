@@ -7,12 +7,12 @@
     <div class="container mt-4" id="hlavni">
 
         <div class="row-padded">
-            <div class="form-group text-center">
+            <div class="form-group">
                 <form class="editPosud" method="post" action="" id="forms">
-                    <h1>Posouzení receptů</h1>
-                    <br><br>
-                    <label>Recept:<br><select name="recenze" class="form-control" id="zvol_recep" onchange="getRecenze(this.value)" required>
-                        <option value="">Zvolte recept</option>
+                    <h1>Posouzení recenze</h1>
+                    <br>
+                    <label>Recenze:<br><select name="recenze" class="form-control" id="zvol_recen" onchange="getRecenze(this.value)" required>
+                        <option value="">Zvolte recenze</option>
                         <?php
                         for($i = 0; $i < count($tplData['obsah']); $i++){
                                 echo "<option value='" . $tplData['obsah'][$i]['id_RECENZE'] . "'>" . $tplData['obsah'][$i]['nazev'] . "</option>";
@@ -61,7 +61,7 @@
                     </select></label>
                     <br>
 
-                    <label>Poznámky:<br><textarea name="poznamky" class="form-control" rows="4" cols="30" id="poznamky" placeholder="Popiště svůj recept"></textarea></label>
+                    <label>Poznámky:<br><textarea name="poznamky" class="form-control" rows="4" cols="30" id="poznamky" placeholder="Popiště vaše recenze"></textarea></label>
                     <br><br>
                     <button class="btn btn-success" name="action" value="odeslat" type="submit">Odeslat</button><br>
                     <br>

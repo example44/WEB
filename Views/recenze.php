@@ -2,25 +2,24 @@
     global $tplData;
     require_once "TemplateBasics.class.php";
     $temp = new TemplateBasics();
-    $temp->getHTMLHeader(WEB_PAGES['recepty']['title'], $tplData['menu']);
+    $temp->getHTMLHeader(WEB_PAGES['recenze']['title'], $tplData['menu']);
 ?>
-<div class="container mt-4" id="forms">
-    <h1>Recepty naších uživatelů</h1>
+<div class="container mt-4" id="headForms">
+    <h1>Recenze našich uživatelů</h1>
 </div>
 <?php
-
 $res = '<div class="container mt-4 " id="forms"></div>
         <br>
         <table class="table table-sm table-bordered container mt-4">
-             <thead class=" text-center " style="background-color: black; color:bisque">
+             <thead class=" text-center " style="background-color: #032329; color:#377D8A">
              <tr>
-                <th>Název receptu</th>
+                <th>Název recenze</th>
                 <th>Autor</th>
-                <th>Obsah receptu</th>
+                <th>Obsah recenze</th>
                 <th>Stáhnout</th>
                 </tr>
             </thead >
-            <tbody class=" text-center" style="background-color: #1D1F20; color: bisque">';
+            <tbody class=" text-center" style="background-color: #14363C; color: #377D8A">';
 for($i = 0; $i < count($tplData['obsah']); $i++) {
     $nazev = $tplData['obsah'][$i]['nazev'];
     $autor = $tplData['obsah'][$i]['id_UZIVATEL'];

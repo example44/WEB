@@ -1,7 +1,7 @@
 <?php
 
 
-class EditRecept implements IController {
+class NovaRecenze implements IController{
     private $userMan;
     private $tplData;
 
@@ -9,14 +9,11 @@ class EditRecept implements IController {
         require_once "settings.inc.php";
         require_once DIRECTORY_CONTROLLERS."/ProPrihlaseny.class.php";
         $this->userMan = new ProPrihlaseny();
-        $this->tplData = array("obsah" => "",
-                                "alert" => "",
-                                "nazev" => array("value" => "",
-                                                 "error" => ""),
-                                "popis" => array("value" => "",
-                                                 "error" => ""),
-                                "soubor" => array("value" => "",
-                                                 "error" => "")
+        $this->tplData = array("obsah" => array( "value" => '', "error" => ''),
+                               "alert" => "",
+                               "recenze_naz" => array( "value" => '', "error" => ''),
+                               "soubor" => array("value" => '', 'error' => '', 'cesta' => ''),
+                               "povolit_create" => true
         );
     }
 
@@ -34,48 +31,35 @@ class EditRecept implements IController {
             header("Location: index.php?page=uvodni");
         }
 
-        $this->tplData['obsah'] = $this->userMan->getAutorRecept();
-        if (isset($_POST['action']) && $_POST['action'] == 'odeslat'){
-            for($i = 0; $i < count($this->tplData['obsah']); $i++) {
-                if ($this->tplData['obsah'][$i]['id_PRISPEVEK'] == $_POST['recept']) {
-                    $this->tplData['error'] = '';
-                    $this->tplData['povolit'] = true;
-                    break;
-                } else {
-                    $this->tplData['error'] = "Špatný recept";
-                    $this->tplData['povolit'] = false;
-                }
-            }
-            $this->kontolEditRecept();
+        if (isset($_POST['action']) && $_POST['action'] == 'create_recenze'){
+            $this->kontolNewRecenze();
             $this->uploadFile();
-            if ($this->tplData['povolit']) {
-                $this->userMan->smazatPrispevek($this->tplData['obsah'][$i]['id_PRISPEVEK']);
-                $this->userMan->addRecept($this->tplData['popis']['value'], $this->tplData['nazev']['value']);
-                $GLOBALS['alert'] = "OK: Recept byl editovan.";
-                $this->userMan->addSoubor($this->tplData['nazev']['value'], $this->tplData['soubor']['value']);
+            if ($this->tplData['povolit_create']) {
+                $this->userMan->addRecenze($this->tplData['obsah']['value'], $this->tplData['recenze_naz']['value']);
+                $GLOBALS['alert'] = "OK: Vytvořena nová recenze.";
+                $this->userMan->addSoubor($this->tplData['recenze_naz']['value'], $this->tplData['soubor']['value']);
             } else {
-                $GLOBALS['alert'] = "CHYBA: Recept nebyl editovan.";
+                $GLOBALS['alert'] = "CHYBA: Nezdařilo vytvořit recenze.";
             }
 
         }
+
         return $this->tplData;
     }
 
-    private function kontolEditRecept(){
+    private function kontolNewRecenze(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['nazev'])) {
-                $this->tplData['nazev']['error'] = "Vypňte pole nazev";
-                $this->tplData['povolit'] = false;
+            if (empty($_POST['recenze_naz'])) {
+                $this->tplData['recenze_naz']['error'] = "Nezadal jste název";
+                $this->tplData['povolit_create'] = false;
             } else {
-                $this->tplData['nazev']['value'] = $this->test_input($_POST['nazev']);
-
+                $this->tplData['recenze_naz']['value'] = $this->test_input($_POST['recenze_naz']);
             }
-
-            if (empty($_POST['popis'])) {
-                $this->tplData['popis']['error'] = "Vypňte pole popis receptu";
-                $this->tplData['povolit'] = false;
+            if (empty($_POST['recenze_ob'])) {
+                $this->tplData['obsah']['error'] = "Musíte napsat popis recenze";
+                $this->tplData['povolit_create'] = false;
             } else {
-                $this->tplData['popis']['value'] = $this->test_input($_POST['popis']);
+                $this->tplData['obsah']['value'] = $this->test_input($_POST['recenze_ob']);
             }
         }
     }
@@ -129,7 +113,8 @@ class EditRecept implements IController {
                 $GLOBALS['alert'] = "Chyba při nahraní souboru.";
             }
         }
-        $this->tplData['povolit'] = $uploadOk;
+        $this->tplData['povolit_create'] = $uploadOk;
         return $uploadOk;
     }
+
 }

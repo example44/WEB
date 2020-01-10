@@ -35,7 +35,7 @@ class EditPosud implements IController {
                     $this->tplData['povolit'] = true;
                     break;
                 } else {
-                    $this->tplData['error'] = "Špatný recept";
+                    $this->tplData['error'] = "Špatná recenze";
                     $this->tplData['povolit'] = false;
                 }
             }
@@ -48,9 +48,9 @@ class EditPosud implements IController {
                                             $this->tplData['jazykova_kvalita']['value'],
                                             $this->tplData['doporuceni']['value'],
                                             $this->tplData['poznamky']['value']);
-                $GLOBALS['alert'] = "OK: Recept byl ohodnocen.";
+                $GLOBALS['alert'] = "OK: Recenze byla ohodnocena.";
             } else {
-                $GLOBALS['alert'] = "CHYBA: Recept nebyl ohodnocen.";
+                $GLOBALS['alert'] = "CHYBA: Recenze nebyla ohodnocena.";
             }
         }
         return $this->tplData;
